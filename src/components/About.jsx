@@ -3,24 +3,24 @@ import { motion } from 'framer-motion'
 
 function About() {
   return (
-    <section className="py-18 px-5">
-      <div className="w-full max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6">
+    <section className="section-spacing">
+      <div className="w-full max-w-7xl mx-auto container-padding">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8">
           {/* Why we exist card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="card-glass p-6"
+            className="card-glass p-8"
           >
-            <p className="text-mint font-bold text-xs tracking-[0.12em] uppercase mb-3">
+            <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
               Why we exist
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4 tracking-[-0.02em]">
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-[-0.02em]">
               Most marketing is disconnected… we build systems that compound.
             </h2>
-            <p className="text-lg text-white">
+            <p className="text-xl text-slateLight leading-relaxed">
               Agencies sell campaigns. Consultants sell audits. Sales teams chase deals. None of it compounds unless the offer, channels, and sales process are aligned. That's our job. We connect brand, acquisition, and sales into one GTM machine… then we run it.
             </p>
           </motion.div>
@@ -31,27 +31,27 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
-            className="card-glass p-6"
+            className="card-glass p-8"
           >
-            <p className="text-mint font-bold text-xs tracking-[0.12em] uppercase mb-3">
+            <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
               What we optimize for
             </p>
-            <ul className="space-y-3">
-              <li className="text-white flex items-start gap-3">
-                <div className="w-1.5 h-1.5 bg-mint rounded-full mt-2 flex-shrink-0" />
-                Pipeline created, not impressions
+            <ul className="space-y-4">
+              <li className="text-white flex items-start gap-4">
+                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
+                <span className="text-lg">Pipeline created, not impressions</span>
               </li>
-              <li className="text-white flex items-start gap-3">
-                <div className="w-1.5 h-1.5 bg-mint rounded-full mt-2 flex-shrink-0" />
-                Acquisition cost, LTV, payback period
+              <li className="text-white flex items-start gap-4">
+                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
+                <span className="text-lg">Acquisition cost, LTV, payback period</span>
               </li>
-              <li className="text-white flex items-start gap-3">
-                <div className="w-1.5 h-1.5 bg-mint rounded-full mt-2 flex-shrink-0" />
-                Conversion through the full funnel
+              <li className="text-white flex items-start gap-4">
+                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
+                <span className="text-lg">Conversion through the full funnel</span>
               </li>
-              <li className="text-white flex items-start gap-3">
-                <div className="w-1.5 h-1.5 bg-mint rounded-full mt-2 flex-shrink-0" />
-                Sales velocity and team performance
+              <li className="text-white flex items-start gap-4">
+                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
+                <span className="text-lg">Sales velocity and team performance</span>
               </li>
             </ul>
           </motion.div>

@@ -19,8 +19,8 @@ function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="w-full max-w-6xl mx-auto px-5">
-        <div className="flex items-center justify-between h-[70px]">
+      <div className="w-full max-w-7xl mx-auto container-padding">
+        <div className="flex items-center justify-between h-[80px]">
           {/* Brand */}
           <div className="flex items-center gap-3">
             <div 

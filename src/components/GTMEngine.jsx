@@ -26,29 +26,29 @@ function GTMEngine() {
   ]
 
   return (
-    <section id="engine" className="py-18 px-5">
-      <div className="w-full max-w-6xl mx-auto">
+    <section id="engine" className="section-spacing">
+      <div className="w-full max-w-7xl mx-auto container-padding">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-16 text-center"
         >
-          <p className="text-mint font-bold text-xs tracking-[0.12em] uppercase mb-3">
+          <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
             Signature system
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-3 tracking-[-0.02em]">
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-[-0.02em]">
             The Contwre GTM Engine™
           </h2>
-          <p className="text-slate">
+          <p className="text-xl text-slateLight max-w-3xl mx-auto">
             A 90-day framework that connects your offer, channels, and sales process into one compounding system.
           </p>
         </motion.div>
 
         {/* Four Phase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {phases.map((phase, index) => (
             <motion.div
               key={phase.number}
@@ -56,15 +56,15 @@ function GTMEngine() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="card-glass p-6 group hover:scale-105 transition-transform duration-300"
+              className="card-glass p-8 group hover:scale-105 transition-all duration-300"
             >
-              <span className="text-sand text-xs font-medium mb-2 block">
+              <span className="text-sand text-sm font-semibold mb-3 block">
                 {phase.number}
               </span>
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-mint transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-mint transition-colors">
                 {phase.title}
               </h3>
-              <p className="text-slate text-sm leading-relaxed">
+              <p className="text-slateLight leading-relaxed">
                 {phase.description}
               </p>
             </motion.div>

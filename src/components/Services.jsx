@@ -47,29 +47,29 @@ function Services() {
   ]
 
   return (
-    <section id="services" className="py-18 px-5">
-      <div className="w-full max-w-6xl mx-auto">
+    <section id="services" className="section-spacing">
+      <div className="w-full max-w-7xl mx-auto container-padding">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-16 text-center"
         >
-          <p className="text-mint font-bold text-xs tracking-[0.12em] uppercase mb-3">
+          <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
             What we do
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-3 tracking-[-0.02em]">
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-[-0.02em]">
             One-stop GTM… anything that brings revenue through the door.
           </h2>
-          <p className="text-slate">
+          <p className="text-xl text-slateLight max-w-3xl mx-auto">
             Choose a pillar or ask us to run the entire engine. We plug into your team or act as it.
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -77,19 +77,19 @@ function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="card-glass p-6 group hover:scale-105 transition-transform duration-300"
+              className="card-glass p-8 group hover:scale-105 transition-all duration-300"
             >
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-mint transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-mint transition-colors">
                 {service.title}
               </h3>
-              <p className="text-slate text-sm mb-4">
+              <p className="text-slateLight text-lg mb-6">
                 {service.subtitle}
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="text-slate text-sm flex items-start gap-2">
-                    <div className="w-1 h-1 bg-mint rounded-full mt-2 flex-shrink-0" />
-                    {feature}
+                  <li key={featureIndex} className="text-slateLight flex items-start gap-3">
+                    <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
+                    <span className="text-base">{feature}</span>
                   </li>
                 ))}
               </ul>

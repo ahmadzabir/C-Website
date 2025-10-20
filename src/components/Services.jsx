@@ -91,15 +91,69 @@ function Services() {
                 {/* Gradient Background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                 
-                {/* Icon */}
+                {/* Icon (SVG, no emojis) */}
                 <motion.div
-                  className="text-4xl mb-6"
+                  className="mb-6"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  {service.icon}
+                  {/* map known emoji markers to minimal SVGs */}
+                  {service.icon === '📧' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M4 7l6 5 6-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M15 9h5m0 0-2-2m2 2-2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '📊' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <path d="M3 20h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <rect x="5" y="12" width="3" height="6" rx="1" stroke="currentColor" strokeWidth="2"/>
+                      <rect x="10" y="9" width="3" height="9" rx="1" stroke="currentColor" strokeWidth="2"/>
+                      <rect x="15" y="6" width="3" height="12" rx="1" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M5 11l5-3 5 2 3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '🎯' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <path d="M12 4a8 8 0 1 1-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M7 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 2v3M4.9 4.9l2.1 2.1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '🔄' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <path d="M6 13a6 6 0 0 1 9-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M15 8h3V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M18 11a6 6 0 0 1-9 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M9 16H6v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '📈' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M8 14l3-3 2 2 3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '🎣' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <path d="M5 10h4l2-3 4 1 4-2v10l-4-2-4 1-2-3H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '🌟' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <path d="M3 8l5 2 2 5 2-5 5-2-5-2-2-5-2 5-5 2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {service.icon === '👤' && (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-emerald-400 mx-auto">
+                      <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
+                      <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M7 18a5 5 0 0 1 10 0" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
+                  )}
                 </motion.div>
                 
                 <motion.h3 

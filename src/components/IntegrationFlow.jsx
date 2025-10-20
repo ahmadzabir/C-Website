@@ -15,13 +15,14 @@ function IntegrationFlow() {
           className="text-center mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text-white mb-6 md:mb-8 leading-tight">
-            Systems that compound, <br />
-            <span className="gradient-text-emerald">not campaigns that collapse</span>
+            If your stack disappeared tomorrow, would your <span className="gradient-text-emerald">system still make money?</span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl text-slateLight max-w-4xl mx-auto leading-relaxed mb-12">
-            While others chase clicks and vanity metrics, we build revenue engines that work whether your tools are up or down.
-          </p>
+          <div className="text-base sm:text-lg md:text-xl text-slateLight max-w-4xl mx-auto leading-relaxed mb-12 space-y-4">
+            <p>Because real revenue systems don't collapse when the tools do.</p>
+            <p>They're built on clarity, not dependency.</p>
+            <p><span className="gradient-text-emerald font-semibold">Contwre builds that clarity</span> — so your pipeline doesn't vanish with your software.</p>
+          </div>
         </motion.div>
 
         {/* Core Philosophy */}
@@ -84,7 +85,10 @@ function IntegrationFlow() {
               className="text-center"
             >
               <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-400 text-xl">🎯</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
+                  <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Strong Offer</h3>
               <p className="text-slateLight text-sm leading-relaxed">
@@ -100,7 +104,11 @@ function IntegrationFlow() {
               className="text-center"
             >
               <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-400 text-xl">👥</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
+                  <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M4 20a6 6 0 0 1 10 0" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="17" cy="9" r="2" stroke="currentColor" strokeWidth="2"/>
+                </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Right People</h3>
               <p className="text-slateLight text-sm leading-relaxed">
@@ -116,7 +124,10 @@ function IntegrationFlow() {
               className="text-center"
             >
               <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-400 text-xl">⚙️</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
+                  <path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Reliable Systems</h3>
               <p className="text-slateLight text-sm leading-relaxed">

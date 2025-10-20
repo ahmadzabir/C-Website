@@ -142,7 +142,10 @@ function Comparison() {
               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
                 <div className="w-8 h-8 bg-white/10 rounded-full mx-auto mb-2 flex items-center justify-center">
-                  <span className="text-white/60 text-sm">🎯</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white/70">
+                    <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="2"/>
+                    <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                  </svg>
                 </div>
                 <p className="text-xs text-white/80 font-semibold">Sales Agencies</p>
               </div>
@@ -158,7 +161,10 @@ function Comparison() {
               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
                 <div className="w-8 h-8 bg-white/10 rounded-full mx-auto mb-2 flex items-center justify-center">
-                  <span className="text-white/60 text-sm">📈</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white/70">
+                    <path d="M3 20h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M5 16l4-4 3 3 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
                 <p className="text-xs text-white/80 font-semibold">Marketing Agencies</p>
               </div>

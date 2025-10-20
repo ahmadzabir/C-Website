@@ -7,45 +7,64 @@ function Results() {
   const stats = [
     { value: 3.2, suffix: "x", label: "Average ROAS improvement", color: "from-emerald-500 to-emerald-400" },
     { value: 67, suffix: "%", label: "Faster sales cycles", color: "from-teal-500 to-teal-400" },
-    { value: 89, suffix: "%", label: "Client retention rate", color: "from-emerald-500 to-teal-400" },
+    { value: 14, suffix: " days", label: "Time to first qualified lead", color: "from-emerald-500 to-teal-400" },
     { value: 50, suffix: "+", label: "Brands served", color: "from-teal-400 to-emerald-400" }
   ]
 
   const testimonials = [
     {
-      quote: "Contwre didn't just run our marketing - they built our entire revenue system. From cold outbound to sales enablement, they own the full funnel.",
-      author: "Ahmad Hassan",
-      role: "Founder, 6 Pack Macros",
-      result: "3.5x pipeline growth in 90 days",
-      metric: "3.5x"
+      quote: "Working with Contwre completely changed how we handled outbound. They helped us build a system that actually worked instead of relying on expensive tools. Within weeks, our pipeline felt alive again and everything became organized.",
+      author: "Haider Ali",
+      role: "CTO, TheHexaTown",
+      result: "70% reduction in outbound costs",
+      businessType: "B2B Tech",
+      profileImage: "/assets/profile-pictures/Haider_Ali1.jpg",
+      whatWeDid: "Built a cold outbound enablement system, trained the team, and reduced outbound costs by over 70%."
     },
     {
-      quote: "Finally, an agency that cares about actual revenue, not vanity metrics. Our LTV improved 2.8x and payback period dropped to 4 months.",
-      author: "Sarah Johnson", 
-      role: "CEO, Classic Programmers",
-      result: "2.8x LTV improvement",
-      metric: "2.8x"
+      quote: "Contwre helped us finally get profitable with our Meta ads. The strategy, creative direction, and tracking setup made all the difference. They don't just run campaigns, they make sure every ad is moving toward the right goal.",
+      author: "Zaryab Tanveer",
+      role: "Founder, Celestella",
+      result: "Consistent high-ROI performance",
+      businessType: "DTC Brand",
+      profileImage: "/assets/profile-pictures/Zaryab_Tanveer1.jpg",
+      whatWeDid: "Scaled Meta ads for Celestella's e-commerce brand, achieving consistent high-ROI performance and stable repeat purchases."
     },
     {
-      quote: "We went from struggling to find qualified leads to having a consistent pipeline. Contwre's outbound system delivers 20+ qualified meetings every month.",
-      author: "Michael Chen",
-      role: "Founder, TechFlow Solutions",
-      result: "20+ qualified meetings/month",
-      metric: "20+"
+      quote: "Contwre helped us build a real internal sales and marketing structure. We moved away from freelancers and random contractors to a proper in-house system that actually drives growth. They made sure the team was trained and confident before handing it over.",
+      author: "Vladymir Girault",
+      role: "Owner, Mandujour",
+      result: "Full in-house GTM team",
+      businessType: "Luxury Brand",
+      profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      whatWeDid: "Developed a full in-house GTM team for Mandujour, built sales and marketing systems, and established predictable scaling processes."
     },
     {
-      quote: "The ROI speaks for itself. In just 6 months, our customer acquisition cost dropped by 60% while our conversion rate tripled.",
-      author: "Emily Rodriguez",
-      role: "VP Marketing, GrowthCo",
-      result: "60% CAC reduction",
-      metric: "60%"
+      quote: "Contwre worked closely with us to organize our outbound and email marketing systems. They didn't just set things up, they helped our people understand how to run it. We saw results quickly and learned a lot through the process.",
+      author: "Hannan Masood",
+      role: "CEO, ClassicProgrammers",
+      result: "Quick results & team training",
+      businessType: "B2B Services",
+      profileImage: "/assets/profile-pictures/Hannan_Masood1.jpg",
+      whatWeDid: "Set up automated outbound and email marketing systems, trained internal team, and established lead tracking and follow-up processes."
     },
     {
-      quote: "Contwre transformed our entire go-to-market strategy. We're not just getting more leads - we're getting the RIGHT leads that actually convert.",
-      author: "David Park",
-      role: "CEO, InnovateLabs",
-      result: "4.2x conversion rate",
-      metric: "4.2x"
+      quote: "The Contwre team completely restructured how we approached SEO and content marketing. Everything became more strategic and easier to manage. The growth in visibility and performance was clear within weeks.",
+      author: "Stacy Keibler",
+      role: "Marketing Manager, CouponUpto",
+      result: "Clear growth in visibility",
+      businessType: "E-commerce",
+      profileImage: "/assets/profile-pictures/Stacy_K1.webp",
+      whatWeDid: "Redesigned CouponUpto's SEO and content systems, improving structure, rankings, and organic growth."
+    },
+    {
+      quote: "Contwre helped us bring our law firm online properly. The ads, lead systems, and strategy were all aligned from day one. We started getting qualified leads consistently and built a real marketing process around them.",
+      author: "Faisal Basit",
+      role: "Managing Partner, FBS & Co.",
+      result: "Qualified leads consistently",
+      businessType: "Professional Services",
+      profileImage: "/assets/profile-pictures/Faisal_Basit1.jpg",
+      whatWeDid: "Built a full B2B lead generation engine for FBS & Co. through ads and automation, improving both lead quality and conversion consistency."
     }
   ]
 
@@ -127,7 +146,16 @@ function Results() {
                     animate={headerVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
                   >
-                    {count.toFixed(1)}{stat.suffix}
+                    {stat.label === 'Time to first qualified lead' ? (
+                      <>
+                        {Math.round(count)}
+                        <span className="text-2xl align-top ml-1">{stat.suffix.trim()}</span>
+                      </>
+                    ) : (
+                      <>
+                        {count.toFixed(1)}{stat.suffix}
+                      </>
+                    )}
                   </motion.div>
                   
                   <div className="text-slateLight text-sm font-medium">
@@ -147,68 +175,6 @@ function Results() {
           })}
         </div>
 
-        {/* Client Logos Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <motion.p 
-            className="text-slateLight text-sm font-medium mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Featured client success stories
-          </motion.p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                  <span className="text-emerald-400 font-bold text-lg">6P</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold">6 Pack Macros</h4>
-                  <p className="text-slateLight text-sm">Fitness & Nutrition</p>
-                </div>
-              </div>
-              <p className="text-slateLight text-sm leading-relaxed">
-                "Contwre built our entire revenue system. From cold outbound to sales enablement, they own the full funnel."
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                  <span className="text-emerald-400 font-bold text-lg">CP</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold">Classic Programmers</h4>
-                  <p className="text-slateLight text-sm">Software Development</p>
-                </div>
-              </div>
-              <p className="text-slateLight text-sm leading-relaxed">
-                "Finally, an agency that cares about actual revenue, not vanity metrics. Our LTV improved 2.8x."
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
 
         {/* Testimonials Carousel */}
         <motion.div
@@ -242,12 +208,14 @@ function Results() {
                 </motion.blockquote>
                 
                 <div className="border-t border-white/10 pt-6 relative z-10">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 border-2 border-emerald-400/30 flex items-center justify-center">
-                        <span className="text-emerald-400 font-bold text-lg">
-                          {testimonials[currentTestimonial].author.split(' ').map(name => name[0]).join('')}
-                        </span>
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-400/30">
+                        <img 
+                          src={testimonials[currentTestimonial].profileImage} 
+                          alt={testimonials[currentTestimonial].author}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div>
                         <div className="font-bold text-white text-lg">
@@ -259,25 +227,52 @@ function Results() {
                       </div>
                     </div>
                     
-                    {/* Animated Metric */}
+                    {/* Business Type */}
                     <motion.div
-                      className="text-3xl font-bold font-mono gradient-text-emerald"
+                      className="text-right"
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.3, duration: 0.6 }}
                     >
-                      {testimonials[currentTestimonial].metric}
+                      <div className="text-lg font-semibold gradient-text-emerald mb-1">
+                        {testimonials[currentTestimonial].businessType}
+                      </div>
+                      <div className="text-sm text-slateLight">
+                        Business Type
+                      </div>
                     </motion.div>
                   </div>
                   
-                  <motion.div 
-                    className="inline-block px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-teal-400/20 text-emerald-400 text-sm rounded-full border border-emerald-400/30"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                  >
-                    {testimonials[currentTestimonial].result}
-                  </motion.div>
+                  <div className="space-y-4">
+                    <motion.div 
+                      className="inline-block px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-teal-400/20 text-emerald-400 text-sm rounded-full border border-emerald-400/30"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.5 }}
+                    >
+                      {testimonials[currentTestimonial].result}
+                    </motion.div>
+                    
+                    {/* What We Did Section */}
+                    <motion.div
+                      className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-emerald-400 text-xs font-bold">✓</span>
+                        </div>
+                        <div>
+                          <p className="text-white/80 text-sm font-medium mb-1">What We Did:</p>
+                          <p className="text-slateLight text-sm leading-relaxed">
+                            {testimonials[currentTestimonial].whatWeDid}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>

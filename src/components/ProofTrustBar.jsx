@@ -17,45 +17,45 @@ function ProofTrustBar() {
   ]
 
   return (
-    <section className="relative py-20 overflow-hidden w-full">
-      <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
-        
-        {/* Section Header */}
+    <section className="relative py-12 overflow-hidden w-full">
+      {/* Section Header */}
+      <div className="w-full max-w-7xl mx-auto container-padding relative z-10 mb-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text-white mb-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold gradient-text-white mb-1">
             Trusted by founders who scale
           </h2>
-          <p className="text-lg text-slateLight max-w-2xl mx-auto">
+          <p className="text-sm text-white/70 max-w-lg mx-auto">
             From SaaS startups to established e-commerce brands, we've helped 50+ businesses build revenue systems that compound.
           </p>
         </motion.div>
+      </div>
 
-        {/* Infinite Scrolling Logo Carousel with Opacity Fade */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="relative w-full overflow-hidden py-12 carousel-container"
-        >
+      {/* Full Width Infinite Scrolling Logo Carousel */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="relative w-full overflow-hidden py-6 carousel-container pointer-events-none select-none"
+      >
           <div className="carousel-track">
             {/* First set of logos */}
             {clients.map((client, index) => (
               <div
                 key={`first-${client.name}-${index}`}
-                className="carousel-item group"
+                className="carousel-item"
               >
-                <div className="w-full h-full rounded-lg border flex items-center justify-center transition-all duration-200 bg-white/20 border-white/30 group-hover:bg-white/30 group-hover:border-white/50 p-2">
+                <div className="w-full h-full rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
                   <img
                     src={client.logo}
                     alt={`${client.name} logo`}
-                    className="object-contain brightness-110 contrast-110 filter transition-all duration-200 group-hover:brightness-125 group-hover:contrast-125 group-hover:saturate-150 max-w-full max-h-full"
+                    className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
                   />
                 </div>
               </div>
@@ -64,13 +64,13 @@ function ProofTrustBar() {
             {clients.map((client, index) => (
               <div
                 key={`second-${client.name}-${index}`}
-                className="carousel-item group"
+                className="carousel-item"
               >
-                <div className="w-full h-full rounded-lg border flex items-center justify-center transition-all duration-200 bg-white/20 border-white/30 group-hover:bg-white/30 group-hover:border-white/50 p-2">
+                <div className="w-full h-full rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
                   <img
                     src={client.logo}
                     alt={`${client.name} logo`}
-                    className="object-contain brightness-110 contrast-110 filter transition-all duration-200 group-hover:brightness-125 group-hover:contrast-125 group-hover:saturate-150 max-w-full max-h-full"
+                    className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
                   />
                 </div>
               </div>
@@ -78,33 +78,7 @@ function ProofTrustBar() {
           </div>
         </motion.div>
 
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="flex flex-wrap justify-center items-center gap-8 text-slateLight text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-              <span>50+ brands served</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-              <span>5 countries</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-              <span>89% retention rate</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-              <span>3.2x avg ROAS</span>
-            </div>
-          </div>
-        </motion.div>
+		{/* Trust Indicators removed as requested */}
 
         {/* CSS for the carousel */}
         <style jsx>{`
@@ -144,14 +118,8 @@ function ProofTrustBar() {
               transform: translateX(-50%);
             }
           }
-          
-          /* Pause animation on hover */
-          .carousel-track:hover {
-            animation-play-state: paused;
-          }
         `}</style>
 
-      </div>
     </section>
   )
 }

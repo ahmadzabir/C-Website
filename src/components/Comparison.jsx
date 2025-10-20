@@ -226,8 +226,6 @@ function Comparison() {
                   className={`card-glass p-3 flex items-center justify-center relative overflow-hidden ${
                     item.salesAgencies === true 
                       ? 'bg-blue/10' 
-                      : item.salesAgencies === 'partial'
-                      ? 'bg-yellow-500/10'
                       : 'bg-white/5'
                   } group`}
                   whileHover={{ scale: 1.02 }}
@@ -237,12 +235,6 @@ function Comparison() {
                     <div className="flex items-center justify-center">
                       <div className="w-6 h-6 bg-blue/40 rounded-full flex items-center justify-center">
                         <span className="text-blue-200 font-bold text-xs">✓</span>
-                      </div>
-                    </div>
-                  ) : item.salesAgencies === 'partial' ? (
-                    <div className="flex items-center justify-center">
-                      <div className="w-6 h-6 bg-yellow-500/40 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-200 font-bold text-xs">⚪</span>
                       </div>
                     </div>
                   ) : (
@@ -259,8 +251,6 @@ function Comparison() {
                   className={`card-glass p-3 flex items-center justify-center relative overflow-hidden ${
                     item.marketingAgencies === true 
                       ? 'bg-green/10' 
-                      : item.marketingAgencies === 'partial'
-                      ? 'bg-yellow-500/10'
                       : 'bg-white/5'
                   } group`}
                   whileHover={{ scale: 1.02 }}
@@ -270,12 +260,6 @@ function Comparison() {
                     <div className="flex items-center justify-center">
                       <div className="w-6 h-6 bg-green-500/40 rounded-full flex items-center justify-center">
                         <span className="text-green-200 font-bold text-xs">✓</span>
-                      </div>
-                    </div>
-                  ) : item.marketingAgencies === 'partial' ? (
-                    <div className="flex items-center justify-center">
-                      <div className="w-6 h-6 bg-yellow-500/40 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-200 font-bold text-xs">⚪</span>
                       </div>
                     </div>
                   ) : (

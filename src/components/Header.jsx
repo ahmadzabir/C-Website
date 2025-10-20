@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { scrollY } = useScroll()
+  
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95])
+  const headerBlur = useTransform(scrollY, [0, 100], [10, 20])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -14,113 +27,123 @@ function Header() {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-glass border-b border-white/8"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'backdrop-blur-lg bg-bg/95 border-b border-white/30 shadow-lg' 
+          : 'backdrop-blur-sm bg-bg/80 border-b border-white/20'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
+      style={{ 
+        opacity: headerOpacity,
+        backdropFilter: `blur(${headerBlur}px)`
+      }}
     >
       <div className="w-full max-w-7xl mx-auto container-padding">
-        <div className="flex items-center justify-between h-[80px]">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div 
-              className="w-7 h-7 rounded-lg bg-gradient-to-r from-blue via-mint to-blue shadow-blue"
-              aria-hidden="true"
-            />
-            <a href="#top" className="text-white font-bold text-lg">
-              Contwre
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-[18px] items-center">
-            <button 
-              onClick={() => scrollToSection('engine')}
-              className="text-white/90 hover:text-white transition-colors text-sm font-medium"
-            >
-              GTM Engine
-            </button>
-            <button 
-              onClick={() => scrollToSection('services')}
-              className="text-white/90 hover:text-white transition-colors text-sm font-medium"
-            >
-              Services
-            </button>
-            <button 
-              onClick={() => scrollToSection('results')}
-              className="text-white/90 hover:text-white transition-colors text-sm font-medium"
-            >
-              Results
-            </button>
-            <button 
-              onClick={() => scrollToSection('faq')}
-              className="text-white/90 hover:text-white transition-colors text-sm font-medium"
-            >
-              FAQ
-            </button>
-          </div>
-
-          {/* CTA Button */}
-          <motion.a 
-            href="#book"
-            className="btn-primary px-5 py-3 rounded-full font-bold text-sm tracking-wide text-ink flex items-center gap-2"
+        <div className="flex items-center justify-between h-[64px]">
+          {/* Brand - 10% smaller */}
+          <motion.div 
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
+          >
+            <motion.a 
+              href="#top"
+              className="block"
+              whileHover={{ rotate: 2 }}
+              transition={{ duration: 0.2 }}
+            >
+              <img 
+                src="/src/assets/Contwre Logo white.png"
+                alt="Contwre Logo"
+                className="h-8 w-auto"
+              />
+            </motion.a>
+          </motion.div>
+
+          {/* Desktop Navigation - 10% smaller */}
+          <div className="hidden lg:flex gap-4 items-center">
+            {[
+              { id: 'engine', label: 'GTM Engine' },
+              { id: 'services', label: 'Services' },
+              { id: 'results', label: 'Results' },
+              { id: 'faq', label: 'FAQ' }
+            ].map((item) => (
+              <motion.button 
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-white/80 hover:text-white transition-colors text-sm font-medium relative group"
+                whileHover={{ y: -1 }}
+              >
+                {item.label}
+                <motion.div
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400 group-hover:w-full transition-all duration-300"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '100%' }}
+                />
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Book an Audit Button */}
+          <motion.button 
+            onClick={() => scrollToSection('main-cta')}
+            className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-xs md:text-sm tracking-wide flex items-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 relative overflow-hidden"
+            whileHover={{ scale: 1.05, y: -1 }}
             whileTap={{ scale: 0.95 }}
           >
-            Book a GTM Audit
-          </motion.a>
+            <span>Book an Audit</span>
+            <motion.div
+              animate={{ x: [0, 2, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              →
+            </motion.div>
+          </motion.button>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white"
+          {/* Mobile Menu Button - 10% smaller */}
+          <motion.button
+            className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            whileTap={{ scale: 0.95 }}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div 
-            className="md:hidden pb-4 border-t border-white/8 mt-4 pt-4"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <div className="flex flex-col gap-2">
-              <button 
-                onClick={() => scrollToSection('engine')}
-                className="text-white/90 hover:text-white transition-colors text-left py-2 text-sm"
+        <motion.div 
+          className="md:hidden overflow-hidden"
+          initial={false}
+          animate={{ height: isMenuOpen ? 'auto' : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="pb-4 border-t border-white/10 mt-3 pt-4 space-y-2">
+            {[
+              { id: 'engine', label: 'GTM Engine' },
+              { id: 'services', label: 'Services' },
+              { id: 'results', label: 'Results' },
+              { id: 'faq', label: 'FAQ' }
+            ].map((item, index) => (
+              <motion.button 
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-white/80 hover:text-white transition-colors text-left py-2 text-sm block w-full"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                GTM Engine
-              </button>
-              <button 
-                onClick={() => scrollToSection('services')}
-                className="text-white/90 hover:text-white transition-colors text-left py-2 text-sm"
-              >
-                Services
-              </button>
-              <button 
-                onClick={() => scrollToSection('results')}
-                className="text-white/90 hover:text-white transition-colors text-left py-2 text-sm"
-              >
-                Results
-              </button>
-              <button 
-                onClick={() => scrollToSection('faq')}
-                className="text-white/90 hover:text-white transition-colors text-left py-2 text-sm"
-              >
-                FAQ
-              </button>
-            </div>
-          </motion.div>
-        )}
+                {item.label}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.nav>
   )

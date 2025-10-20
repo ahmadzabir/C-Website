@@ -1,48 +1,181 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 function Footer() {
+  const [email, setEmail] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const teamPhotos = [
+    { name: "Model 1", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 2", photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 3", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 4", photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 5", photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 6", photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 7", photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face" },
+    { name: "Model 8", photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" }
+  ]
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Email submitted:', email)
+    setIsSubmitted(true)
+    setTimeout(() => setIsSubmitted(false), 3000)
+  }
+
   return (
-    <footer className="py-9 px-5 border-t border-white/8">
-      <div className="w-full max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-white mb-4 md:mb-0">
-            <div className="flex items-center gap-3 mb-2">
-              <div 
-                className="w-7 h-7 rounded-lg bg-gradient-to-r from-blue via-mint to-blue shadow-blue"
-                aria-hidden="true"
-              />
-              <div className="text-xl font-bold">Contwre</div>
-            </div>
-            <p className="text-slate">Pakistan's first founder-led GTM agency.</p>
+    <footer className="relative overflow-hidden bg-gradient-to-br from-bgSecondary via-bg to-bgSecondary border-t border-white/20">
+      {/* Enhanced Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue to-mint to-transparent opacity-60" />
+      
+      <div className="py-16 px-5">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+            {/* Left Column - Brand, CTA, Certifications, Clients */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-12"
+            >
+              {/* Brand Identity - 10% smaller */}
+              <div className="flex items-center">
+                <motion.img 
+                  src="/assets/contwre-logo-white.png"
+                  alt="Contwre Logo"
+                  className="h-12 w-auto"
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+
+
+              {/* Team Photos */}
+              <div>
+                <p className="text-slateLight text-sm mb-4 font-medium">Meet our team</p>
+                <div className="relative">
+                  {/* Stacked Team Photos */}
+                  <div className="flex items-center">
+                    {teamPhotos.slice(0, 6).map((member, index) => (
+                      <motion.div
+                        key={index}
+                        className="relative"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.05, duration: 0.3 }}
+                        viewport={{ once: true }}
+                        style={{ marginLeft: index > 0 ? '-12px' : '0' }}
+                      >
+                        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 group cursor-pointer relative z-10 ring-2 ring-yellow-400/30 ring-offset-1 ring-offset-bg">
+                          <img 
+                            src={member.photo} 
+                            alt={member.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Live Indicator */}
+                  <motion.div
+                    className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-bg flex items-center justify-center"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [1, 0.7, 1]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </motion.div>
+                  
+                  {/* Live Text */}
+                  <motion.div
+                    className="absolute -bottom-6 left-0 text-xs text-green-400 font-medium"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    Live now
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Founder Section */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-emerald-400/30">
+                    <img 
+                      src="/assets/founder-together.jpg" 
+                      alt="Ahmad & Zahra"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">Founder-led by Ahmad & Zahra</h3>
+                    <p className="text-slateLight text-sm">8+ years building and scaling sales systems across industries.</p>
+                    <p className="text-slateLight text-sm">Fractional GTM consultant and co-founder of Contwre.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Description, Lead Gen, Testimonial */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-12"
+            >
+              {/* Company Description */}
+              <div>
+                <p className="text-lg text-slateLight leading-relaxed mb-8">
+                  Pakistan's first founder-led, full-service GTM enablement agency. 
+                  We design and run end-to-end acquisition systems: outbound, performance marketing, 
+                  and sales enablement - anything that gets you to money.
+                </p>
+              </div>
+
+              {/* CTA Section */}
+              <div className="bg-gradient-to-r from-emerald-500/10 to-teal-400/10 backdrop-blur-sm rounded-2xl p-6 border border-emerald-400/20">
+                <h3 className="text-white font-semibold text-lg mb-3">Ready to scale your revenue?</h3>
+                <p className="text-slateLight text-sm mb-4">Get your custom GTM audit and revenue optimization plan.</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300"
+                >
+                  <span>Claim Your Free GTM Audit</span>
+                  <span className="text-lg">→</span>
+                </motion.button>
+                <p className="text-white/60 text-xs mt-2 text-center">
+                  Fully custom with no meeting required
+                </p>
+              </div>
+
+
+            </motion.div>
           </div>
           
-          <div className="flex space-x-6 mb-4 md:mb-0">
-            <a 
-              href="#" 
-              className="text-slate hover:text-white transition-colors"
-              aria-label="Twitter"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-              </svg>
-            </a>
-            <a 
-              href="#" 
-              className="text-slate hover:text-white transition-colors"
-              aria-label="LinkedIn"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        
-        <div className="border-t border-white/8 mt-8 pt-8 text-center">
-          <p className="text-slate">
-            © {new Date().getFullYear()} Contwre. All rights reserved.
-          </p>
+          {/* Bottom Copyright */}
+          <motion.div 
+            className="border-t border-white/10 pt-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-slateLight">
+              © {new Date().getFullYear()} Contwre. Pakistan's first founder-led GTM enablement agency.
+            </p>
+          </motion.div>
         </div>
       </div>
     </footer>

@@ -5,44 +5,51 @@ function Services() {
   const services = [
     {
       title: "Cold Outbound Engine",
-      subtitle: "Booked meetings and pipeline, on repeat.",
-      features: [
-        "ICP research and list building",
-        "Cold email, LinkedIn, and call sequences", 
-        "Deliverability, domains, and inbox health",
-        "Copy that converts, with testing sprints",
-        "CRM integration and pipeline hygiene"
-      ]
+      subtitle: "ICP research, copywriting, multichannel sequences",
+      icon: "📧",
+      color: "from-blue to-blueLight"
     },
     {
-      title: "Performance Marketing",
-      subtitle: "Scalable paid traffic that pays for itself.",
-      features: [
-        "Meta, Google, TikTok ads and creative systems",
-        "Offer tests, landing pages, CRO",
-        "Attribution, analytics, and payback windows", 
-        "Budget allocation and ROAS optimization"
-      ]
+      title: "Performance Marketing", 
+      subtitle: "Meta, Google, TikTok, CRO, attribution",
+      icon: "📊",
+      color: "from-mint to-mintLight"
     },
     {
       title: "Sales Enablement",
-      subtitle: "Turn leads into revenue with consistency.",
-      features: [
-        "Sales process and CRM setup (HubSpot, Pipedrive)",
-        "Scripts, objection handling, and follow-up",
-        "SDR and closer hiring, training, management",
-        "Dashboards, reviews, and accountability cadences"
-      ]
+      subtitle: "CRM setup, team training, objection handling", 
+      icon: "🎯",
+      color: "from-emerald-500 to-teal-400"
     },
     {
       title: "Retention & LTV",
-      subtitle: "Make customers worth more… over time.",
-      features: [
-        "Email and SMS automation",
-        "Post-purchase funnels and win-back",
-        "Loyalty, referrals, and community",
-        "Pricing and expansion strategies"
-      ]
+      subtitle: "Email, SMS, loyalty, pricing strategy",
+      icon: "🔄",
+      color: "from-teal-400 to-emerald-500"
+    },
+    {
+      title: "Growth Marketing",
+      subtitle: "Full-funnel optimization, scaling strategies",
+      icon: "📈",
+      color: "from-blueLight to-mint"
+    },
+    {
+      title: "Inbound Marketing",
+      subtitle: "SEO, content systems, lead generation",
+      icon: "🎣",
+      color: "from-teal-400 to-emerald-500"
+    },
+    {
+      title: "Influencer Marketing",
+      subtitle: "Partnership development, campaign management",
+      icon: "🌟",
+      color: "from-blue to-blueLight"
+    },
+    {
+      title: "Personal Branding",
+      subtitle: "Thought leadership, content positioning",
+      icon: "👤",
+      color: "from-mintLight to-mint"
     }
   ]
 
@@ -57,42 +64,73 @@ function Services() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
-            What we do
+          <p className="text-emerald-400 font-bold text-sm tracking-[0.12em] uppercase mb-4">
+            What We Do
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-[-0.02em]">
-            One-stop GTM… anything that brings revenue through the door.
-          </h2>
-          <p className="text-xl text-slateLight max-w-3xl mx-auto">
-            Choose a pillar or ask us to run the entire engine. We plug into your team or act as it.
+                <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-[-0.02em]">
+                  <span className="gradient-text-white">One-stop GTM… </span>
+                  <span className="gradient-text-emerald">anything that brings revenue through the door.</span>
+                </h2>
+          <p className="text-xl text-slateLight max-w-3xl mx-auto mb-8">
+            Every Growth Channel, <span className="gradient-text-emerald">One Agency</span>
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="card-glass p-8 group hover:scale-105 transition-all duration-300"
+              className="group"
             >
-              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-mint transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-slateLight text-lg mb-6">
-                {service.subtitle}
-              </p>
-              <ul className="space-y-3">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="text-slateLight flex items-start gap-3">
-                    <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-base">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="card-glass p-10 group-hover:scale-105 transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden h-full flex flex-col">
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                {/* Icon */}
+                <motion.div
+                  className="text-4xl mb-6"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {service.icon}
+                </motion.div>
+                
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {service.title}
+                </motion.h3>
+                
+                <motion.p 
+                  className="text-slateLight text-lg leading-relaxed flex-grow"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {service.subtitle}
+                </motion.p>
+                
+                {/* Progress Bar */}
+                <motion.div
+                  className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${service.color} rounded-full`}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  transition={{ delay: 0.5 + index * 0.1, duration: 1 }}
+                  viewport={{ once: true }}
+                />
+              </div>
             </motion.div>
           ))}
         </div>

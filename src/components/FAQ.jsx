@@ -2,96 +2,119 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openIndex, setOpenIndex] = useState(0) // Default open first FAQ
 
   const faqs = [
     {
       question: "How is Contwre different from other agencies?",
-      answer: "Most agencies sell campaigns or audits. We build and run complete revenue systems. We don't just create ads—we optimize the entire funnel from awareness to close, then we manage it ongoing. Think of us as your outsourced GTM team, not just your marketing vendor."
+      answer: "We're founder-led operators who build systems, not just campaigns. While others sell you campaigns or audits, we connect your entire revenue system - offer, channels, and sales process - into one compounding machine. We don't just execute; we engineer your GTM system for sustainable growth."
     },
     {
       question: "What's your typical engagement model?",
-      answer: "We work in 90-day sprints with clear deliverables and KPIs. Most clients start with a GTM audit ($5K), then move to our full engine retainer ($15K-50K/month depending on scope). We can also plug into existing teams or run specific channels (outbound, paid, sales enablement)."
+      answer: "We work in 90-day cycles with clear phases: Diagnose (weeks 1-2), Design (weeks 3-4), Deploy (weeks 5-8), and Drive (weeks 9-12). You can engage us for specific pillars (outbound, paid, sales enablement) or let us run the entire engine. We integrate directly into your team or act as your GTM function."
     },
     {
       question: "Do you work with early-stage startups?",
-      answer: "Yes, but selectively. We work best with companies that have product-market fit and some revenue ($50K+ ARR). If you're still figuring out your offer or ICP, we'll refer you to our network of earlier-stage consultants."
+      answer: "Yes, but selectively. We work with companies that have product-market fit and are ready to scale systematically. If you're still figuring out your core offer or ICP, we'll refer you to our network of early-stage specialists. We're built for companies ready to compound their growth."
     },
     {
       question: "What industries do you specialize in?",
-      answer: "E-commerce and B2B SaaS primarily. We've worked with D2C brands, marketplaces, enterprise software, and everything in between. Our frameworks work across industries, but we're most effective in sectors where performance marketing and sales velocity matter."
+      answer: "We specialize in E-commerce and SaaS companies with recurring revenue models. Our systems work best for businesses with clear ICPs, measurable LTV, and scalable acquisition channels. We've worked across B2B SaaS, DTC e-commerce, and marketplace businesses."
     },
     {
       question: "How do you measure success?",
-      answer: "Revenue metrics: pipeline created, CAC, LTV, payback period, sales velocity. We track everything from lead quality to close rates. Monthly business reviews with clear attribution. No vanity metrics—if it doesn't impact revenue, we don't optimize for it."
+      answer: "We optimize for revenue metrics that matter: pipeline created (not impressions), acquisition cost vs LTV ratios, payback periods, and sales velocity. Every system we build has clear KPIs and weekly reviews. Success means your revenue system compounds without constant intervention."
     }
   ]
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
   return (
-    <section id="faq" className="py-18 px-5">
-      <div className="w-full max-w-4xl mx-auto">
+    <section id="faq" className="section-spacing">
+      <div className="w-full max-w-5xl mx-auto container-padding">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-16 text-center"
         >
-          <p className="text-mint font-bold text-xs tracking-[0.12em] uppercase mb-3">
-            FAQ
+          <p className="text-emerald-400 font-bold text-sm tracking-[0.12em] uppercase mb-4">
+            Common Questions, Honest Answers
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight tracking-[-0.02em]">
-            Common questions, honest answers.
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-[-0.02em]">
+            <span className="gradient-text-emerald">FAQ</span>
           </h2>
         </motion.div>
 
-        {/* FAQ Items */}
+        {/* FAQ Accordion */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="border-b border-white/10 pb-4"
+              className="group"
             >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full text-left flex items-center justify-between py-4 hover:text-mint transition-colors"
+              <div 
+                className={`card-glass p-8 cursor-pointer transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden ${
+                  openIndex === index ? 'bg-gradient-to-r from-mint/10 to-blue/10 border-mint/30' : ''
+                }`}
+                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
               >
-                <h3 className="text-lg font-semibold text-white pr-4">
-                  {faq.question}
-                </h3>
-                <motion.div
-                  animate={{ rotate: openIndex === index ? 45 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-mint text-xl"
-                >
-                  +
-                </motion.div>
-              </button>
-              
-              <AnimatePresence>
+                {/* Mint Glow Highlight */}
                 {openIndex === index && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
+                    className="absolute inset-0 bg-gradient-to-r from-mint/20 to-blue/20 opacity-50"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.5 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-slate leading-relaxed pb-2">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
+                  />
                 )}
-              </AnimatePresence>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between">
+                    <motion.h3 
+                      className={`text-xl font-bold transition-colors duration-300 ${
+                        openIndex === index ? 'text-emerald-400' : 'text-white group-hover:text-emerald-400'
+                      }`}
+                    >
+                      {faq.question}
+                    </motion.h3>
+                    
+                    <motion.div
+                      className={`text-2xl transition-all duration-300 ${
+                        openIndex === index ? 'text-emerald-400 rotate-45' : 'text-slateLight group-hover:text-emerald-400'
+                      }`}
+                      animate={{ rotate: openIndex === index ? 45 : 0 }}
+                    >
+                      +
+                    </motion.div>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <motion.p 
+                          className="text-slateLight text-lg leading-relaxed mt-6"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1, duration: 0.3 }}
+                        >
+                          {faq.answer}
+                        </motion.p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

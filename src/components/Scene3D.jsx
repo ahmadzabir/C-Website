@@ -1,160 +1,152 @@
-import React, { Suspense, useRef, useMemo } from 'react'
+import React, { Suspense, useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Stars, Environment } from '@react-three/drei'
-import * as THREE from 'three'
+import { Stars, useScroll } from '@react-three/drei'
+import EnergyFlowBackground from './EnergyFlowBackground'
 
-// Floating particles with better distribution
-function FloatingParticles({ count = 120 }) {
-  const mesh = useRef()
-  const particles = useMemo(() => {
-    const positions = new Float32Array(count * 3)
-    const colors = new Float32Array(count * 3)
-    
-    for (let i = 0; i < count; i++) {
-      // Better distribution in a sphere
-      const radius = Math.random() * 15 + 5
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(Math.random() * 2 - 1)
-      
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
-      positions[i * 3 + 2] = radius * Math.cos(phi)
-      
-      // Color variation between blue and mint
-      const colorChoice = Math.random()
-      if (colorChoice < 0.6) {
-        colors[i * 3] = 0.31     // Blue R
-        colors[i * 3 + 1] = 0.6  // Blue G
-        colors[i * 3 + 2] = 1.0  // Blue B
-      } else {
-        colors[i * 3] = 0.18     // Mint R
-        colors[i * 3 + 1] = 0.83 // Mint G
-        colors[i * 3 + 2] = 0.75 // Mint B
-      }
-    }
-    
-    return { positions, colors }
-  }, [count])
-
-  useFrame((state) => {
-    if (mesh.current) {
-      mesh.current.rotation.y = state.clock.elapsedTime * 0.02
-      mesh.current.rotation.x = state.clock.elapsedTime * 0.01
-    }
-  })
-
-  return (
-    <instancedMesh ref={mesh} args={[null, null, count]}>
-      <sphereGeometry args={[0.015, 6, 6]} />
-      <meshBasicMaterial 
-        color="#4F9AFF" 
-        transparent 
-        opacity={0.4}
-        vertexColors
-      />
-      <instancedBufferAttribute attach="geometry-attributes-position" args={[particles.positions, 3]} />
-      <instancedBufferAttribute attach="geometry-attributes-color" args={[particles.colors, 3]} />
-    </instancedMesh>
-  )
-}
-
-// Gradient orbs for ambient lighting
-function GradientOrbs() {
-  const orb1 = useRef()
-  const orb2 = useRef()
+// Simple scroll-responsive starfield
+function ScrollStarField() {
+  const group = useRef()
+  const scroll = useScroll()
   
   useFrame((state) => {
-    if (orb1.current) {
-      orb1.current.rotation.x = state.clock.elapsedTime * 0.01
-      orb1.current.rotation.y = state.clock.elapsedTime * 0.02
-    }
-    if (orb2.current) {
-      orb2.current.rotation.x = -state.clock.elapsedTime * 0.015
-      orb2.current.rotation.y = state.clock.elapsedTime * 0.01
+    if (group.current) {
+      const time = state.clock.elapsedTime
+      const scrollOffset = scroll.offset
+      
+      // Scroll-based movement
+      group.current.position.z = scrollOffset * 15 - 20
+      group.current.position.y = scrollOffset * 8 - 4
+      group.current.position.x = Math.sin(scrollOffset * Math.PI) * 3
+      
+      // Gentle rotation
+      group.current.rotation.y = time * 0.01 + scrollOffset * 0.1
+      group.current.rotation.x = Math.sin(time * 0.005) * 0.05 + scrollOffset * 0.03
     }
   })
-
+  
   return (
-    <>
-      {/* Blue orb */}
-      <mesh ref={orb1} position={[8, 3, -10]}>
-        <sphereGeometry args={[3, 32, 32]} />
-        <meshBasicMaterial 
-          color="#4F9AFF" 
-          transparent 
-          opacity={0.08}
-        />
-      </mesh>
-      
-      {/* Mint orb */}
-      <mesh ref={orb2} position={[-6, -2, -8]}>
-        <sphereGeometry args={[2.5, 32, 32]} />
-        <meshBasicMaterial 
-          color="#2DD4BF" 
-          transparent 
-          opacity={0.06}
-        />
-      </mesh>
-    </>
+    <group ref={group}>
+      <Stars 
+        radius={100} 
+        depth={50} 
+        count={800} 
+        factor={4} 
+        saturation={0.3} 
+        fade 
+        speed={0.02} 
+      />
+    </group>
   )
 }
 
-// Subtle wireframe structure
-function WireframeGrid() {
-  const mesh = useRef()
+// Simple floating particles
+function FloatingParticles() {
+  const group = useRef()
+  const scroll = useScroll()
   
   useFrame((state) => {
-    if (mesh.current) {
-      mesh.current.rotation.z = state.clock.elapsedTime * 0.005
+    if (group.current) {
+      const time = state.clock.elapsedTime
+      const scrollOffset = scroll.offset
+      
+      // Scroll-based movement
+      group.current.position.z = scrollOffset * 10 - 15
+      group.current.position.y = scrollOffset * 5 - 2
+      
+      // Gentle floating motion
+      group.current.rotation.y = time * 0.015 + scrollOffset * 0.15
+      group.current.rotation.x = Math.sin(time * 0.008) * 0.08 + scrollOffset * 0.05
     }
   })
-
+  
   return (
-    <mesh ref={mesh} position={[0, 0, -15]}>
-      <planeGeometry args={[30, 30, 20, 20]} />
-      <meshBasicMaterial 
-        color="#94A3B8" 
-        transparent 
-        opacity={0.05}
-        wireframe
+    <group ref={group}>
+      <Stars 
+        radius={60} 
+        depth={30} 
+        count={300} 
+        factor={2} 
+        saturation={0.5} 
+        fade 
+        speed={0.03} 
       />
-    </mesh>
+    </group>
   )
 }
 
-// Main Three.js scene
+// Main Three.js scene with simple starfield
 function Scene3D() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    const handleInteraction = () => {
+      setIsLoaded(true)
+      document.removeEventListener('mousemove', handleInteraction)
+      document.removeEventListener('touchstart', handleInteraction)
+    }
+
+    document.addEventListener('mousemove', handleInteraction)
+    document.addEventListener('touchstart', handleInteraction)
+
+    return () => {
+      document.removeEventListener('mousemove', handleInteraction)
+      document.removeEventListener('touchstart', handleInteraction)
+    }
+  }, [])
+
+  if (!isLoaded) {
+    return (
+      <div className="fixed inset-0 z-0" style={{ width: '100vw', height: '100vh' }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-bg via-bgSecondary to-bg" />
+        <div className="absolute inset-0 gradient-bg" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/20" />
+      </div>
+    )
+  }
+
   return (
-    <div className="fixed inset-0 z-0">
-      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+    <div className="fixed inset-0 z-0" style={{ width: '100vw', height: '100vh' }}>
+      {/* Subtle gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-bg/20 to-bg/40 z-10 pointer-events-none" />
+      
+      <Canvas 
+        camera={{ position: [0, 0, 15], fov: 75 }}
+        style={{ 
+          width: '100%',
+          height: '100%',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          background: 'transparent'
+        }}
+      >
         <Suspense fallback={null}>
-          {/* Ambient lighting */}
-          <ambientLight intensity={0.3} />
-          <directionalLight position={[10, 10, 5]} intensity={0.4} />
-          <pointLight position={[0, 0, 5]} intensity={0.2} color="#4F9AFF" />
+          {/* Enhanced lighting setup */}
+          <ambientLight intensity={0.15} />
+          <directionalLight position={[10, 10, 5]} intensity={0.6} />
+          <pointLight position={[0, 0, 8]} intensity={0.3} color="#5B9CFF" />
+          <pointLight position={[0, 0, -5]} intensity={0.2} color="#35E0B9" />
+          
+          {/* Energy Flow Background */}
+          <EnergyFlowBackground />
+          
+          {/* Scroll-responsive starfield */}
+          <ScrollStarField />
           
           {/* Floating particles */}
-          <FloatingParticles count={100} />
+          <FloatingParticles />
           
-          {/* Gradient orbs */}
-          <GradientOrbs />
-          
-          {/* Wireframe grid */}
-          <WireframeGrid />
-          
-          {/* Subtle stars background */}
+          {/* Additional background stars for depth */}
           <Stars 
-            radius={500} 
-            depth={80} 
-            count={1500} 
-            factor={6} 
-            saturation={0} 
+            radius={1000} 
+            depth={100} 
+            count={500} 
+            factor={3} 
+            saturation={0.2} 
             fade 
-            speed={0.3} 
+            speed={0.05} 
           />
-          
-          {/* Environment for subtle lighting */}
-          <Environment preset="night" />
         </Suspense>
       </Canvas>
     </div>

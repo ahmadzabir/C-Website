@@ -33,11 +33,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0A0D12;
+  background: #0F1419; /* Deep dark green-slate background */
   color: #FFFFFF;
   overflow-x: hidden;
   line-height: 1.6;
   font-weight: 400;
+}
+
+/* Ensure text visibility */
+* {
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #FFFFFF;
+}
+
+p, span, div {
+  color: inherit;
 }
 
 /* Custom utilities */
@@ -110,12 +123,304 @@ body {
   }
   
   .section-spacing {
-    padding: 6rem 0;
+    padding: 5.4rem 0; /* 10% smaller than 6rem */
   }
   
   .container-padding {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container-padding {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-padding {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  
+  /* Enhanced section separators for better distinction */
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255,255,255,0.08), 
+      rgba(255,255,255,0.15), 
+      rgba(255,255,255,0.08), 
+      transparent
+    );
+    margin: 4rem 0;
+  }
+  
+  .section-divider-thick {
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255,255,255,0.1), 
+      rgba(255,255,255,0.25), 
+      rgba(255,255,255,0.1), 
+      transparent
+    );
+    margin: 5rem 0;
+  }
+  
+  /* Enhanced footer separation with dramatic effect */
+  .footer-separator {
+    height: 8px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(79,154,255,0.3), 
+      rgba(79,154,255,0.8), 
+      rgba(45,212,191,0.8), 
+      rgba(79,154,255,0.8), 
+      rgba(79,154,255,0.3), 
+      transparent
+    );
+    margin: 5rem 0 0 0;
+    box-shadow: 
+      0 0 40px rgba(79,154,255,0.3),
+      0 0 80px rgba(45,212,191,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+    border-radius: 3px;
+  }
+  
+/* Enhanced section backgrounds for better distinction */
+.section-bg-1 {
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent, rgba(255,255,255,0.02));
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.section-bg-2 {
+  background: linear-gradient(135deg, rgba(79,154,255,0.03), transparent, rgba(45,212,191,0.03));
+  position: relative;
+  border-top: 1px solid rgba(79,154,255,0.08);
+  border-bottom: 1px solid rgba(45,212,191,0.08);
+}
+
+.section-bg-3 {
+  background: linear-gradient(135deg, rgba(45,212,191,0.03), transparent, rgba(79,154,255,0.03));
+  position: relative;
+  border-top: 1px solid rgba(45,212,191,0.08);
+  border-bottom: 1px solid rgba(79,154,255,0.08);
+}
+
+/* Enhanced gradient text for emerald green highlights */
+.gradient-text-emerald {
+  background: linear-gradient(90deg, #10B981, #6EE7B7, #34D399, #10B981);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background-size: 300% 100%;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+  /* White to light green gradient text */
+  .gradient-text-white {
+    background: linear-gradient(90deg, #FFFFFF, #E3FAF2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Money animation keyframes */
+  @keyframes money-flow {
+    0% {
+      transform: translateX(0) translateY(0) scale(1);
+      filter: drop-shadow(0 0 20px rgba(56, 182, 255, 0.3));
+    }
+    25% {
+      transform: translateX(2px) translateY(-1px) scale(1.01);
+      filter: drop-shadow(0 0 25px rgba(56, 182, 255, 0.4));
+    }
+    50% {
+      transform: translateX(0) translateY(0) scale(1);
+      filter: drop-shadow(0 0 30px rgba(56, 182, 255, 0.5));
+    }
+    75% {
+      transform: translateX(-2px) translateY(1px) scale(1.01);
+      filter: drop-shadow(0 0 25px rgba(56, 182, 255, 0.4));
+    }
+    100% {
+      transform: translateX(0) translateY(0) scale(1);
+      filter: drop-shadow(0 0 20px rgba(56, 182, 255, 0.3));
+    }
+  }
+
+  @keyframes line-pulse {
+    0% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes energy-flow {
+    0% {
+      filter: brightness(1) contrast(1) drop-shadow(0 0 20px rgba(56, 182, 255, 0.3));
+    }
+    25% {
+      filter: brightness(1.05) contrast(1.02) drop-shadow(0 0 25px rgba(56, 182, 255, 0.4));
+    }
+    50% {
+      filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 30px rgba(56, 182, 255, 0.5));
+    }
+    75% {
+      filter: brightness(1.05) contrast(1.02) drop-shadow(0 0 25px rgba(56, 182, 255, 0.4));
+    }
+    100% {
+      filter: brightness(1) contrast(1) drop-shadow(0 0 20px rgba(56, 182, 255, 0.3));
+    }
+  }
+
+  .money-animation {
+    animation: money-flow 3s ease-in-out infinite;
+  }
+
+  .line-pulse {
+    animation: line-pulse 2s ease-in-out infinite;
+  }
+
+  .energy-flow {
+    animation: energy-flow 2.5s ease-in-out infinite;
+  }
+
+  /* Video masking styles */
+  .video-mask {
+    position: relative;
+    background: transparent;
+  }
+
+  .video-mask::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.05) 80%);
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 1rem;
+  }
+
+  /* Enhanced video styling for white background masking */
+  .video-white-bg {
+    mix-blend-mode: screen;
+    filter: brightness(1.3) contrast(1.2) saturate(1.1) invert(1);
+    background: transparent;
+  }
+
+  .video-white-bg:hover {
+    filter: brightness(1.4) contrast(1.3) saturate(1.2) invert(1);
+    transition: filter 0.3s ease;
+  }
+
+  /* Alternative masking approach */
+  .video-mask-alt {
+    background: #000;
+    mix-blend-mode: multiply;
+  }
+
+  .video-mask-alt video {
+    filter: brightness(2) contrast(1.5);
+    mix-blend-mode: screen;
+  }
+
+  /* CSS Mask approach for white background removal */
+  .video-mask-css {
+    position: relative;
+  }
+
+  .video-mask-css video {
+    filter: contrast(2) brightness(1.5);
+    mix-blend-mode: difference;
+  }
+
+  .video-mask-css::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 0.6;
+    }
+  }
+
+  /* 3D Perspective effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-1000 > div {
+    transform-style: preserve-3d;
+  }
+
+  /* Glass morphism effects */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 16px 64px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 }
 

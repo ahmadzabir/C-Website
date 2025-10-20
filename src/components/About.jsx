@@ -1,59 +1,90 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useStaggeredAnimation } from '../hooks/useCursorEffects'
 
 function About() {
+  const { ref: leftRef, isVisible: leftVisible } = useStaggeredAnimation(0)
+  const { ref: rightRef, isVisible: rightVisible } = useStaggeredAnimation(200)
+
   return (
-    <section className="section-spacing">
-      <div className="w-full max-w-7xl mx-auto container-padding">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8">
-          {/* Why we exist card */}
+    <section className="section-spacing relative overflow-hidden">
+      
+      <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 lg:gap-16 items-center">
+          {/* Left Column - Problem & Solution */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="card-glass p-8"
+            ref={leftRef}
+            initial={{ opacity: 0, x: -50 }}
+            animate={leftVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
           >
-            <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
-              Why we exist
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 tracking-[-0.02em]">
-              Most marketing is disconnected… we build systems that compound.
-            </h2>
-            <p className="text-xl text-slateLight leading-relaxed">
-              Agencies sell campaigns. Consultants sell audits. Sales teams chase deals. None of it compounds unless the offer, channels, and sales process are aligned. That's our job. We connect brand, acquisition, and sales into one GTM machine… then we run it.
-            </p>
+            <div>
+              <motion.h2 
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={leftVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+              >
+                <span className="gradient-text-white">Most growth systems </span>
+                <span className="gradient-text-emerald">fall apart in four months.</span>
+              </motion.h2>
+            </div>
+
+            <motion.div 
+              className="space-y-6 text-lg text-slateLight leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={leftVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+            >
+              <p>
+                Campaigns succeed, then stall. Slides fill with vanity metrics. Sales reps panic.
+              </p>
+              <p>
+                You don't need more clicks, leads, campaigns, or emails sent.
+              </p>
+              <p>
+                You need one system that aligns your offer, channels, and sales motion to compound.
+              </p>
+              <p className="gradient-text-white font-semibold">
+                Contwre connects everything that drives revenue under one engine. Your engine.
+              </p>
+            </motion.div>
+
           </motion.div>
 
-          {/* What we optimize for card */}
+          {/* Right Column - Visual Element */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="card-glass p-8"
+            ref={rightRef}
+            initial={{ opacity: 0, x: 50 }}
+            animate={rightVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
           >
-            <p className="text-mint font-bold text-sm tracking-[0.12em] uppercase mb-4">
-              What we optimize for
-            </p>
-            <ul className="space-y-4">
-              <li className="text-white flex items-start gap-4">
-                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
-                <span className="text-lg">Pipeline created, not impressions</span>
-              </li>
-              <li className="text-white flex items-start gap-4">
-                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
-                <span className="text-lg">Acquisition cost, LTV, payback period</span>
-              </li>
-              <li className="text-white flex items-start gap-4">
-                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
-                <span className="text-lg">Conversion through the full funnel</span>
-              </li>
-              <li className="text-white flex items-start gap-4">
-                <div className="w-2 h-2 bg-mint rounded-full mt-2 flex-shrink-0" />
-                <span className="text-lg">Sales velocity and team performance</span>
-              </li>
-            </ul>
+            <div className="card-glass p-12 group-hover:scale-[1.02] transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden">
+              {/* Abstract Wave Mesh Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-mint/5 to-blue/10 opacity-50" />
+              
+              {/* Visual Elements */}
+              <div className="relative z-10 space-y-8">
+                <div className="flex items-center justify-between">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-400 rounded-full opacity-60" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-full opacity-40" />
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="h-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full opacity-60" />
+                  <div className="h-2 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full opacity-40 w-3/4" />
+                  <div className="h-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full opacity-30 w-1/2" />
+                </div>
+                
+                <div className="flex justify-center">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue/20 to-mint/20 rounded-full border border-white/10 flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-400 rounded-full" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

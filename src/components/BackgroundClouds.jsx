@@ -14,50 +14,50 @@ function BackgroundClouds() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       
-      {/* Cosmic Nebula Base */}
+      {/* Cosmic Nebula Base - Deep Space Colors */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(2000px 1000px at 20% 15%, rgba(138,43,226,0.15), transparent 60%),
-            radial-gradient(1500px 800px at 80% 25%, rgba(0,191,255,0.12), transparent 65%),
-            radial-gradient(1200px 600px at 50% 40%, rgba(255,20,147,0.08), transparent 70%),
-            radial-gradient(1800px 900px at 70% 60%, rgba(50,205,50,0.06), transparent 55%),
-            radial-gradient(1600px 800px at 30% 80%, rgba(255,69,0,0.05), transparent 60%),
+            radial-gradient(2000px 1000px at 20% 15%, rgba(75,0,130,0.15), transparent 60%),
+            radial-gradient(1500px 800px at 80% 25%, rgba(25,25,112,0.12), transparent 65%),
+            radial-gradient(1200px 600px at 50% 40%, rgba(72,61,139,0.08), transparent 70%),
+            radial-gradient(1800px 900px at 70% 60%, rgba(106,90,205,0.06), transparent 55%),
+            radial-gradient(1600px 800px at 30% 80%, rgba(123,104,238,0.05), transparent 60%),
             linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a0a2e 50%, #16213e 75%, #000000 100%)
           `
         }}
       />
 
-      {/* Aurora Borealis Effect */}
+      {/* Aurora Borealis Effect - Cosmic Colors */}
       <motion.div
         className="absolute inset-0 opacity-60"
         animate={{
           background: [
             `linear-gradient(45deg, 
-              rgba(138,43,226,0.1) 0%, 
-              rgba(0,191,255,0.08) 25%, 
-              rgba(255,20,147,0.06) 50%, 
-              rgba(50,205,50,0.08) 75%, 
-              rgba(138,43,226,0.1) 100%)`,
+              rgba(75,0,130,0.1) 0%, 
+              rgba(25,25,112,0.08) 25%, 
+              rgba(72,61,139,0.06) 50%, 
+              rgba(106,90,205,0.08) 75%, 
+              rgba(75,0,130,0.1) 100%)`,
             `linear-gradient(135deg, 
-              rgba(0,191,255,0.1) 0%, 
-              rgba(255,20,147,0.08) 25%, 
-              rgba(50,205,50,0.06) 50%, 
-              rgba(255,69,0,0.08) 75%, 
-              rgba(0,191,255,0.1) 100%)`,
+              rgba(25,25,112,0.1) 0%, 
+              rgba(72,61,139,0.08) 25%, 
+              rgba(106,90,205,0.06) 50%, 
+              rgba(123,104,238,0.08) 75%, 
+              rgba(25,25,112,0.1) 100%)`,
             `linear-gradient(225deg, 
-              rgba(255,20,147,0.1) 0%, 
-              rgba(50,205,50,0.08) 25%, 
-              rgba(255,69,0,0.06) 50%, 
-              rgba(138,43,226,0.08) 75%, 
-              rgba(255,20,147,0.1) 100%)`,
+              rgba(72,61,139,0.1) 0%, 
+              rgba(106,90,205,0.08) 25%, 
+              rgba(123,104,238,0.06) 50%, 
+              rgba(75,0,130,0.08) 75%, 
+              rgba(72,61,139,0.1) 100%)`,
             `linear-gradient(315deg, 
-              rgba(50,205,50,0.1) 0%, 
-              rgba(255,69,0,0.08) 25%, 
-              rgba(138,43,226,0.06) 50%, 
-              rgba(0,191,255,0.08) 75%, 
-              rgba(50,205,50,0.1) 100%)`
+              rgba(106,90,205,0.1) 0%, 
+              rgba(123,104,238,0.08) 25%, 
+              rgba(75,0,130,0.06) 50%, 
+              rgba(25,25,112,0.08) 75%, 
+              rgba(106,90,205,0.1) 100%)`
           ]
         }}
         transition={{
@@ -73,19 +73,19 @@ function BackgroundClouds() {
         style={{
           background: `
             conic-gradient(from ${time * 10}deg at 20% 30%, 
-              rgba(138,43,226,0.08) 0deg, 
+              rgba(75,0,130,0.08) 0deg, 
               transparent 60deg, 
-              rgba(0,191,255,0.06) 120deg, 
+              rgba(25,25,112,0.06) 120deg, 
               transparent 180deg, 
-              rgba(255,20,147,0.08) 240deg, 
+              rgba(72,61,139,0.08) 240deg, 
               transparent 300deg, 
-              rgba(138,43,226,0.08) 360deg),
+              rgba(75,0,130,0.08) 360deg),
             conic-gradient(from ${time * -15}deg at 80% 70%, 
-              rgba(50,205,50,0.06) 0deg, 
+              rgba(106,90,205,0.06) 0deg, 
               transparent 90deg, 
-              rgba(255,69,0,0.08) 180deg, 
+              rgba(123,104,238,0.08) 180deg, 
               transparent 270deg, 
-              rgba(50,205,50,0.06) 360deg)
+              rgba(106,90,205,0.06) 360deg)
           `
         }}
       />
@@ -97,10 +97,10 @@ function BackgroundClouds() {
           background: `
             linear-gradient(${time * 5}deg, 
               transparent 0%, 
-              rgba(138,43,226,0.03) 20%, 
-              rgba(0,191,255,0.04) 40%, 
-              rgba(255,20,147,0.03) 60%, 
-              rgba(50,205,50,0.04) 80%, 
+              rgba(75,0,130,0.03) 20%, 
+              rgba(25,25,112,0.04) 40%, 
+              rgba(72,61,139,0.03) 60%, 
+              rgba(106,90,205,0.04) 80%, 
               transparent 100%)
           `
         }}
@@ -108,7 +108,7 @@ function BackgroundClouds() {
 
       {/* Cosmic Dust Particles */}
       <div className="absolute inset-0">
-        {Array.from({ length: 50 }).map((_, i) => (
+        {Array.from({ length: 25 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full opacity-20"
@@ -154,9 +154,9 @@ function BackgroundClouds() {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(800px 400px at 25% 20%, rgba(138,43,226,0.1), transparent 70%),
-            radial-gradient(600px 300px at 75% 30%, rgba(0,191,255,0.08), transparent 60%),
-            radial-gradient(500px 250px at 50% 70%, rgba(255,20,147,0.06), transparent 65%)
+            radial-gradient(800px 400px at 25% 20%, rgba(75,0,130,0.1), transparent 70%),
+            radial-gradient(600px 300px at 75% 30%, rgba(25,25,112,0.08), transparent 60%),
+            radial-gradient(500px 250px at 50% 70%, rgba(72,61,139,0.06), transparent 65%)
           `
         }}
         animate={{

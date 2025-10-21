@@ -9,24 +9,24 @@ function DynamicStars() {
   const generateStars = () => {
     const stars = []
     
-    // More stars for cosmic density
-    for (let i = 0; i < 60; i++) {
+    // Optimal number of stars for cosmic effect
+    for (let i = 0; i < 35; i++) {
       stars.push({
         id: `star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 3 + 0.5,
-        speed: Math.random() * 1.2 + 0.3,
-        opacity: Math.random() * 0.8 + 0.2,
+        size: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.8 + 0.2,
+        opacity: Math.random() * 0.6 + 0.2,
         // Cosmic movement patterns
         baseX: Math.random() * 100,
         baseY: Math.random() * 100,
         // Mystical movement patterns
         pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
         // Enhanced scroll sensitivity for cosmic effect
-        scrollSensitivity: Math.random() * 0.5 + 0.2,
-        // Cosmic colors
-        color: Math.random() > 0.7 ? 'cosmic' : 'white',
+        scrollSensitivity: Math.random() * 0.4 + 0.2,
+        // Cosmic colors - mostly white with some blue/purple
+        color: Math.random() > 0.8 ? 'cosmic' : 'white',
         // Timeline energy
         energyLevel: Math.random() * 0.5 + 0.5
       })
@@ -132,11 +132,11 @@ function DynamicStars() {
         const finalX = (star.x + moveX + parallaxX + energyFlowX) % 100
         const finalY = (star.y + moveY + parallaxY + energyFlowY) % 100
         
-        // Cosmic colors
+        // Cosmic colors - proper nebula colors
         const cosmicColors = {
           white: '#FFFFFF',
           cosmic: star.color === 'cosmic' ? 
-            `hsl(${(timeOffset * 20 + star.baseX * 3.6) % 360}, 70%, 80%)` : '#FFFFFF'
+            `hsl(${200 + Math.sin(timeOffset * 0.5 + star.baseX * 0.01) * 30}, 60%, 85%)` : '#FFFFFF'
         }
         
         return (

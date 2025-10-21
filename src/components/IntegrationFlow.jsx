@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 function IntegrationFlow() {
   return (
     <section className="section-spacing relative overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
+      <div className="w-full max-w-6xl mx-auto container-padding relative z-10">
         
         {/* Main Message */}
         <motion.div
@@ -14,18 +14,16 @@ function IntegrationFlow() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text-white mb-6 md:mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text-white mb-8 leading-tight">
             If your stack disappeared tomorrow, would your <span className="gradient-text-emerald">system still make money?</span>
           </h2>
           
-          <div className="text-base sm:text-lg md:text-xl text-body-secondary max-w-4xl mx-auto leading-relaxed mb-12 space-y-4">
-            <p>Because real revenue systems don't collapse when the tools do.</p>
-            <p>They're built on clarity, not dependency.</p>
-            <p><span className="gradient-text-emerald font-semibold">Contwre builds that clarity</span> — so your pipeline doesn't vanish with your software.</p>
-          </div>
+          <p className="text-xl text-body-secondary max-w-3xl mx-auto leading-relaxed mb-8">
+            Real revenue systems don't collapse when the tools do. They're built on clarity, not dependency.
+          </p>
         </motion.div>
 
-        {/* Core Philosophy */}
+        {/* Core Equation - Simplified */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,107 +31,20 @@ function IntegrationFlow() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              {/* Core Equation */}
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed">
-                <span className="gradient-text-emerald font-semibold">Strong Offer</span>
-                <span className="mx-4 text-emerald-400">+</span>
-                <span className="gradient-text-emerald font-semibold">Right People</span>
-                <span className="mx-4 text-emerald-400">×</span>
-                <span className="gradient-text-emerald font-semibold">Reliable Systems</span>
-                <span className="mx-4 text-emerald-400">=</span>
-                <span className="gradient-text-emerald font-bold text-xl md:text-2xl">Predictable Revenue</span>
-              </div>
-
-              {/* Key Message */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="pt-6 border-t border-white/10"
-              >
-                <p className="text-lg text-body-secondary leading-relaxed">
-                  When these three elements align, <span className="gradient-text-emerald font-semibold">growth isn't luck - it's math.</span>
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* What This Means */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
-                  <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold mb-2">Strong Offer</h3>
-              <p className="text-body-secondary text-sm leading-relaxed">
-                Clear value proposition that solves a real problem
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
-                  <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M4 20a6 6 0 0 1 10 0" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="17" cy="9" r="2" stroke="currentColor" strokeWidth="2"/>
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold mb-2">Right People</h3>
-              <p className="text-body-secondary text-sm leading-relaxed">
-                Precise targeting to your ideal customer profile
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-emerald-400">
-                  <path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold mb-2">Reliable Systems</h3>
-              <p className="text-body-secondary text-sm leading-relaxed">
-                Automated processes that work consistently
-              </p>
-            </motion.div>
+          <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-12 md:p-16 border border-white/10">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-relaxed mb-8">
+              <span className="gradient-text-blue font-semibold">Strong Offer</span>
+              <span className="mx-6 text-emerald-400">+</span>
+              <span className="gradient-text-purple font-semibold">Right People</span>
+              <span className="mx-6 text-emerald-400">×</span>
+              <span className="gradient-text-gold font-semibold">Reliable Systems</span>
+              <span className="mx-6 text-emerald-400">=</span>
+              <span className="gradient-text-emerald font-bold text-3xl md:text-4xl">Predictable Revenue</span>
+            </div>
+            
+            <p className="text-lg text-body-secondary leading-relaxed">
+              When these three elements align, <span className="gradient-text-emerald font-semibold">growth isn't luck - it's math.</span>
+            </p>
           </div>
         </motion.div>
 

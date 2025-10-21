@@ -17,109 +17,84 @@ function ProofTrustBar() {
   ]
 
   return (
-    <section className="relative py-12 overflow-hidden w-full">
+    <section className="section-spacing relative overflow-hidden w-full">
       {/* Section Header */}
       <div className="w-full max-w-7xl mx-auto container-padding relative z-10 mb-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <h2 className="text-lg sm:text-xl md:text-2xl font-semibold gradient-text-white mb-1">
             Trusted by founders who scale
           </h2>
-          <p className="text-sm text-body-secondary max-w-lg mx-auto">
-            From SaaS startups to established e-commerce brands, we've helped 50+ businesses build revenue systems that compound.
-          </p>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Full Width Infinite Scrolling Logo Carousel */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="relative w-full overflow-hidden py-6 carousel-container pointer-events-none select-none"
-      >
-          <div className="carousel-track">
-            {/* First set of logos */}
-            {clients.map((client, index) => (
-              <div
-                key={`first-${client.name}-${index}`}
-                className="carousel-item flex items-center justify-center"
-              >
+      {/* Optimized Infinite Scrolling Logo Carousel */}
+      <div className="relative w-full overflow-hidden py-6 carousel-container pointer-events-none select-none">
+        <div className="carousel-track">
+          {/* Single set of logos with CSS duplication */}
+          {clients.map((client, index) => (
+            <div
+              key={`logo-${index}`}
+              className="carousel-item flex items-center justify-center"
+            >
                 <img
                   src={client.logo}
                   alt={`${client.name} logo`}
-                  className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
-                  loading="lazy"
+                  className="object-contain brightness-100 contrast-100 filter max-w-full max-h-full opacity-80"
+                  loading="eager"
                   decoding="async"
+                  fetchpriority="high"
                 />
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {clients.map((client, index) => (
-              <div
-                key={`second-${client.name}-${index}`}
-                className="carousel-item flex items-center justify-center"
-              >
-                <img
-                  src={client.logo}
-                  alt={`${client.name} logo`}
-                  className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
-          </div>
-        </motion.div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-		{/* Trust Indicators removed as requested */}
-
-        {/* CSS for the carousel */}
-        <style jsx>{`
-          .carousel-container {
-            mask: linear-gradient(to right, 
-              transparent 0%, 
-              black 40%, 
-              black 60%, 
-              transparent 100%
-            );
-            -webkit-mask: linear-gradient(to right, 
-              transparent 0%, 
-              black 40%, 
-              black 60%, 
-              transparent 100%
-            );
+      {/* Optimized CSS for faster carousel */}
+      <style jsx>{`
+        .carousel-container {
+          mask: linear-gradient(to right, 
+            transparent 0%, 
+            black 30%, 
+            black 70%, 
+            transparent 100%
+          );
+          -webkit-mask: linear-gradient(to right, 
+            transparent 0%, 
+            black 30%, 
+            black 70%, 
+            transparent 100%
+          );
+        }
+        
+        .carousel-track {
+          display: flex;
+          width: 200%;
+          animation: infiniteScroll 30s linear infinite;
+          gap: 3rem;
+          will-change: transform;
+        }
+        
+        .carousel-item {
+          flex: 0 0 auto;
+          width: 12rem;
+          height: 5rem;
+        }
+        
+        @keyframes infiniteScroll {
+          0% {
+            transform: translateX(0);
           }
-          
-          .carousel-track {
-            display: flex;
-            width: calc(200% + 12rem);
-            animation: infiniteScroll 45s linear infinite;
-            gap: 2rem;
+          100% {
+            transform: translateX(-50%);
           }
-          
-          .carousel-item {
-            flex: 0 0 auto;
-            width: 10rem;
-            height: 4rem;
-          }
-          
-          @keyframes infiniteScroll {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-        `}</style>
-
+        }
+        
+        /* Optimize for performance */
+        .carousel-track {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+      `}</style>
     </section>
   )
 }

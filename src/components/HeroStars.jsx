@@ -10,24 +10,26 @@ function HeroStars() {
   // Generate hero stars - more stars for hero section
   const generateHeroStars = useCallback(() => {
     const stars = []
-    for (let i = 0; i < 30; i++) { // More stars for hero section
+    for (let i = 0; i < 40; i++) { // Increased from 30 to 40
       stars.push({
         id: `hero-star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 1.2 + 0.6, // Slightly larger for hero
-        speed: Math.random() * 0.1 + 0.05,
-        opacity: Math.random() * 0.6 + 0.3,
+        size: Math.random() * 1.5 + 0.8, // Larger stars
+        speed: Math.random() * 0.3 + 0.1, // Faster movement
+        opacity: Math.random() * 0.8 + 0.4, // More visible
         baseX: Math.random() * 100,
         baseY: Math.random() * 100,
         pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
-        scrollSensitivity: Math.random() * 0.1 + 0.05,
-        color: Math.random() > 0.7 ? 'cosmic' : 'white',
-        energyLevel: Math.random() * 0.2 + 0.1,
+        scrollSensitivity: Math.random() * 0.2 + 0.1, // Higher sensitivity
+        color: Math.random() > 0.6 ? 'cosmic' : 'white', // More cosmic stars
+        energyLevel: Math.random() * 0.4 + 0.2, // Higher energy
         // Hero-specific properties
         initialY: Math.random() * 100,
-        scrollUpSpeed: Math.random() * 0.3 + 0.1, // Speed of upward movement
-        fadeOutPoint: Math.random() * 200 + 100 // When to start fading out
+        scrollUpSpeed: Math.random() * 0.8 + 0.3, // Much faster upward movement
+        fadeOutPoint: Math.random() * 100 + 50, // Earlier fade out
+        driftSpeed: Math.random() * 0.5 + 0.2, // Additional drift
+        pulseSpeed: Math.random() * 0.3 + 0.1 // Pulsing animation
       })
     }
     return stars
@@ -56,8 +58,8 @@ function HeroStars() {
 
   useEffect(() => {
     const animate = (currentTime) => {
-      if (currentTime - lastTimeRef.current >= 32) { // 30fps
-        setTimeOffset(currentTime / 2000)
+      if (currentTime - lastTimeRef.current >= 16) { // 60fps
+        setTimeOffset(currentTime / 1000) // Faster time progression
         lastTimeRef.current = currentTime
       }
       animationRef.current = requestAnimationFrame(animate)
@@ -87,27 +89,36 @@ function HeroStars() {
         let moveX, moveY
 
         if (star.pattern === 'nebula') {
-          moveX = Math.sin(time + star.baseX * 0.01) * 0.8 + Math.cos(time * 0.1 + star.baseY * 0.01) * 0.5
-          moveY = Math.cos(time * 0.3 + star.baseY * 0.01) * 0.6 + Math.sin(time * 0.2 + star.baseX * 0.01) * 0.4
+          // More dynamic nebula movement
+          moveX = Math.sin(time + star.baseX * 0.02) * 2.0 + Math.cos(time * 0.3 + star.baseY * 0.02) * 1.5 + Math.sin(time * 0.1) * star.driftSpeed
+          moveY = Math.cos(time * 0.4 + star.baseY * 0.02) * 1.8 + Math.sin(time * 0.25 + star.baseX * 0.02) * 1.2 + Math.cos(time * 0.15) * star.driftSpeed
         } else {
-          moveX = Math.sin(time * 0.5 + star.baseX * 0.02) * 0.6 + Math.cos(time * 0.2 + star.baseY * 0.02) * 0.5
-          moveY = Math.cos(time * 0.4 + star.baseY * 0.02) * 0.8 + Math.sin(time * 0.3 + star.baseX * 0.02) * 0.4
+          // More dynamic aurora movement
+          moveX = Math.sin(time * 0.6 + star.baseX * 0.03) * 1.8 + Math.cos(time * 0.3 + star.baseY * 0.03) * 1.4 + Math.sin(time * 0.2) * star.driftSpeed
+          moveY = Math.cos(time * 0.5 + star.baseY * 0.03) * 2.2 + Math.sin(time * 0.35 + star.baseX * 0.03) * 1.6 + Math.cos(time * 0.25) * star.driftSpeed
         }
 
-        // Hero-specific scroll animation - stars move up as you scroll
-        const scrollUpOffset = scrollY * star.scrollUpSpeed
-        const scrollFadeOut = Math.max(0, 1 - (scrollY - star.fadeOutPoint) / 200)
+        // Enhanced scroll animation - much more dramatic upward movement
+        const scrollUpOffset = scrollY * star.scrollUpSpeed * 2 // Doubled the effect
+        const scrollFadeOut = Math.max(0, 1 - (scrollY - star.fadeOutPoint) / 100) // Faster fade out
         
-        // Calculate final position with upward scroll movement
-        const finalX = (star.x + moveX) % 100
-        const finalY = (star.initialY + moveY - scrollUpOffset) % 100
+        // Additional scroll-based drift
+        const scrollDriftX = Math.sin(scrollY * 0.01 + star.baseX * 0.01) * star.scrollSensitivity * 10
+        const scrollDriftY = Math.cos(scrollY * 0.01 + star.baseY * 0.01) * star.scrollSensitivity * 8
+        
+        // Calculate final position with enhanced movement
+        const finalX = (star.x + moveX + scrollDriftX) % 100
+        const finalY = (star.initialY + moveY - scrollUpOffset + scrollDriftY) % 100
 
-        // Cosmic colors
+        // Enhanced cosmic colors with more dynamic changes
         const cosmicColors = {
           white: '#FFFFFF',
           cosmic: star.color === 'cosmic' ? 
-            `hsl(${200 + Math.sin(timeOffset * 0.3 + star.baseX * 0.005) * 20}, 50%, 80%)` : '#FFFFFF'
+            `hsl(${200 + Math.sin(timeOffset * 0.5 + star.baseX * 0.01) * 40}, 70%, ${70 + Math.sin(timeOffset * 0.3) * 20}%)` : '#FFFFFF'
         }
+
+        // Enhanced pulsing animation
+        const pulse = 1 + Math.sin(timeOffset * star.pulseSpeed + star.baseX * 0.01) * 0.3
 
         return (
           <div
@@ -116,16 +127,16 @@ function HeroStars() {
             style={{
               left: `${finalX}%`,
               top: `${finalY}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
+              width: `${star.size * pulse}px`,
+              height: `${star.size * pulse}px`,
               background: cosmicColors.cosmic,
-              opacity: Math.max(0, star.opacity * scrollFadeOut + Math.sin(timeOffset * 0.8 + star.x) * 0.1),
-              transform: `scale(${1 + Math.sin(timeOffset * 1 + star.y) * 0.08}) rotate(${timeOffset * 4 + star.baseX * 0.2}deg)`,
+              opacity: Math.max(0, star.opacity * scrollFadeOut + Math.sin(timeOffset * 1.2 + star.x) * 0.2),
+              transform: `scale(${1 + Math.sin(timeOffset * 1.5 + star.y) * 0.15}) rotate(${timeOffset * 8 + star.baseX * 0.3}deg)`,
               willChange: 'transform, opacity, background',
               transition: 'none',
               boxShadow: star.color === 'cosmic' ? 
-                `0 0 ${star.size * 2}px ${cosmicColors.cosmic}40` : 
-                `0 0 ${star.size}px rgba(255,255,255,0.3)`
+                `0 0 ${star.size * 3}px ${cosmicColors.cosmic}60` : 
+                `0 0 ${star.size * 1.5}px rgba(255,255,255,0.5)`
             }}
           />
         )

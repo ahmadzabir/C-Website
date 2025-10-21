@@ -28,7 +28,7 @@ function Footer() {
       {/* Enhanced Top Border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue to-mint to-transparent opacity-60" />
       
-      <div className="py-16 px-5">
+      <div className="section-spacing px-5">
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
             {/* Left Column - Brand, CTA, Certifications, Clients */}

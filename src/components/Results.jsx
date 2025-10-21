@@ -111,7 +111,7 @@ function Results() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.p 
             className="text-emerald-400 font-bold text-sm tracking-[0.12em] uppercase mb-6"
@@ -134,7 +134,7 @@ function Results() {
         </motion.div>
 
         {/* Animated Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg items-stretch">
           {stats.map((stat, index) => {
             const count = useCounterAnimation(stat.value, headerVisible, 2000)
             
@@ -147,7 +147,7 @@ function Results() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="card-glass p-8 text-center group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden">
+                <div className="card-glass p-8 text-center group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden h-48 flex flex-col justify-center">
                   {/* Gradient Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-150`} />
                   
@@ -170,7 +170,7 @@ function Results() {
                     )}
                   </motion.div>
                   
-                  <div className="text-body-secondary text-sm font-medium">
+                  <div className="text-body-secondary text-sm font-medium leading-tight">
                     {stat.label}
                   </div>
                   

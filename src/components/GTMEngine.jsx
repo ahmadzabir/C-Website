@@ -12,7 +12,7 @@ function GTMEngine() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-20 text-center"
+          className="mb-16 text-center"
         >
           <motion.h2 
             className="text-4xl md:text-5xl font-bold leading-tight mb-8 tracking-[-0.02em]"

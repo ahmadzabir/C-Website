@@ -6,8 +6,9 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
   
-  const headerOpacity = useTransform(scrollY, [0, 50], [0.8, 0.95])
-  const headerBlur = useTransform(scrollY, [0, 50], [10, 20])
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.9, 1])
+  const headerBlur = useTransform(scrollY, [0, 100], [8, 16])
+  const scrollProgress = useTransform(scrollY, [0, document.documentElement.scrollHeight - window.innerHeight], [0, 1])
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 20)
@@ -30,19 +31,19 @@ function Header() {
     <motion.nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'backdrop-blur-lg bg-bg/95 border-b border-white/30 shadow-lg' 
-          : 'backdrop-blur-sm bg-bg/80 border-b border-white/20'
+          ? 'backdrop-blur-xl bg-bg/98 border-b border-white/40 shadow-2xl' 
+          : 'backdrop-blur-md bg-bg/90 border-b border-white/20'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       style={{ 
         opacity: headerOpacity,
         backdropFilter: `blur(${headerBlur}px)`
       }}
     >
       <div className="w-full max-w-7xl mx-auto container-padding">
-        <div className="flex items-center justify-between h-[64px]">
+        <div className="flex items-center justify-between h-16">
           {/* Brand - 10% smaller */}
           <motion.div 
             className="flex items-center"
@@ -146,6 +147,15 @@ function Header() {
             ))}
           </div>
         </motion.div>
+        
+        {/* Scroll Progress Indicator */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400"
+          style={{
+            scaleX: scrollProgress,
+            transformOrigin: "left"
+          }}
+        />
       </div>
     </motion.nav>
   )

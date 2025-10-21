@@ -68,9 +68,12 @@ function GTMEngine() {
                     loop
                     muted
                     playsInline
+                    preload="auto"
                     className="w-full h-auto rounded-2xl shadow-2xl"
+                    onLoadedData={() => console.log('Video loaded successfully')}
+                    onError={(e) => console.error('Video error:', e)}
                   >
-                    <source src={`/assets/Money (2).mp4?v=${Date.now()}`} type="video/mp4" />
+                    <source src="/assets/Money (2).mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>

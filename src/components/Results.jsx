@@ -36,7 +36,7 @@ function Results() {
       role: "Owner, Mandujour",
       result: "Full in-house GTM team",
       businessType: "Luxury Brand",
-      profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      profileImage: "/assets/profile-pictures/Vladymir1.avif",
       whatWeDid: "Developed a full in-house GTM team for Mandujour, built sales and marketing systems, and established predictable scaling processes."
     },
     {
@@ -215,6 +215,8 @@ function Results() {
                           src={testimonials[currentTestimonial].profileImage} 
                           alt={testimonials[currentTestimonial].author}
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <div>

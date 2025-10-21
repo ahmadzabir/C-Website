@@ -56,6 +56,8 @@ function ProofTrustBar() {
                     src={client.logo}
                     alt={`${client.name} logo`}
                     className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -71,6 +73,8 @@ function ProofTrustBar() {
                     src={client.logo}
                     alt={`${client.name} logo`}
                     className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

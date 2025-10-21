@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 function Header() {
@@ -9,21 +9,22 @@ function Header() {
   const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95])
   const headerBlur = useTransform(scrollY, [0, 100], [10, 20])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50)
   }, [])
 
-  const scrollToSection = (sectionId) => {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsMenuOpen(false)
-  }
+  }, [])
 
   return (
     <motion.nav 
@@ -39,6 +40,8 @@ function Header() {
         opacity: headerOpacity,
         backdropFilter: `blur(${headerBlur}px)`
       }}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="w-full max-w-7xl mx-auto container-padding">
         <div className="flex items-center justify-between h-[64px]">
@@ -109,6 +112,9 @@ function Header() {
             className="md:hidden text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileTap={{ scale: 0.95 }}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
@@ -126,6 +132,8 @@ function Header() {
           initial={false}
           animate={{ height: isMenuOpen ? 'auto' : 0 }}
           transition={{ duration: 0.3 }}
+          id="mobile-menu"
+          aria-hidden={!isMenuOpen}
         >
           <div className="pb-4 border-t border-white/10 mt-3 pt-4 space-y-2">
             {[

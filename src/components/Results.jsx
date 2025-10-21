@@ -70,6 +70,18 @@ function Results() {
 
   const { ref: headerRef, isVisible: headerVisible } = useStaggeredAnimation(0)
 
+  // Preload all testimonial images for smooth carousel experience
+  useEffect(() => {
+    const preloadImages = () => {
+      testimonials.forEach((testimonial) => {
+        const img = new Image()
+        img.src = testimonial.profileImage
+        // Preload without waiting for completion to avoid blocking
+      })
+    }
+    preloadImages()
+  }, [testimonials])
+
   // Auto-slider functionality
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,14 +110,14 @@ function Results() {
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-20"
         >
           <motion.p 
             className="text-emerald-400 font-bold text-sm tracking-[0.12em] uppercase mb-6"
             initial={{ opacity: 0 }}
             animate={headerVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             Results
           </motion.p>
@@ -116,13 +128,13 @@ function Results() {
                   animate={headerVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.3, duration: 0.7 }}
                 >
-                  <span className="gradient-text-white">Real results from </span>
+                  <span className="gradient-text-blue">Real results from </span>
                   <span className="gradient-text-emerald">real brands.</span>
                 </motion.h2>
         </motion.div>
 
         {/* Animated Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg">
           {stats.map((stat, index) => {
             const count = useCounterAnimation(stat.value, headerVisible, 2000)
             
@@ -135,13 +147,13 @@ function Results() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="card-glass p-8 text-center group-hover:scale-105 transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden">
+                <div className="card-glass p-8 text-center group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden">
                   {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-150`} />
                   
                   {/* Animated Counter */}
                   <motion.div 
-                    className="text-5xl md:text-6xl font-bold text-white mb-3 font-mono group-hover:text-emerald-400 transition-colors duration-300"
+                    className="text-5xl md:text-6xl font-bold text-white mb-3 font-mono group-hover:text-emerald-400 transition-colors duration-150"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={headerVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
@@ -192,11 +204,11 @@ function Results() {
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="card-glass p-10 group-hover:scale-[1.02] transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden"
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="card-glass p-10 group-hover:scale-[1.02] transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden"
               >
                 {/* Testimonial Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
                 
                 <motion.blockquote 
                   className="text-white text-xl leading-relaxed mb-8 relative z-10 font-light"
@@ -207,16 +219,17 @@ function Results() {
                   "{testimonials[currentTestimonial].quote}"
                 </motion.blockquote>
                 
-                <div className="border-t border-white/10 pt-6 relative z-10">
-                  <div className="flex items-center justify-between mb-6">
+                <div className="border-t border-white/10 pt-6 content-spacing relative z-10">
+                  <div className="flex items-center justify-between content-spacing">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-400/30">
                         <img 
                           src={testimonials[currentTestimonial].profileImage} 
                           alt={testimonials[currentTestimonial].author}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading="eager"
                           decoding="async"
+                          fetchpriority="high"
                         />
                       </div>
                       <div>
@@ -285,7 +298,7 @@ function Results() {
             {/* Previous Button */}
             <motion.button
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-150"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -300,7 +313,7 @@ function Results() {
                 <motion.button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 rounded-full transition-all duration-150 ${
                     index === currentTestimonial 
                       ? 'bg-emerald-400 scale-125' 
                       : 'bg-white/30 hover:bg-white/50'
@@ -314,7 +327,7 @@ function Results() {
             {/* Next Button */}
             <motion.button
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-150"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

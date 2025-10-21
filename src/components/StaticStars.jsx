@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from 'react'
 
 function DynamicStars() {
   const [timeOffset, setTimeOffset] = useState(0)
+  const [scrollY, setScrollY] = useState(0)
   const animationRef = useRef()
 
-  // Generate simplified star positions
+  // Generate star positions - more stars for better visual effect
   const generateStars = () => {
     const stars = []
     
-    // Reduced number of stars for better performance
-    for (let i = 0; i < 20; i++) {
+    // Increased number of stars for better visual effect
+    for (let i = 0; i < 50; i++) {
       stars.push({
         id: `star-${i}`,
         x: Math.random() * 100,
@@ -25,7 +26,20 @@ function DynamicStars() {
 
   const [stars] = useState(() => generateStars())
 
-  // Simplified animation loop
+  // Scroll tracking for parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  // Stable animation loop - ensures stars never disappear
   useEffect(() => {
     let startTime = Date.now()
     
@@ -35,8 +49,10 @@ function DynamicStars() {
       animationRef.current = requestAnimationFrame(animate)
     }
     
+    // Start animation immediately
     animationRef.current = requestAnimationFrame(animate)
     
+    // Cleanup only on unmount
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
@@ -56,22 +72,27 @@ function DynamicStars() {
         height: '100vh'
       }}
     >
-      {/* Render simplified stars */}
+      {/* Render stars - stable and always visible with scroll parallax */}
       {stars.map((star) => {
         const moveY = Math.sin(timeOffset * star.speed + star.x) * 2
         const moveX = Math.cos(timeOffset * star.speed * 0.5 + star.y) * 1
+        
+        // Scroll-based parallax movement
+        const parallaxY = scrollY * 0.1 * (star.speed * 0.5) // Different stars move at different speeds
+        const parallaxX = scrollY * 0.05 * (star.speed * 0.3)
         
         return (
           <div
             key={star.id}
             className="absolute rounded-full bg-white"
             style={{
-              left: `${star.x + moveX}%`,
-              top: `${star.y + moveY}%`,
+              left: `${star.x + moveX + parallaxX}%`,
+              top: `${star.y + moveY + parallaxY}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              opacity: star.opacity + Math.sin(timeOffset * 2 + star.x) * 0.2,
+              opacity: Math.max(0.1, star.opacity + Math.sin(timeOffset * 2 + star.x) * 0.2),
               transform: `scale(${1 + Math.sin(timeOffset * 3 + star.y) * 0.1})`,
+              willChange: 'transform, opacity',
             }}
           />
         )

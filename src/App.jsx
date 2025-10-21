@@ -5,9 +5,9 @@ import ProofTrustBar from './components/ProofTrustBar'
 import About from './components/About'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
+import DynamicStars from './components/StaticStars'
 
 const BackgroundClouds = React.lazy(() => import('./components/BackgroundClouds'))
-const DynamicStars = React.lazy(() => import('./components/StaticStars'))
 const IntegrationFlow = React.lazy(() => import('./components/IntegrationFlow'))
 const GTMEngine = React.lazy(() => import('./components/GTMEngine'))
 const Services = React.lazy(() => import('./components/Services'))
@@ -21,10 +21,8 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="App min-h-screen bg-bg text-white">
-        {/* Dynamic Stars with movement and cursor interaction */}
-        <Suspense fallback={null}>
-          <DynamicStars />
-        </Suspense>
+        {/* Dynamic Stars with movement - always visible */}
+        <DynamicStars />
         
         {/* 3D Background Clouds - Full Homepage */}
         <Suspense fallback={null}>

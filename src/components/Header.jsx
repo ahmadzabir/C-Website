@@ -28,7 +28,7 @@ function Header() {
 
   return (
     <motion.nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 ${
         isScrolled 
           ? 'backdrop-blur-lg bg-bg/95 border-b border-white/30 shadow-lg' 
           : 'backdrop-blur-sm bg-bg/80 border-b border-white/20'
@@ -83,7 +83,7 @@ function Header() {
               >
                 {item.label}
                 <motion.div
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400 group-hover:w-full transition-all duration-150"
                   initial={{ width: 0 }}
                   whileHover={{ width: '100%' }}
                 />
@@ -94,7 +94,7 @@ function Header() {
           {/* Book an Audit Button */}
           <motion.button 
             onClick={() => scrollToSection('main-cta')}
-            className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-xs md:text-sm tracking-wide flex items-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 relative overflow-hidden"
+            className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-xs md:text-sm tracking-wide flex items-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-150 relative overflow-hidden"
             whileHover={{ scale: 1.05, y: -1 }}
             whileTap={{ scale: 0.95 }}
           >

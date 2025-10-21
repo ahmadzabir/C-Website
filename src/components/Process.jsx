@@ -39,7 +39,7 @@ function Process() {
           </motion.p>
           
           <motion.p 
-            className="text-lg text-slateLight leading-relaxed mb-8"
+            className="text-lg text-body-secondary leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -49,7 +49,7 @@ function Process() {
           </motion.p>
           
           <motion.p 
-            className="text-lg text-slateLight leading-relaxed"
+            className="text-lg text-body-secondary leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}

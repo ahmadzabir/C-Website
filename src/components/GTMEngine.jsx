@@ -25,7 +25,7 @@ function GTMEngine() {
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-slateLight max-w-4xl mx-auto leading-relaxed mb-8"
+            className="text-xl text-body-secondary max-w-4xl mx-auto leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
@@ -35,7 +35,7 @@ function GTMEngine() {
           </motion.p>
 
           <motion.div 
-            className="text-lg text-slateLight max-w-4xl mx-auto leading-relaxed space-y-4 mb-8"
+            className="text-lg text-body-secondary max-w-4xl mx-auto leading-relaxed space-y-4 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
@@ -68,9 +68,12 @@ function GTMEngine() {
                     loop
                     muted
                     playsInline
+                    preload="auto"
                     className="w-full h-auto rounded-2xl shadow-2xl"
+                    onLoadedData={() => console.log('Video loaded successfully')}
+                    onError={(e) => console.error('Video error:', e)}
                   >
-                    <source src={`/assets/Money (2).mp4?v=${Date.now()}`} type="video/mp4" />
+                    <source src="/assets/Money.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>

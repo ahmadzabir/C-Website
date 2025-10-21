@@ -3,17 +3,17 @@ import { motion } from 'framer-motion'
 
 function ProofTrustBar() {
   const clients = [
-    { name: "6 Pack Macros", logo: "/assets/client-logos/6_Pack_Macros.png" },
-    { name: "Classic Programmers", logo: "/assets/client-logos/Classic_Programmers.png" },
-    { name: "Coupon Upto", logo: "/assets/client-logos/Coupon_Upto.png" },
-    { name: "Daud Abbas", logo: "/assets/client-logos/Daud_Abbas.png" },
-    { name: "EvoNews", logo: "/assets/client-logos/EvoNews.png" },
-    { name: "Fit Fetish", logo: "/assets/client-logos/Fit_Fetish.png" },
-    { name: "Genius", logo: "/assets/client-logos/Genius.png" },
-    { name: "Mandujour", logo: "/assets/client-logos/Mandujour.png" },
-    { name: "Stuart Andrews", logo: "/assets/client-logos/Stuart_Andrews.png" },
-    { name: "TheHexaTown", logo: "/assets/client-logos/TheHexaTown.png" },
-    { name: "Vigor Wolf", logo: "/assets/client-logos/Vigor_Wolf.png" }
+    { name: "6 Pack Macros", logo: "/assets/client-logos/6_Pack_Macros.png?v=" + Date.now() },
+    { name: "Classic Programmers", logo: "/assets/client-logos/Classic_Programmers.png?v=" + Date.now() },
+    { name: "Coupon Upto", logo: "/assets/client-logos/Coupon_Upto.png?v=" + Date.now() },
+    { name: "Daud Abbas", logo: "/assets/client-logos/Daud_Abbas.png?v=" + Date.now() },
+    { name: "EvoNews", logo: "/assets/client-logos/EvoNews.png?v=" + Date.now() },
+    { name: "Fit Fetish", logo: "/assets/client-logos/Fit_Fetish.png?v=" + Date.now() },
+    { name: "Genius", logo: "/assets/client-logos/Genius.png?v=" + Date.now() },
+    { name: "Mandujour", logo: "/assets/client-logos/Mandujour.png?v=" + Date.now() },
+    { name: "Stuart Andrews", logo: "/assets/client-logos/Stuart_Andrews.png?v=" + Date.now() },
+    { name: "TheHexaTown", logo: "/assets/client-logos/TheHexaTown.png?v=" + Date.now() },
+    { name: "Vigor Wolf", logo: "/assets/client-logos/Vigor_Wolf.png?v=" + Date.now() }
   ]
 
   return (
@@ -30,7 +30,7 @@ function ProofTrustBar() {
           <h2 className="text-lg sm:text-xl md:text-2xl font-semibold gradient-text-white mb-1">
             Trusted by founders who scale
           </h2>
-          <p className="text-sm text-white/70 max-w-lg mx-auto">
+          <p className="text-sm text-body-secondary max-w-lg mx-auto">
             From SaaS startups to established e-commerce brands, we've helped 50+ businesses build revenue systems that compound.
           </p>
         </motion.div>
@@ -56,6 +56,8 @@ function ProofTrustBar() {
                     src={client.logo}
                     alt={`${client.name} logo`}
                     className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -71,6 +73,8 @@ function ProofTrustBar() {
                     src={client.logo}
                     alt={`${client.name} logo`}
                     className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

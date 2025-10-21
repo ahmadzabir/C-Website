@@ -68,11 +68,11 @@ function Services() {
             What We Do
           </p>
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-[-0.02em]">
-                  <span className="gradient-text-white">One-stop GTM… </span>
+                  <span className="gradient-text-purple">One-stop GTM… </span>
                   <span className="gradient-text-emerald">anything that brings revenue through the door.</span>
                 </h2>
-          <p className="text-xl text-slateLight max-w-3xl mx-auto mb-8">
-            Every Growth Channel, <span className="gradient-text-emerald">One Agency</span>
+          <p className="text-xl text-body-secondary max-w-3xl mx-auto mb-8">
+            Every Growth Channel, <span className="gradient-text-gold">One Agency</span>
           </p>
         </motion.div>
 
@@ -87,9 +87,9 @@ function Services() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="card-glass p-10 group-hover:scale-105 transition-all duration-500 group-hover:shadow-glass-lg relative overflow-hidden h-full flex flex-col">
+              <div className="card-glass p-10 group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden h-full flex flex-col">
                 {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-150`} />
                 
                 {/* Icon (SVG, no emojis) */}
                 <motion.div
@@ -157,7 +157,7 @@ function Services() {
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors duration-300"
+                  className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors duration-150"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
@@ -167,7 +167,7 @@ function Services() {
                 </motion.h3>
                 
                 <motion.p 
-                  className="text-slateLight text-lg leading-relaxed flex-grow"
+                  className="text-body-secondary text-lg leading-relaxed flex-grow"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}

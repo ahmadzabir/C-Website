@@ -1,24 +1,45 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
+
+// Throttle function for performance
+const throttle = (func, delay) => {
+  let timeoutId
+  let lastExecTime = 0
+  return function (...args) {
+    const currentTime = Date.now()
+    
+    if (currentTime - lastExecTime > delay) {
+      func.apply(this, args)
+      lastExecTime = currentTime
+    } else {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        func.apply(this, args)
+        lastExecTime = Date.now()
+      }, delay - (currentTime - lastExecTime))
+    }
+  }
+}
 
 // Cursor-based parallax effect
 export const useCursorParallax = (intensity = 0.5) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const ref = useRef(null)
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e
-      const { innerWidth, innerHeight } = window
-      
-      setMousePosition({
-        x: (clientX / innerWidth - 0.5) * intensity,
-        y: (clientY / innerHeight - 0.5) * intensity
-      })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+  const handleMouseMove = useCallback((e) => {
+    const { clientX, clientY } = e
+    const { innerWidth, innerHeight } = window
+    
+    setMousePosition({
+      x: (clientX / innerWidth - 0.5) * intensity,
+      y: (clientY / innerHeight - 0.5) * intensity
+    })
   }, [intensity])
+
+  useEffect(() => {
+    const throttledMouseMove = throttle(handleMouseMove, 16) // ~60fps
+    window.addEventListener('mousemove', throttledMouseMove, { passive: true })
+    return () => window.removeEventListener('mousemove', throttledMouseMove)
+  }, [handleMouseMove])
 
   return { ref, mousePosition }
 }
@@ -28,33 +49,37 @@ export const useMagnetEffect = (strength = 0.3) => {
   const ref = useRef(null)
   const [magnetPosition, setMagnetPosition] = useState({ x: 0, y: 0 })
 
+  const handleMouseMove = useCallback((e) => {
+    const rect = ref.current?.getBoundingClientRect()
+    if (!rect) return
+    
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    
+    const deltaX = (e.clientX - centerX) * strength
+    const deltaY = (e.clientY - centerY) * strength
+    
+    setMagnetPosition({ x: deltaX, y: deltaY })
+  }, [strength])
+
+  const handleMouseLeave = useCallback(() => {
+    setMagnetPosition({ x: 0, y: 0 })
+  }, [])
+
   useEffect(() => {
     const element = ref.current
     if (!element) return
 
-    const handleMouseMove = (e) => {
-      const rect = element.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-      
-      const deltaX = (e.clientX - centerX) * strength
-      const deltaY = (e.clientY - centerY) * strength
-      
-      setMagnetPosition({ x: deltaX, y: deltaY })
-    }
-
-    const handleMouseLeave = () => {
-      setMagnetPosition({ x: 0, y: 0 })
-    }
-
-    element.addEventListener('mousemove', handleMouseMove)
+    const throttledMouseMove = throttle(handleMouseMove, 16)
+    
+    element.addEventListener('mousemove', throttledMouseMove, { passive: true })
     element.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
-      element.removeEventListener('mousemove', handleMouseMove)
+      element.removeEventListener('mousemove', throttledMouseMove)
       element.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [strength])
+  }, [handleMouseMove, handleMouseLeave])
 
   return { ref, magnetPosition }
 }

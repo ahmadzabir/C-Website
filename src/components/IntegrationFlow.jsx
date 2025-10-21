@@ -18,7 +18,7 @@ function IntegrationFlow() {
             If your stack disappeared tomorrow, would your <span className="gradient-text-emerald">system still make money?</span>
           </h2>
           
-          <div className="text-base sm:text-lg md:text-xl text-slateLight max-w-4xl mx-auto leading-relaxed mb-12 space-y-4">
+          <div className="text-base sm:text-lg md:text-xl text-body-secondary max-w-4xl mx-auto leading-relaxed mb-12 space-y-4">
             <p>Because real revenue systems don't collapse when the tools do.</p>
             <p>They're built on clarity, not dependency.</p>
             <p><span className="gradient-text-emerald font-semibold">Contwre builds that clarity</span> — so your pipeline doesn't vanish with your software.</p>
@@ -60,7 +60,7 @@ function IntegrationFlow() {
                 viewport={{ once: true }}
                 className="pt-6 border-t border-white/10"
               >
-                <p className="text-lg text-slateLight leading-relaxed">
+                <p className="text-lg text-body-secondary leading-relaxed">
                   When these three elements align, <span className="gradient-text-emerald font-semibold">growth isn't luck - it's math.</span>
                 </p>
               </motion.div>
@@ -91,7 +91,7 @@ function IntegrationFlow() {
                 </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Strong Offer</h3>
-              <p className="text-slateLight text-sm leading-relaxed">
+              <p className="text-body-secondary text-sm leading-relaxed">
                 Clear value proposition that solves a real problem
               </p>
             </motion.div>
@@ -111,7 +111,7 @@ function IntegrationFlow() {
                 </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Right People</h3>
-              <p className="text-slateLight text-sm leading-relaxed">
+              <p className="text-body-secondary text-sm leading-relaxed">
                 Precise targeting to your ideal customer profile
               </p>
             </motion.div>
@@ -130,7 +130,7 @@ function IntegrationFlow() {
                 </svg>
               </div>
               <h3 className="text-white font-semibold mb-2">Reliable Systems</h3>
-              <p className="text-slateLight text-sm leading-relaxed">
+              <p className="text-body-secondary text-sm leading-relaxed">
                 Automated processes that work consistently
               </p>
             </motion.div>

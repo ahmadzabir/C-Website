@@ -54,7 +54,7 @@ function Footer() {
 
               {/* Team Photos */}
               <div>
-                <p className="text-slateLight text-sm mb-4 font-medium">Meet our team</p>
+                <p className="text-body-secondary text-sm mb-4 font-medium">Meet our team</p>
                 <div className="relative">
                   {/* Stacked Team Photos */}
                   <div className="flex items-center">
@@ -120,8 +120,8 @@ function Footer() {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold text-lg">Founder-led by Ahmad & Zahra</h3>
-                    <p className="text-slateLight text-sm">8+ years building and scaling sales systems across industries.</p>
-                    <p className="text-slateLight text-sm">Fractional GTM consultant and co-founder of Contwre.</p>
+                    <p className="text-body-secondary text-sm">8+ years building and scaling sales systems across industries.</p>
+                    <p className="text-body-secondary text-sm">Fractional GTM consultant and co-founder of Contwre.</p>
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ function Footer() {
             >
               {/* Company Description */}
               <div>
-                <p className="text-lg text-slateLight leading-relaxed mb-8">
+                <p className="text-lg text-body-secondary leading-relaxed mb-8">
                   Pakistan's first founder-led, full-service GTM enablement agency. 
                   We design and run end-to-end acquisition systems: outbound, performance marketing, 
                   and sales enablement - anything that gets you to money.
@@ -147,7 +147,7 @@ function Footer() {
               {/* CTA Section */}
               <div className="bg-gradient-to-r from-emerald-500/10 to-teal-400/10 backdrop-blur-sm rounded-2xl p-6 border border-emerald-400/20">
                 <h3 className="text-white font-semibold text-lg mb-3">Ready to scale your revenue?</h3>
-                <p className="text-slateLight text-sm mb-4">Get your custom GTM audit and revenue optimization plan.</p>
+                <p className="text-body-secondary text-sm mb-4">Get your custom GTM audit and revenue optimization plan.</p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -173,7 +173,7 @@ function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-slateLight">
+            <p className="text-body-secondary">
               © {new Date().getFullYear()} Contwre. Pakistan's first founder-led GTM enablement agency.
             </p>
           </motion.div>

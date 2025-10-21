@@ -86,7 +86,7 @@ function Comparison() {
           <h2 className="text-4xl md:text-5xl font-bold gradient-text-white mb-6">
             How Contwre Works Differently
           </h2>
-          <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-body-secondary max-w-4xl mx-auto leading-relaxed">
             Most agencies pick a side.<br />
             Sales agencies chase meetings. Marketing agencies chase clicks.<br />
             Contwre builds the entire revenue engine that connects both.

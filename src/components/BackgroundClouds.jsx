@@ -3,23 +3,36 @@ import React from 'react'
 function BackgroundClouds() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      {/* Static gradient background */}
-      <div 
+      {/* Base gradient with warmer, natural tones */}
+      <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 1000px 500px at 20% 0%, rgba(45, 212, 191, 0.15) 0%, transparent 75%),
-            radial-gradient(ellipse 800px 400px at 80% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 75%),
-            radial-gradient(ellipse 900px 450px at 70% 0%, rgba(16, 185, 129, 0.13) 0%, transparent 75%),
-            radial-gradient(ellipse 600px 300px at 30% 0%, rgba(45, 212, 191, 0.11) 0%, transparent 75%),
-            radial-gradient(ellipse 1200px 600px at 50% 0%, rgba(45, 212, 191, 0.12) 0%, transparent 85%),
-            radial-gradient(ellipse 500px 250px at 20% 0%, rgba(16, 185, 129, 0.09) 0%, transparent 70%),
-            linear-gradient(180deg, rgba(45, 212, 191, 0.05) 0%, rgba(16, 185, 129, 0.03) 30%, transparent 85%),
-            linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, rgba(45, 212, 191, 0.04) 50%, transparent 95%),
-            radial-gradient(ellipse 2000px 1000px at 50% 0%, rgba(45, 212, 191, 0.03) 0%, transparent 90%),
-            radial-gradient(ellipse 1500px 750px at 30% 0%, rgba(16, 185, 129, 0.025) 0%, transparent 85%),
-            linear-gradient(135deg, #0F1419 0%, #1A1D29 25%, #0F1419 50%, #1A1D29 75%, #0F1419 100%)
+            radial-gradient(1400px 700px at 15% 10%, rgba(139,92,246,0.08), transparent 65%),
+            radial-gradient(1000px 500px at 85% 5%, rgba(236,72,153,0.06), transparent 60%),
+            radial-gradient(800px 400px at 50% 20%, rgba(251,146,60,0.05), transparent 70%),
+            linear-gradient(180deg, rgba(255,255,255,0.03), transparent 30%),
+            linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 25%, #0F0F0F 50%, #2A2A2A 75%, #0F0F0F 100%)
           `
+        }}
+      />
+
+      {/* Subtle texture overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url('data:image/svg+xml;utf8,\n            <svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'200\\' height=\\'200\\' viewBox=\\'0 0 200 200\\'>\n              <filter id=\\'n\\'>\n                <feTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.7\\' numOctaves=\\'3\\' stitchTiles=\\'stitch\\'/>\n                <feColorMatrix type=\\'saturate\\' values=\\'0\\'/>\n              </filter>\n              <rect width=\\'100%\\' height=\\'100%\\' filter=\\'url(%23n)\\' opacity=\\'0.4\\'/>\n            </svg>')",
+          backgroundSize: '200px 200px'
+        }}
+      />
+
+      {/* Enhanced vignette */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(1400px 800px at 50% 15%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%)'
         }}
       />
     </div>

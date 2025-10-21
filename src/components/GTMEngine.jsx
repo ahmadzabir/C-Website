@@ -25,7 +25,7 @@ function GTMEngine() {
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-slateLight max-w-4xl mx-auto leading-relaxed mb-8"
+            className="text-xl text-body-secondary max-w-4xl mx-auto leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
@@ -35,7 +35,7 @@ function GTMEngine() {
           </motion.p>
 
           <motion.div 
-            className="text-lg text-slateLight max-w-4xl mx-auto leading-relaxed space-y-4 mb-8"
+            className="text-lg text-body-secondary max-w-4xl mx-auto leading-relaxed space-y-4 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}

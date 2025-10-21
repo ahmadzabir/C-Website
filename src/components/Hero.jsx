@@ -75,7 +75,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="text-base sm:text-lg md:text-xl text-slateLight max-w-4xl mx-auto content-spacing-lg leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-body-secondary max-w-4xl mx-auto content-spacing-lg leading-relaxed"
           >
             We design and run end-to-end acquisition systems: outbound, performance marketing, and sales enablement.
           </motion.p>

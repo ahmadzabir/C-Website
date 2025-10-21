@@ -71,7 +71,7 @@ function Services() {
                   <span className="gradient-text-purple">One-stop GTM… </span>
                   <span className="gradient-text-emerald">anything that brings revenue through the door.</span>
                 </h2>
-          <p className="text-xl text-slateLight max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-body-secondary max-w-3xl mx-auto mb-8">
             Every Growth Channel, <span className="gradient-text-gold">One Agency</span>
           </p>
         </motion.div>
@@ -167,7 +167,7 @@ function Services() {
                 </motion.h3>
                 
                 <motion.p 
-                  className="text-slateLight text-lg leading-relaxed flex-grow"
+                  className="text-body-secondary text-lg leading-relaxed flex-grow"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}

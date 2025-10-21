@@ -32,7 +32,7 @@ function About() {
             </div>
 
             <motion.div 
-              className="space-y-6 text-lg text-slateLight leading-relaxed"
+              className="space-y-6 text-lg text-body-secondary leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={leftVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3, duration: 0.7 }}

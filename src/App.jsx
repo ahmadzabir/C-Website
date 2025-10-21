@@ -6,13 +6,14 @@ import About from './components/About'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
 import DynamicStars from './components/StaticStars'
+import Services from './components/Services'
+import Results from './components/Results'
 
+// Only lazy-load heavy components
 const BackgroundClouds = React.lazy(() => import('./components/BackgroundClouds'))
 const IntegrationFlow = React.lazy(() => import('./components/IntegrationFlow'))
 const GTMEngine = React.lazy(() => import('./components/GTMEngine'))
-const Services = React.lazy(() => import('./components/Services'))
 const Process = React.lazy(() => import('./components/Process'))
-const Results = React.lazy(() => import('./components/Results'))
 const Comparison = React.lazy(() => import('./components/Comparison'))
 const FAQ = React.lazy(() => import('./components/FAQ'))
 const FounderSection = React.lazy(() => import('./components/FounderSection'))
@@ -55,9 +56,7 @@ function App() {
             </div>
             <div className="section-divider" />
             <div className="section-bg-3 relative z-10">
-              <Suspense fallback={null}>
-                <Services />
-              </Suspense>
+              <Services />
             </div>
             <div className="section-divider" />
             <div className="section-bg-1 relative z-10">
@@ -67,9 +66,7 @@ function App() {
             </div>
             <div className="section-divider-thick" />
             <div className="section-bg-2 relative z-10">
-              <Suspense fallback={null}>
-                <Results />
-              </Suspense>
+              <Results />
             </div>
             <div className="section-divider" />
             <div className="section-bg-3 relative z-10">

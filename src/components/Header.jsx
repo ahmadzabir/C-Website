@@ -6,11 +6,13 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
   
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95])
-  const headerBlur = useTransform(scrollY, [0, 100], [10, 20])
+  // Simplified scroll effects
+  const headerOpacity = useTransform(scrollY, [0, 50], [0.9, 0.95])
+  const headerBlur = useTransform(scrollY, [0, 50], [8, 12])
+  const scrollProgress = useTransform(scrollY, [0, 1000], [0, 1])
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 50)
+    setIsScrolled(window.scrollY > 20)
   }, [])
 
   useEffect(() => {
@@ -28,49 +30,41 @@ function Header() {
 
   return (
     <motion.nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'backdrop-blur-lg bg-bg/95 border-b border-white/30 shadow-lg' 
-          : 'backdrop-blur-sm bg-bg/80 border-b border-white/20'
+          ? 'backdrop-blur-md bg-bg/90 border-b border-white/10' 
+          : 'backdrop-blur-sm bg-bg/70'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       style={{ 
         opacity: headerOpacity,
         backdropFilter: `blur(${headerBlur}px)`
       }}
-      role="navigation"
-      aria-label="Main navigation"
     >
-      <div className="w-full max-w-7xl mx-auto container-padding">
-        <div className="flex items-center justify-between h-[64px]">
-          {/* Brand - 10% smaller */}
+      <div className="w-full max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Clean Logo */}
           <motion.div 
             className="flex items-center"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <motion.a 
-              href="#top"
-              className="block"
-              whileHover={{ rotate: 2 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img 
-                src="/assets/contwre-logo-white.png"
-                alt="Contwre Logo"
-                className="h-8 w-auto"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </motion.a>
+            <img 
+              src="/assets/contwre-logo-white.png"
+              alt="Contwre"
+              className="h-7 w-auto"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
           </motion.div>
 
-          {/* Desktop Navigation - 10% smaller */}
-          <div className="hidden lg:flex gap-4 items-center">
+          {/* Minimal Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
             {[
-              { id: 'engine', label: 'GTM Engine' },
               { id: 'services', label: 'Services' },
               { id: 'results', label: 'Results' },
               { id: 'faq', label: 'FAQ' }
@@ -78,43 +72,30 @@ function Header() {
               <motion.button 
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-white/80 hover:text-white transition-colors text-sm font-medium relative group"
+                className="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200 relative group"
                 whileHover={{ y: -1 }}
               >
                 {item.label}
-                <motion.div
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400 group-hover:w-full transition-all duration-150"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                />
+                <div className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-200" />
               </motion.button>
             ))}
           </div>
 
-          {/* Book an Audit Button */}
+          {/* Clean CTA Button */}
           <motion.button 
             onClick={() => scrollToSection('main-cta')}
-            className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-xs md:text-sm tracking-wide flex items-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-150 relative overflow-hidden"
-            whileHover={{ scale: 1.05, y: -1 }}
-            whileTap={{ scale: 0.95 }}
+            className="px-5 py-2.5 bg-white text-bg font-semibold rounded-full text-sm transition-all duration-200 hover:bg-white/90 hover:scale-105"
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span>Book an Audit</span>
-            <motion.div
-              animate={{ x: [0, 2, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              →
-            </motion.div>
+            Get Started
           </motion.button>
 
-          {/* Mobile Menu Button - 10% smaller */}
+          {/* Minimal Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-white p-1"
+            className="md:hidden text-white/70 hover:text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileTap={{ scale: 0.95 }}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
@@ -126,35 +107,41 @@ function Header() {
           </motion.button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Clean Mobile Menu */}
         <motion.div 
           className="md:hidden overflow-hidden"
           initial={false}
           animate={{ height: isMenuOpen ? 'auto' : 0 }}
-          transition={{ duration: 0.3 }}
-          id="mobile-menu"
-          aria-hidden={!isMenuOpen}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <div className="pb-4 border-t border-white/10 mt-3 pt-4 space-y-2">
+          <div className="pb-4 pt-2 space-y-1">
             {[
-              { id: 'engine', label: 'GTM Engine' },
               { id: 'services', label: 'Services' },
               { id: 'results', label: 'Results' },
               { id: 'faq', label: 'FAQ' }
-            ].map((item, index) => (
+            ].map((item) => (
               <motion.button 
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-white/80 hover:text-white transition-colors text-left py-2 text-sm block w-full"
+                className="text-white/70 hover:text-white text-left py-3 text-sm block w-full transition-colors duration-200"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.1 }}
               >
                 {item.label}
               </motion.button>
             ))}
           </div>
         </motion.div>
+        
+        {/* Subtle scroll progress indicator */}
+        <motion.div 
+          className="absolute bottom-0 left-0 h-px bg-white/20 w-full"
+          style={{ 
+            scaleX: scrollProgress,
+            transformOrigin: "left"
+          }}
+        />
       </div>
     </motion.nav>
   )

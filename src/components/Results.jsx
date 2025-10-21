@@ -170,7 +170,7 @@ function Results() {
                     )}
                   </motion.div>
                   
-                  <div className="text-slateLight text-sm font-medium">
+                  <div className="text-body-secondary text-sm font-medium">
                     {stat.label}
                   </div>
                   
@@ -236,7 +236,7 @@ function Results() {
                         <div className="font-bold text-white text-lg">
                           {testimonials[currentTestimonial].author}
                         </div>
-                        <div className="text-slateLight text-sm">
+                        <div className="text-body-secondary text-sm">
                           {testimonials[currentTestimonial].role}
                         </div>
                       </div>
@@ -252,7 +252,7 @@ function Results() {
                       <div className="text-lg font-semibold gradient-text-emerald mb-1">
                         {testimonials[currentTestimonial].businessType}
                       </div>
-                      <div className="text-sm text-slateLight">
+                      <div className="text-sm text-body-secondary">
                         Business Type
                       </div>
                     </motion.div>
@@ -281,7 +281,7 @@ function Results() {
                         </div>
                         <div>
                           <p className="text-white/80 text-sm font-medium mb-1">What We Did:</p>
-                          <p className="text-slateLight text-sm leading-relaxed">
+                          <p className="text-body-secondary text-sm leading-relaxed">
                             {testimonials[currentTestimonial].whatWeDid}
                           </p>
                         </div>

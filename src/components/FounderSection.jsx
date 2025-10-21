@@ -20,7 +20,7 @@ function FounderSection() {
             <span className="gradient-text-purple">Built by founders, </span>
             <span className="gradient-text-emerald">for founders.</span>
           </h2>
-          <p className="text-xl text-slateLight max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-body-secondary max-w-3xl mx-auto mb-8">
             8+ years building and scaling sales systems across industries. Fractional GTM consultant and co-founder of Contwre.
           </p>
         </motion.div>
@@ -49,7 +49,7 @@ function FounderSection() {
               </div>
             </div>
             <h3 className="text-2xl font-bold gradient-text-gold mb-2">Ahmad Zabir & Zahra Batool</h3>
-            <p className="text-slateLight text-lg">Co-founders of Contwre</p>
+            <p className="text-body-secondary text-lg">Co-founders of Contwre</p>
           </motion.div>
         </motion.div>
       </div>

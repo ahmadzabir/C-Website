@@ -5,19 +5,30 @@ function DynamicStars() {
   const [scrollY, setScrollY] = useState(0)
   const animationRef = useRef()
 
-  // Generate star positions - more stars for better visual effect
+  // Generate cosmic star positions - mystical and otherworldly
   const generateStars = () => {
     const stars = []
     
-    // Increased number of stars for better visual effect
-    for (let i = 0; i < 50; i++) {
+    // More stars for cosmic density
+    for (let i = 0; i < 60; i++) {
       stars.push({
         id: `star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 2 + 0.5,
-        speed: Math.random() * 0.5 + 0.1,
-        opacity: Math.random() * 0.6 + 0.2
+        size: Math.random() * 3 + 0.5,
+        speed: Math.random() * 1.2 + 0.3,
+        opacity: Math.random() * 0.8 + 0.2,
+        // Cosmic movement patterns
+        baseX: Math.random() * 100,
+        baseY: Math.random() * 100,
+        // Mystical movement patterns
+        pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
+        // Enhanced scroll sensitivity for cosmic effect
+        scrollSensitivity: Math.random() * 0.5 + 0.2,
+        // Cosmic colors
+        color: Math.random() > 0.7 ? 'cosmic' : 'white',
+        // Timeline energy
+        energyLevel: Math.random() * 0.5 + 0.5
       })
     }
     
@@ -26,26 +37,46 @@ function DynamicStars() {
 
   const [stars] = useState(() => generateStars())
 
-  // Scroll tracking for parallax effect
+  // Enhanced scroll tracking with better responsiveness
   useEffect(() => {
+    let ticking = false
+    
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const newScrollY = window.scrollY
+          setScrollY(newScrollY)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
+    // Add scroll listener with immediate execution
     window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    // Set initial scroll position
+    setScrollY(window.scrollY)
     
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
-  // Stable animation loop - ensures stars never disappear
+  // Enhanced animation loop - more responsive and smooth
   useEffect(() => {
     let startTime = Date.now()
+    let lastTime = 0
     
-    const animate = () => {
-      const elapsed = (Date.now() - startTime) / 1000
-      setTimeOffset(elapsed)
+    const animate = (currentTime) => {
+      const elapsed = (currentTime - startTime) / 1000
+      
+      // Only update if enough time has passed (60fps)
+      if (currentTime - lastTime >= 16) {
+        setTimeOffset(elapsed)
+        lastTime = currentTime
+      }
+      
       animationRef.current = requestAnimationFrame(animate)
     }
     
@@ -72,27 +103,60 @@ function DynamicStars() {
         height: '100vh'
       }}
     >
-      {/* Render stars - stable and always visible with scroll parallax */}
+      {/* Render cosmic stars - mystical nebula and aurora effects */}
       {stars.map((star) => {
-        const moveY = Math.sin(timeOffset * star.speed + star.x) * 2
-        const moveX = Math.cos(timeOffset * star.speed * 0.5 + star.y) * 1
+        // Cosmic movement patterns
+        const time = timeOffset * star.speed
+        let moveX, moveY
         
-        // Scroll-based parallax movement
-        const parallaxY = scrollY * 0.1 * (star.speed * 0.5) // Different stars move at different speeds
-        const parallaxX = scrollY * 0.05 * (star.speed * 0.3)
+        if (star.pattern === 'nebula') {
+          // Nebula-like swirling motion
+          moveX = Math.sin(time + star.baseX * 0.05) * 4 + Math.cos(time * 0.3 + star.baseY * 0.05) * 2
+          moveY = Math.cos(time * 0.8 + star.baseY * 0.05) * 3 + Math.sin(time * 0.4 + star.baseX * 0.05) * 2
+        } else {
+          // Aurora-like flowing motion
+          moveX = Math.sin(time * 1.5 + star.baseX * 0.08) * 3 + Math.cos(time * 0.6 + star.baseY * 0.08) * 3
+          moveY = Math.cos(time * 1.2 + star.baseY * 0.08) * 4 + Math.sin(time * 0.9 + star.baseX * 0.08) * 2
+        }
+        
+        // Enhanced cosmic scroll parallax
+        const parallaxY = scrollY * star.scrollSensitivity * 0.8
+        const parallaxX = scrollY * star.scrollSensitivity * 0.6
+        
+        // Mystical timeline energy effects
+        const timelinePhase = scrollY * 0.002
+        const energyFlowX = Math.sin(timelinePhase + star.baseX * 0.02) * 15 * star.energyLevel
+        const energyFlowY = Math.cos(timelinePhase + star.baseY * 0.02) * 12 * star.energyLevel
+        
+        // Calculate final position
+        const finalX = (star.x + moveX + parallaxX + energyFlowX) % 100
+        const finalY = (star.y + moveY + parallaxY + energyFlowY) % 100
+        
+        // Cosmic colors
+        const cosmicColors = {
+          white: '#FFFFFF',
+          cosmic: star.color === 'cosmic' ? 
+            `hsl(${(timeOffset * 20 + star.baseX * 3.6) % 360}, 70%, 80%)` : '#FFFFFF'
+        }
         
         return (
           <div
             key={star.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full"
             style={{
-              left: `${star.x + moveX + parallaxX}%`,
-              top: `${star.y + moveY + parallaxY}%`,
+              left: `${finalX}%`,
+              top: `${finalY}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              opacity: Math.max(0.1, star.opacity + Math.sin(timeOffset * 2 + star.x) * 0.2),
-              transform: `scale(${1 + Math.sin(timeOffset * 3 + star.y) * 0.1})`,
-              willChange: 'transform, opacity',
+              background: cosmicColors.cosmic,
+              opacity: Math.max(0.1, star.opacity + Math.sin(timeOffset * 2 + star.x) * 0.4),
+              transform: `scale(${1 + Math.sin(timeOffset * 3 + star.y) * 0.3}) rotate(${timeOffset * 15 + star.baseX}deg)`,
+              willChange: 'transform, opacity, background',
+              transition: 'none',
+              boxShadow: star.color === 'cosmic' ? 
+                `0 0 ${star.size * 2}px ${cosmicColors.cosmic}, 0 0 ${star.size * 4}px ${cosmicColors.cosmic}40` : 
+                `0 0 ${star.size}px rgba(255,255,255,0.5)`,
+              filter: star.color === 'cosmic' ? 'blur(0.5px)' : 'none'
             }}
           />
         )

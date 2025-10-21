@@ -14,19 +14,36 @@
     <link rel="preload" href="/assets/engine-gif.gif" as="image" type="image/gif">
     <link rel="preload" href="/assets/founder-together.jpg" as="image" type="image/jpeg">
     
+    <!-- Preload critical client logos -->
+    <link rel="preload" href="/assets/client-logos/TheHexaTown.png" as="image" type="image/png">
+    <link rel="preload" href="/assets/client-logos/Celestella.png" as="image" type="image/png">
+    <link rel="preload" href="/assets/client-logos/Mandujour.png" as="image" type="image/png">
+    
     <!-- Preload first testimonial images for smooth carousel -->
     <link rel="preload" href="/assets/profile-pictures/Haider_Ali1.jpg" as="image" type="image/jpeg">
     <link rel="preload" href="/assets/profile-pictures/Zaryab_Tanveer1.jpg" as="image" type="image/jpeg">
     <link rel="preload" href="/assets/profile-pictures/Vladymir1.avif" as="image" type="image/avif">
     
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/src/styles/index.css" as="style">
+    
     <!-- DNS prefetch for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Load fonts with display=swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Performance hints -->
     <meta name="theme-color" content="#0F0F0F">
     <meta name="color-scheme" content="dark">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Resource hints for better loading -->
+    <link rel="prefetch" href="/src/components/Services.jsx">
+    <link rel="prefetch" href="/src/components/Results.jsx">
   </head>
   <body>
     <div id="root"></div>

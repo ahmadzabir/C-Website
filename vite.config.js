@@ -12,13 +12,20 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
+    target: 'es2020',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          framer: ['framer-motion'],
-          router: ['react-router-dom']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor'
+            }
+            if (id.includes('framer-motion')) {
+              return 'framer-motion'
+            }
+            return 'vendor'
+          }
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.')
@@ -34,6 +41,7 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
+    reportCompressedSize: false
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],

@@ -30,7 +30,7 @@ function ProofTrustBar() {
           <h2 className="text-lg sm:text-xl md:text-2xl font-semibold gradient-text-white mb-1">
             Trusted by founders who scale
           </h2>
-          <p className="text-sm text-white/70 max-w-lg mx-auto">
+          <p className="text-sm text-body-secondary max-w-lg mx-auto">
             From SaaS startups to established e-commerce brands, we've helped 50+ businesses build revenue systems that compound.
           </p>
         </motion.div>

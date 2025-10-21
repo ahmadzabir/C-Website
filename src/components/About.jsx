@@ -62,11 +62,11 @@ function About() {
             className="relative"
           >
             {/* Engine Gif */}
-            <div className="relative aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]">
+            <div className="relative aspect-square">
               <img 
                 src="/assets/engine-gif.gif"
                 alt="Contwre Engine System"
-                className="w-full h-full object-cover rounded-2xl"
+                className="w-full h-full object-contain rounded-2xl"
                 loading="eager"
                 decoding="async"
                 fetchpriority="high"

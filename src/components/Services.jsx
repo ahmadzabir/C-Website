@@ -68,11 +68,11 @@ function Services() {
             What We Do
           </p>
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-[-0.02em]">
-                  <span className="gradient-text-purple">One-stop GTM… </span>
-                  <span className="gradient-text-emerald">anything that brings revenue through the door.</span>
+                  <span className="gradient-text-purple delay-1">One-stop GTM… </span>
+                  <span className="gradient-text-emerald delay-2">anything that brings revenue through the door.</span>
                 </h2>
           <p className="text-xl text-body-secondary max-w-3xl mx-auto mb-8">
-            Every Growth Channel, <span className="gradient-text-gold">One Agency</span>
+            Every Growth Channel, <span className="gradient-text-gold delay-3">One Agency</span>
           </p>
         </motion.div>
 

@@ -1,35 +1,40 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
+// Throttle function for performance
+const throttle = (func, limit) => {
+  let inThrottle
+  return function() {
+    const args = arguments
+    const context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
+
 function StaticStars() {
   const [timeOffset, setTimeOffset] = useState(0)
   const [scrollY, setScrollY] = useState(0)
   const animationRef = useRef()
   const lastTimeRef = useRef(0)
 
-  // Generate cosmic star positions - gentle and mystical
+  // Generate minimal stars for maximum performance
   const generateStars = useCallback(() => {
     const stars = []
     
-    // Ultra-performance: Minimal stars
-    for (let i = 0; i < 8; i++) { // Reduced from 15 to 8
+    // Ultra-performance: Only 3 stars
+    for (let i = 0; i < 3; i++) {
       stars.push({
         id: `star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 0.5 + 0.3, // Even smaller stars
-        speed: Math.random() * 0.05 + 0.02, // Ultra-slow movement
-        opacity: Math.random() * 0.3 + 0.2,
-        // Cosmic movement patterns
+        size: Math.random() * 0.3 + 0.2,
+        opacity: Math.random() * 0.2 + 0.1,
         baseX: Math.random() * 100,
         baseY: Math.random() * 100,
-        // Mystical movement patterns
-        pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
-        // Gentle scroll sensitivity
-        scrollSensitivity: Math.random() * 0.02 + 0.01, // Ultra-low sensitivity
-        // Cosmic colors - mostly white with some blue/purple
-        color: Math.random() > 0.8 ? 'cosmic' : 'white',
-        // Timeline energy
-        energyLevel: Math.random() * 0.05 + 0.05 // Ultra-low energy levels
+        scrollSensitivity: Math.random() * 0.01 + 0.005
       })
     }
     
@@ -44,9 +49,10 @@ function StaticStars() {
   }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const throttledScroll = throttle(handleScroll, 32) // 30fps throttling for background stars
+    window.addEventListener('scroll', throttledScroll, { passive: true })
     setScrollY(window.scrollY)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', throttledScroll)
   }, [handleScroll])
 
   // Optimized animation loop - 60fps with throttling
@@ -81,57 +87,31 @@ function StaticStars() {
         height: '100vh'
       }}
     >
-      {/* Render cosmic stars - mystical nebula and aurora effects */}
+      {/* Render minimal stars for performance */}
       {stars.map((star) => {
-        // Gentle cosmic movement patterns
-        const time = timeOffset * star.speed
-        let moveX, moveY
+        // Simple movement
+        const moveX = Math.sin(timeOffset * 0.1 + star.baseX * 0.01) * 0.2
+        const moveY = Math.cos(timeOffset * 0.1 + star.baseY * 0.01) * 0.2
         
-        if (star.pattern === 'nebula') {
-          // Simplified nebula motion for performance
-          moveX = Math.sin(time + star.baseX * 0.01) * 0.8 + Math.cos(time * 0.1 + star.baseY * 0.01) * 0.5
-          moveY = Math.cos(time * 0.3 + star.baseY * 0.01) * 0.6 + Math.sin(time * 0.2 + star.baseX * 0.01) * 0.4
-        } else {
-          // Simplified aurora motion for performance
-          moveX = Math.sin(time * 0.5 + star.baseX * 0.02) * 0.6 + Math.cos(time * 0.2 + star.baseY * 0.02) * 0.5
-          moveY = Math.cos(time * 0.4 + star.baseY * 0.02) * 0.8 + Math.sin(time * 0.3 + star.baseX * 0.02) * 0.4
-        }
-        
-        // Reduced scroll parallax for performance
-        const parallaxY = scrollY * star.scrollSensitivity * 0.1
-        const parallaxX = scrollY * star.scrollSensitivity * 0.05
-        
-        // Reduced timeline energy for performance
-        const timelinePhase = scrollY * 0.0005
-        const energyFlowX = Math.sin(timelinePhase + star.baseX * 0.005) * 2 * star.energyLevel
-        const energyFlowY = Math.cos(timelinePhase + star.baseY * 0.005) * 1.5 * star.energyLevel
+        // Simple scroll parallax
+        const parallaxY = scrollY * star.scrollSensitivity * 0.05
+        const parallaxX = scrollY * star.scrollSensitivity * 0.03
         
         // Calculate final position
-        const finalX = (star.x + moveX + parallaxX + energyFlowX) % 100
-        const finalY = (star.y + moveY + parallaxY + energyFlowY) % 100
-        
-        // Cosmic colors - proper nebula colors
-        const cosmicColors = {
-          white: '#FFFFFF',
-          cosmic: star.color === 'cosmic' ? 
-            `hsl(${200 + Math.sin(timeOffset * 0.3 + star.baseX * 0.005) * 20}, 50%, 80%)` : '#FFFFFF'
-        }
+        const finalX = (star.x + moveX + parallaxX) % 100
+        const finalY = (star.y + moveY + parallaxY) % 100
         
         return (
           <div
             key={star.id}
-            className="absolute rounded-full"
+            className="absolute rounded-full bg-white"
             style={{
               left: `${finalX}%`,
               top: `${finalY}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              background: cosmicColors.cosmic,
-              opacity: Math.max(0.1, star.opacity + Math.sin(timeOffset * 0.8 + star.x) * 0.1),
-              transform: `scale(${1 + Math.sin(timeOffset * 1 + star.y) * 0.08}) rotate(${timeOffset * 4 + star.baseX * 0.2}deg)`,
-              willChange: 'transform, opacity, background',
-              transition: 'none',
-              // Removed boxShadow and filter for better performance
+              opacity: star.opacity,
+              willChange: 'transform',
             }}
           />
         )

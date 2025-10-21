@@ -69,7 +69,7 @@ function Process() {
         >
           <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="px-12 py-6 text-xl font-bold bg-gradient-to-r from-accent to-mint text-white rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-accent/25 border-2 border-transparent hover:border-white/20"
+            className="btn-primary-xl"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >

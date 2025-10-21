@@ -6,6 +6,7 @@ import About from './components/About'
 import Footer from './components/Footer'
 import StaticStars from './components/StaticStars'
 import BackgroundClouds from './components/BackgroundClouds'
+import CosmicBackground from './components/CosmicBackground'
 import ErrorBoundary from './components/ErrorBoundary'
 import { Suspense } from 'react'
 
@@ -28,12 +29,15 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <ErrorBoundary>
-      <div className="App min-h-screen bg-bg text-white">
-      {/* Cosmic Stars with movement and scroll parallax */}
-      <StaticStars />
-      
-      {/* Cosmic Background with nebula effects */}
-      <BackgroundClouds />
+        <div className="App min-h-screen bg-bg text-white">
+        {/* Cosmic Stars with movement and scroll parallax */}
+        <StaticStars />
+        
+        {/* Cosmic Background with nebula effects */}
+        <BackgroundClouds />
+        
+        {/* Dynamic Cosmic Elements - Nebula, Galaxy, Blackholes */}
+        <CosmicBackground />
       
       {/* Website Content */}
       <div className="relative z-20">

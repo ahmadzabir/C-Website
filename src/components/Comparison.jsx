@@ -282,22 +282,48 @@ function Comparison() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-sm tracking-wide flex items-center mx-auto gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 mb-3 relative overflow-hidden"
-          >
-            <span>Claim Your Free GTM Audit</span>
-            <span className="text-lg">→</span>
-          </motion.button>
-          <p className="text-white/70 text-xs mb-1">
-            Fully custom with no meeting required
-          </p>
-          <p className="text-white/50 text-xs">
-            Includes: ICP analysis, funnel audit, revenue optimization plan and more
-          </p>
+          {/* Enhanced CTA Container */}
+          <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-emerald-300/10 backdrop-blur-sm rounded-3xl p-8 border border-emerald-400/30 shadow-2xl relative overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-emerald-300/5 animate-pulse"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-300"></div>
+            
+            {/* CTA Content */}
+            <div className="relative z-10">
+              <h3 className="text-white font-bold text-xl mb-2 gradient-text-emerald">
+                Ready to Scale Your Revenue?
+              </h3>
+              <p className="text-body-secondary text-sm mb-6 max-w-md mx-auto">
+                Get your custom GTM audit and revenue optimization plan
+              </p>
+              
+              <motion.button
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 1.05 }}
+                className="btn-cta-prominent mx-auto mb-4"
+              >
+                <span className="text-xl font-bold">Claim Your Free GTM Audit</span>
+                <motion.span 
+                  className="text-2xl ml-2"
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </motion.button>
+              
+              <div className="space-y-1">
+                <p className="text-emerald-300 text-sm font-medium">
+                  ✓ Fully custom with no meeting required
+                </p>
+                <p className="text-white/70 text-xs">
+                  Includes: ICP analysis, funnel audit, revenue optimization plan and more
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

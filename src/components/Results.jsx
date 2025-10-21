@@ -134,7 +134,7 @@ function Results() {
         </motion.div>
 
         {/* Animated Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg items-stretch">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg items-start">
           {stats.map((stat, index) => {
             const count = useCounterAnimation(stat.value, headerVisible, 2000)
             
@@ -153,7 +153,7 @@ function Results() {
                   
                   {/* Animated Counter */}
                   <motion.div 
-                    className="text-5xl md:text-6xl font-bold text-white mb-3 font-mono group-hover:text-emerald-400 transition-colors duration-150"
+                    className="text-5xl md:text-6xl font-bold text-white mb-3 font-mono group-hover:text-emerald-400 transition-colors duration-150 flex items-center justify-center"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={headerVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
@@ -161,7 +161,7 @@ function Results() {
                     {stat.label === 'Time to first qualified lead' ? (
                       <>
                         {Math.round(count)}
-                        <span className="text-2xl align-top ml-1">{stat.suffix.trim()}</span>
+                        <span className="text-3xl md:text-4xl ml-1">{stat.suffix.trim()}</span>
                       </>
                     ) : (
                       <>

@@ -27,13 +27,45 @@ function ProofTrustBar() {
         </div>
       </div>
 
-      {/* Optimized Infinite Scrolling Logo Carousel */}
+      {/* Truly Infinite Scrolling Logo Carousel */}
       <div className="relative w-full overflow-hidden py-6 carousel-container pointer-events-none select-none">
         <div className="carousel-track">
-          {/* Single set of logos with CSS duplication */}
+          {/* First set of logos */}
           {clients.map((client, index) => (
             <div
-              key={`logo-${index}`}
+              key={`logo-1-${index}`}
+              className="carousel-item flex items-center justify-center"
+            >
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="object-contain brightness-100 contrast-100 filter max-w-full max-h-full opacity-80"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+            </div>
+          ))}
+          {/* Second set of logos for seamless loop */}
+          {clients.map((client, index) => (
+            <div
+              key={`logo-2-${index}`}
+              className="carousel-item flex items-center justify-center"
+            >
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="object-contain brightness-100 contrast-100 filter max-w-full max-h-full opacity-80"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+            </div>
+          ))}
+          {/* Third set of logos for extra smoothness */}
+          {clients.map((client, index) => (
+            <div
+              key={`logo-3-${index}`}
               className="carousel-item flex items-center justify-center"
             >
                 <img
@@ -49,29 +81,31 @@ function ProofTrustBar() {
         </div>
       </div>
 
-      {/* Optimized CSS for faster carousel */}
+      {/* Seamless Infinite Scroll CSS */}
       <style jsx>{`
         .carousel-container {
           mask: linear-gradient(to right, 
             transparent 0%, 
-            black 30%, 
-            black 70%, 
+            black 20%, 
+            black 80%, 
             transparent 100%
           );
           -webkit-mask: linear-gradient(to right, 
             transparent 0%, 
-            black 30%, 
-            black 70%, 
+            black 20%, 
+            black 80%, 
             transparent 100%
           );
         }
         
         .carousel-track {
           display: flex;
-          width: 200%;
-          animation: infiniteScroll 30s linear infinite;
-          gap: 3rem;
+          width: 300%;
+          animation: infiniteScroll 45s linear infinite;
+          gap: 4rem;
           will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
         
         .carousel-item {
@@ -85,14 +119,13 @@ function ProofTrustBar() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-33.333%);
           }
         }
         
-        /* Optimize for performance */
-        .carousel-track {
-          transform: translateZ(0);
-          backface-visibility: hidden;
+        /* Pause animation on hover for better UX */
+        .carousel-container:hover .carousel-track {
+          animation-play-state: paused;
         }
       `}</style>
     </section>

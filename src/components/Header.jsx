@@ -1,22 +1,37 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+// Throttle function for performance
+const throttle = (func, limit) => {
+  let inThrottle
+  return function() {
+    const args = arguments
+    const context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
   
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.9, 1])
-  const headerBlur = useTransform(scrollY, [0, 100], [8, 16])
+  const headerOpacity = useTransform(scrollY, [0, 50], [0.85, 1])
+  const headerBlur = useTransform(scrollY, [0, 50], [8, 20])
   const scrollProgress = useTransform(scrollY, [0, document.documentElement.scrollHeight - window.innerHeight], [0, 1])
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 20)
+    setIsScrolled(window.scrollY > 10)
   }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const throttledScroll = throttle(handleScroll, 16) // 60fps throttling
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    return () => window.removeEventListener('scroll', throttledScroll)
   }, [handleScroll])
 
   const scrollToSection = useCallback((sectionId) => {
@@ -29,17 +44,18 @@ function Header() {
 
   return (
     <motion.nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'backdrop-blur-xl bg-bg/98 border-b border-white/40 shadow-2xl' 
-          : 'backdrop-blur-md bg-bg/90 border-b border-white/20'
+          ? 'backdrop-blur-xl bg-bg/95 border-b border-white/30 shadow-xl' 
+          : 'backdrop-blur-md bg-bg/85 border-b border-white/15'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       style={{ 
         opacity: headerOpacity,
-        backdropFilter: `blur(${headerBlur}px)`
+        backdropFilter: `blur(${headerBlur}px)`,
+        willChange: 'transform, opacity, backdrop-filter'
       }}
     >
       <div className="w-full max-w-7xl mx-auto container-padding">
@@ -91,7 +107,7 @@ function Header() {
           {/* Book an Audit Button */}
           <motion.button 
             onClick={() => scrollToSection('main-cta')}
-            className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-full text-xs md:text-sm tracking-wide flex items-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 relative overflow-hidden"
+            className="btn-primary"
             whileHover={{ scale: 1.05, y: -1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -148,12 +164,13 @@ function Header() {
           </div>
         </motion.div>
         
-        {/* Scroll Progress Indicator */}
+        {/* Enhanced Scroll Progress Indicator */}
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-400"
+          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-blue-500 rounded-full shadow-lg"
           style={{
             scaleX: scrollProgress,
-            transformOrigin: "left"
+            transformOrigin: "left",
+            boxShadow: "0 0 10px rgba(16, 185, 129, 0.5)"
           }}
         />
       </div>

@@ -2,6 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling and performance optimizations */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Enhanced sticky header support */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Standardized Button System */
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold rounded-full text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 relative overflow-hidden;
+}
+
+.btn-primary:hover {
+  @apply scale-105 -translate-y-0.5;
+}
+
+.btn-primary:active {
+  @apply scale-95;
+}
+
+.btn-primary-lg {
+  @apply px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300;
+}
+
+.btn-primary-lg:hover {
+  @apply scale-105;
+}
+
+.btn-primary-lg:active {
+  @apply scale-95;
+}
+
+.btn-primary-xl {
+  @apply px-12 py-6 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold rounded-2xl text-xl shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 border-2 border-transparent hover:border-white/20;
+}
+
+.btn-primary-xl:hover {
+  @apply scale-105 -translate-y-0.5;
+}
+
+.btn-primary-xl:active {
+  @apply scale-95;
+}
+
+/* Simplified CTA Button for performance */
+.btn-cta-prominent {
+  @apply px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 border border-emerald-400/30 hover:border-emerald-300/50;
+}
+
+.btn-cta-prominent:hover {
+  @apply scale-105 -translate-y-0.5;
+}
+
+.btn-cta-prominent:active {
+  @apply scale-100;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 156, 255, 0.5) rgba(0, 0, 0, 0.1);
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -243,70 +318,72 @@ a:hover { color: #BFDBFE; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-/* Smooth gradient text for emerald green highlights */
+/* Optimized gradient text - static for performance */
 .gradient-text-emerald {
-  background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7, #10B981, #059669);
+  background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 200% 100%;
-  animation: gradient-smooth 3s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-/* Smooth gradient text for blue highlights */
 .gradient-text-blue {
-  background: linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD, #3B82F6, #1D4ED8);
+  background: linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 200% 100%;
-  animation: gradient-smooth 4s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-/* Smooth gradient text for purple highlights */
 .gradient-text-purple {
-  background: linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD, #8B5CF6, #7C3AED);
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 200% 100%;
-  animation: gradient-smooth 5s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-/* Smooth gradient text for gold highlights */
 .gradient-text-gold {
-  background: linear-gradient(135deg, #F59E0B, #FBBF24, #FDE047, #F59E0B, #D97706);
+  background: linear-gradient(135deg, #F59E0B, #FBBF24, #FDE047);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 200% 100%;
-  animation: gradient-smooth 4s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-/* Smooth gradient text for white highlights */
 .gradient-text-white {
-  background: linear-gradient(135deg, #FFFFFF, #F3F4F6, #E5E7EB, #FFFFFF, #D1D5DB);
+  background: linear-gradient(135deg, #FFFFFF, #F3F4F6, #E5E7EB);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 200% 100%;
-  animation: gradient-smooth 6s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
 }
+
+/* Phase offset classes for wave effect */
+.gradient-text-emerald.delay-1 { animation-delay: 0.5s; }
+.gradient-text-emerald.delay-2 { animation-delay: 1s; }
+.gradient-text-emerald.delay-3 { animation-delay: 1.5s; }
+.gradient-text-emerald.delay-4 { animation-delay: 2s; }
+
+.gradient-text-blue.delay-1 { animation-delay: 1s; }
+.gradient-text-blue.delay-2 { animation-delay: 1.5s; }
+.gradient-text-blue.delay-3 { animation-delay: 2s; }
+.gradient-text-blue.delay-4 { animation-delay: 0.5s; }
+
+.gradient-text-purple.delay-1 { animation-delay: 1.5s; }
+.gradient-text-purple.delay-2 { animation-delay: 2s; }
+.gradient-text-purple.delay-3 { animation-delay: 0.5s; }
+.gradient-text-purple.delay-4 { animation-delay: 1s; }
+
+.gradient-text-gold.delay-1 { animation-delay: 2s; }
+.gradient-text-gold.delay-2 { animation-delay: 0.5s; }
+.gradient-text-gold.delay-3 { animation-delay: 1s; }
+.gradient-text-gold.delay-4 { animation-delay: 1.5s; }
+
+.gradient-text-white.delay-1 { animation-delay: 0.5s; }
+.gradient-text-white.delay-2 { animation-delay: 1s; }
+.gradient-text-white.delay-3 { animation-delay: 1.5s; }
+.gradient-text-white.delay-4 { animation-delay: 2s; }
 
 /* Cosmic gradient text classes */
 .gradient-text-aurora {
@@ -333,8 +410,14 @@ a:hover { color: #BFDBFE; }
   0% {
     background-position: 0% 50%;
   }
+  25% {
+    background-position: 50% 50%;
+  }
   50% {
     background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
   }
   100% {
     background-position: 0% 50%;

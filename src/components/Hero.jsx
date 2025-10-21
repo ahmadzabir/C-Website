@@ -61,14 +61,14 @@ function Hero() {
                   transition={{ delay: 0.3, duration: 0.8 }}
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-[-0.02em] mb-12 md:mb-16"
                 >
-                  <span className="gradient-text-blue">The only GTM agency that cares about one thing…</span>
+                  <span className="gradient-text-blue delay-1">The only GTM agency that cares about one thing…</span>
                   <br />
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.6 }}
                   >
-                      <span className="gradient-text-emerald">
+                      <span className="gradient-text-emerald delay-2">
                       getting you to money.
                     </span>
                   </motion.span>
@@ -101,7 +101,7 @@ function Hero() {
                 />
                 <motion.button
                   type="submit"
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-150 text-lg"
+                  className="btn-primary-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -115,7 +115,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="gradient-text-white text-lg leading-relaxed text-center mt-6"
+              className="gradient-text-white delay-3 text-lg leading-relaxed text-center mt-6"
             >
               A fully custom strategy for revenue boost, built for your business, no meeting required.
             </motion.p>

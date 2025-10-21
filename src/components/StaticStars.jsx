@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-function DynamicStars() {
+function StaticStars() {
   const [timeOffset, setTimeOffset] = useState(0)
   const [scrollY, setScrollY] = useState(0)
   const animationRef = useRef()
@@ -165,4 +165,4 @@ function DynamicStars() {
   )
 }
 
-export default DynamicStars
+export default StaticStars

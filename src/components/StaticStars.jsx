@@ -1,22 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 function StaticStars() {
   const [timeOffset, setTimeOffset] = useState(0)
   const [scrollY, setScrollY] = useState(0)
   const animationRef = useRef()
+  const lastTimeRef = useRef(0)
 
   // Generate cosmic star positions - gentle and mystical
-  const generateStars = () => {
+  const generateStars = useCallback(() => {
     const stars = []
     
     // Optimal number of stars for cosmic effect
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 25; i++) {
       stars.push({
         id: `star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 1.5 + 0.5,
-        speed: Math.random() * 0.3 + 0.1, // Much slower movement
+        size: Math.random() * 1.2 + 0.5,
+        speed: Math.random() * 0.2 + 0.1, // Much slower movement
         opacity: Math.random() * 0.6 + 0.2,
         // Cosmic movement patterns
         baseX: Math.random() * 100,
@@ -24,66 +25,43 @@ function StaticStars() {
         // Mystical movement patterns
         pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
         // Gentle scroll sensitivity
-        scrollSensitivity: Math.random() * 0.15 + 0.05, // Much lower sensitivity
+        scrollSensitivity: Math.random() * 0.1 + 0.05, // Much lower sensitivity
         // Cosmic colors - mostly white with some blue/purple
         color: Math.random() > 0.8 ? 'cosmic' : 'white',
         // Timeline energy
-        energyLevel: Math.random() * 0.3 + 0.2 // Lower energy levels
+        energyLevel: Math.random() * 0.2 + 0.2 // Lower energy levels
       })
     }
     
     return stars
-  }
+  }, [])
 
   const [stars] = useState(() => generateStars())
 
-  // Enhanced scroll tracking with better responsiveness
-  useEffect(() => {
-    let ticking = false
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const newScrollY = window.scrollY
-          setScrollY(newScrollY)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    // Add scroll listener with immediate execution
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    
-    // Set initial scroll position
+  // Enhanced scroll tracking with throttling
+  const handleScroll = useCallback(() => {
     setScrollY(window.scrollY)
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [])
 
-  // Enhanced animation loop - more responsive and smooth
   useEffect(() => {
-    let startTime = Date.now()
-    let lastTime = 0
-    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    setScrollY(window.scrollY)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  // Optimized animation loop - 60fps with throttling
+  useEffect(() => {
     const animate = (currentTime) => {
-      const elapsed = (currentTime - startTime) / 1000
-      
-      // Only update if enough time has passed (60fps)
-      if (currentTime - lastTime >= 16) {
-        setTimeOffset(elapsed)
-        lastTime = currentTime
+      // Throttle to 60fps
+      if (currentTime - lastTimeRef.current >= 16) {
+        setTimeOffset(currentTime / 1000)
+        lastTimeRef.current = currentTime
       }
-      
       animationRef.current = requestAnimationFrame(animate)
     }
     
-    // Start animation immediately
     animationRef.current = requestAnimationFrame(animate)
     
-    // Cleanup only on unmount
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)

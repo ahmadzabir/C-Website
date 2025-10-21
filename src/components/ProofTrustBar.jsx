@@ -49,34 +49,30 @@ function ProofTrustBar() {
             {clients.map((client, index) => (
               <div
                 key={`first-${client.name}-${index}`}
-                className="carousel-item"
+                className="carousel-item flex items-center justify-center"
               >
-                <div className="w-full h-full rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
-                  <img
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
             {/* Duplicate set for seamless loop */}
             {clients.map((client, index) => (
               <div
                 key={`second-${client.name}-${index}`}
-                className="carousel-item"
+                className="carousel-item flex items-center justify-center"
               >
-                <div className="w-full h-full rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
-                  <img
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="object-contain brightness-110 contrast-110 filter max-w-full max-h-full"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>

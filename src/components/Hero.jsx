@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useCursorParallax, useMagnetEffect } from '../hooks/useCursorEffects'
+import { useGradientTextParallax } from '../hooks/useScrollParallax'
 
 function Hero() {
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [])
 
-  const { ref: heroRef, mousePosition } = useCursorParallax(0.1)
-  const { ref: ctaRef, magnetPosition: ctaMagnet } = useMagnetEffect(0.2)
-  const { ref: cta2Ref, magnetPosition: cta2Magnet } = useMagnetEffect(0.2)
+  const { ref: heroRef, mousePosition } = useCursorParallax(0.05) // Reduced parallax intensity
+  const { ref: ctaRef, magnetPosition: ctaMagnet } = useMagnetEffect(0.15) // Reduced magnet effect
+  const { ref: cta2Ref, magnetPosition: cta2Magnet } = useMagnetEffect(0.15)
+  
+  // Add scroll parallax for gradient text
+  const { ref: gradientTextRef, style: gradientTextStyle } = useGradientTextParallax(0.4)
 
   return (
     <section id="top" className="relative overflow-hidden min-h-screen flex items-center pt-32">
@@ -60,6 +64,8 @@ function Hero() {
                   <span className="gradient-text-blue">The only GTM agency that cares about one thing…</span>
                   <br />
                   <motion.span
+                    ref={gradientTextRef}
+                    style={gradientTextStyle}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.6 }}

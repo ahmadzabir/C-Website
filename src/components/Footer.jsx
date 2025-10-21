@@ -56,7 +56,7 @@ function Footer() {
               <div>
                 <p className="text-body-secondary text-sm mb-4 font-medium">Meet our team</p>
                 <div className="relative">
-                  {/* Stacked Team Photos */}
+                  {/* Stacked Team Photos with Live Indicator */}
                   <div className="flex items-center">
                     {teamPhotos.slice(0, 6).map((member, index) => (
                       <motion.div
@@ -77,23 +77,23 @@ function Footer() {
                         </div>
                       </motion.div>
                     ))}
+                    
+                    {/* Live Indicator - positioned right after the photos */}
+                    <motion.div
+                      className="ml-2 w-4 h-4 bg-green-500 rounded-full border-2 border-bg flex items-center justify-center"
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </motion.div>
                   </div>
-                  
-                  {/* Live Indicator */}
-                  <motion.div
-                    className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-bg flex items-center justify-center"
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      opacity: [1, 0.7, 1]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </motion.div>
                   
                   {/* Live Text */}
                   <motion.div

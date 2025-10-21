@@ -4,11 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/assets/contwre-logo-white.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
     <title>Contwre — The One-Stop GTM Agency</title>
     <meta name="description" content="Contwre is Pakistan's first founder-led, full-service GTM agency. We design and run revenue systems: cold outbound, performance marketing, and sales enablement… anything that gets you to money." />
+    
+    <!-- DNS Prefetch for better performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/contwre-logo-white.png" as="image">
+    <link rel="preload" href="/assets/engine-gif.gif" as="image">
+    <link rel="preload" href="/assets/founder-together.jpg" as="image">
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/src/styles/index.css" as="style">
   </head>
   <body>
     <div id="root"></div>

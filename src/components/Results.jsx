@@ -194,7 +194,7 @@ function Results() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="relative max-w-4xl mx-auto"
+          className="relative max-w-4xl mx-auto mt-16"
         >
           {/* Main Testimonial Display */}
           <div className="relative overflow-hidden rounded-2xl">
@@ -294,7 +294,7 @@ function Results() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-between mt-8">
+          <div className="flex items-center justify-center gap-8 mt-8">
             {/* Previous Button */}
             <motion.button
               onClick={prevTestimonial}

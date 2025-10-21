@@ -1,10 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useGradientTextParallax } from '../hooks/useScrollParallax'
 import { useStaggeredAnimation } from '../hooks/useCursorEffects'
 
 function About() {
   const { ref: leftRef, isVisible: leftVisible } = useStaggeredAnimation(0)
   const { ref: rightRef, isVisible: rightVisible } = useStaggeredAnimation(200)
+  
+  // Add scroll parallax for gradient text
+  const { ref: gradientTextRef1, style: gradientTextStyle1 } = useGradientTextParallax(0.3)
+  const { ref: gradientTextRef2, style: gradientTextStyle2 } = useGradientTextParallax(0.3)
 
   return (
     <section className="section-spacing relative overflow-hidden">
@@ -27,7 +32,13 @@ function About() {
                 transition={{ delay: 0.2, duration: 0.7 }}
               >
                 <span className="gradient-text-white">Most growth systems </span>
-                <span className="gradient-text-emerald">fall apart in four months.</span>
+                <motion.span 
+                  ref={gradientTextRef1}
+                  style={gradientTextStyle1}
+                  className="gradient-text-emerald"
+                >
+                  fall apart in four months.
+                </motion.span>
               </motion.h2>
             </div>
 
@@ -46,9 +57,13 @@ function About() {
               <p>
                 You need one system that aligns your offer, channels, and sales motion to compound.
               </p>
-              <p className="gradient-text-white font-semibold">
+              <motion.p 
+                ref={gradientTextRef2}
+                style={gradientTextStyle2}
+                className="gradient-text-white font-semibold"
+              >
                 Contwre connects everything that drives revenue under one engine. Your engine.
-              </p>
+              </motion.p>
             </motion.div>
 
           </motion.div>
@@ -62,12 +77,14 @@ function About() {
             className="relative"
           >
             {/* Engine Gif */}
-            <div className="card-glass relative overflow-hidden p-4 aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]">
+            <div className="relative overflow-hidden">
               <img 
                 src="/assets/engine-gif.gif"
                 alt="Contwre Engine System"
-                className="w-full h-full object-cover rounded-xl"
-                loading="lazy"
+                className="w-full aspect-square object-contain rounded-xl"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
               />
             </div>
           </motion.div>

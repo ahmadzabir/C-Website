@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 function Header() {
@@ -6,24 +6,25 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
   
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95])
-  const headerBlur = useTransform(scrollY, [0, 100], [10, 20])
+  const headerOpacity = useTransform(scrollY, [0, 50], [0.8, 0.95])
+  const headerBlur = useTransform(scrollY, [0, 50], [10, 20])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 20)
   }, [])
 
-  const scrollToSection = (sectionId) => {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsMenuOpen(false)
-  }
+  }, [])
 
   return (
     <motion.nav 

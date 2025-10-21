@@ -30,7 +30,7 @@ function Comparison() {
     {
       feature: "Clay + Smartlead-Powered Personalization",
       contwre: true,
-      salesAgencies: true,
+      salesAgencies: false,
       marketingAgencies: false
     },
     {

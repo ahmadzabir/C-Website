@@ -1,14 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 function BackgroundClouds() {
   const [time, setTime] = useState(0)
+  const animationRef = useRef()
+  const lastTimeRef = useRef(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(prev => prev + 0.01)
-    }, 16)
-    return () => clearInterval(interval)
+    const animate = (currentTime) => {
+      // Throttle to 30fps for background animations
+      if (currentTime - lastTimeRef.current >= 33) {
+        setTime(currentTime / 1000)
+        lastTimeRef.current = currentTime
+      }
+      animationRef.current = requestAnimationFrame(animate)
+    }
+    
+    animationRef.current = requestAnimationFrame(animate)
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
   }, [])
 
   return (

@@ -21,3 +21,5 @@ export const ANIMATION_DURATION = {
   normal: 500,
   slow: 1000
 }
+
+

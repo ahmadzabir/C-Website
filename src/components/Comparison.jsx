@@ -125,6 +125,7 @@ function Comparison() {
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
                 <img 
+                  loading="lazy"
                   src="/assets/contwre-logo-white.png" 
                   alt="Contwre Logo" 
                   className="h-12 w-auto mx-auto"

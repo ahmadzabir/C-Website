@@ -54,7 +54,8 @@ function Header() {
               transition={{ duration: 0.2 }}
             >
               <img 
-                src="/src/assets/Contwre Logo white.png"
+                loading="lazy"
+                src="/assets/contwre-logo-white.png"
                 alt="Contwre Logo"
                 className="h-8 w-auto"
               />

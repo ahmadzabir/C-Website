@@ -41,7 +41,8 @@ function FounderSection() {
             <div className="mb-6">
               <div className="w-80 h-80 rounded-2xl overflow-hidden border-4 border-white/20 group-hover:border-mint/50 transition-colors duration-300 mx-auto">
                 <img 
-                  src="/src/assets/Ahmad-Zahra-Together.jpg" 
+                  loading="lazy"
+                  src="/assets/founder-together.jpg" 
                   alt="Ahmad Zabir & Zahra Batool"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />

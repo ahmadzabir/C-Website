@@ -3,26 +3,32 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import ProofTrustBar from './components/ProofTrustBar'
 import About from './components/About'
-import IntegrationFlow from './components/IntegrationFlow'
-import GTMEngine from './components/GTMEngine'
-import Services from './components/Services'
-import Process from './components/Process'
-import Results from './components/Results'
-import Comparison from './components/Comparison'
-import FAQ from './components/FAQ'
-import FounderSection from './components/FounderSection'
 import Footer from './components/Footer'
-import BackgroundClouds from './components/BackgroundClouds'
-import DynamicStars from './components/StaticStars'
+import React, { Suspense } from 'react'
+
+const BackgroundClouds = React.lazy(() => import('./components/BackgroundClouds'))
+const DynamicStars = React.lazy(() => import('./components/StaticStars'))
+const IntegrationFlow = React.lazy(() => import('./components/IntegrationFlow'))
+const GTMEngine = React.lazy(() => import('./components/GTMEngine'))
+const Services = React.lazy(() => import('./components/Services'))
+const Process = React.lazy(() => import('./components/Process'))
+const Results = React.lazy(() => import('./components/Results'))
+const Comparison = React.lazy(() => import('./components/Comparison'))
+const FAQ = React.lazy(() => import('./components/FAQ'))
+const FounderSection = React.lazy(() => import('./components/FounderSection'))
 
 function App() {
   return (
     <div className="App min-h-screen bg-bg text-white">
       {/* Dynamic Stars with movement and cursor interaction */}
-      <DynamicStars />
+      <Suspense fallback={null}>
+        <DynamicStars />
+      </Suspense>
       
       {/* 3D Background Clouds - Full Homepage */}
-      <BackgroundClouds />
+      <Suspense fallback={null}>
+        <BackgroundClouds />
+      </Suspense>
       
       {/* Website Content */}
       <div className="relative z-20">
@@ -38,35 +44,51 @@ function App() {
           </div>
           <div className="section-divider-thick" />
           <div className="section-bg-2 relative z-10">
-            <IntegrationFlow />
+            <Suspense fallback={null}>
+              <IntegrationFlow />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <GTMEngine />
+            <Suspense fallback={null}>
+              <GTMEngine />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-3 relative z-10">
-            <Services />
+            <Suspense fallback={null}>
+              <Services />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <Process />
+            <Suspense fallback={null}>
+              <Process />
+            </Suspense>
           </div>
           <div className="section-divider-thick" />
           <div className="section-bg-2 relative z-10">
-            <Results />
+            <Suspense fallback={null}>
+              <Results />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-3 relative z-10">
-            <Comparison />
+            <Suspense fallback={null}>
+              <Comparison />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <FAQ />
+            <Suspense fallback={null}>
+              <FAQ />
+            </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <FounderSection />
+            <Suspense fallback={null}>
+              <FounderSection />
+            </Suspense>
           </div>
           <div className="footer-separator" />
         </main>

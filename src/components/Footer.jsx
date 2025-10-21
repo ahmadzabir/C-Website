@@ -42,6 +42,7 @@ function Footer() {
               {/* Brand Identity - 10% smaller */}
               <div className="flex items-center">
                 <motion.img 
+                  loading="lazy"
                   src="/assets/contwre-logo-white.png"
                   alt="Contwre Logo"
                   className="h-12 w-auto"

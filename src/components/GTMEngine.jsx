@@ -73,7 +73,7 @@ function GTMEngine() {
                     onLoadedData={() => console.log('Video loaded successfully')}
                     onError={(e) => console.error('Video error:', e)}
                   >
-                    <source src="/assets/Money (2).mp4" type="video/mp4" />
+                    <source src="/assets/Money.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>

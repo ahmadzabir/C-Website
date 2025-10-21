@@ -62,11 +62,11 @@ function About() {
             className="relative"
           >
             {/* Engine Gif */}
-            <div className="card-glass relative overflow-hidden p-4 aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]">
+            <div className="relative aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]">
               <img 
                 src="/assets/engine-gif.gif"
                 alt="Contwre Engine System"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-2xl"
                 loading="eager"
                 decoding="async"
                 fetchpriority="high"

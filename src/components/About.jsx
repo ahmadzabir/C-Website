@@ -67,7 +67,9 @@ function About() {
                 src="/assets/engine-gif.gif"
                 alt="Contwre Engine System"
                 className="w-full h-full object-cover rounded-xl"
-                loading="lazy"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
               />
             </div>
           </motion.div>

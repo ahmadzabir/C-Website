@@ -57,6 +57,9 @@ function Header() {
                 src="/assets/contwre-logo-white.png"
                 alt="Contwre Logo"
                 className="h-8 w-auto"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
               />
             </motion.a>
           </motion.div>

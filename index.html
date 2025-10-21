@@ -2,11 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/assets/contwre-logo-white.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <title>Contwre — The One-Stop GTM Agency</title>
-    <meta name="description" content="Contwre is Pakistan's first founder-led, full-service GTM agency. We design and run revenue systems: cold outbound, performance marketing, and sales enablement… anything that gets you to money." />
+    <!-- Critical CSS inlined for instant rendering -->
+    <style>
+      /* Critical styles for instant loading */
+      body { margin: 0; padding: 0; background: #0a0a0a; color: #ffffff; font-family: Inter, sans-serif; }
+      .App { min-height: 100vh; background: #0a0a0a; color: #ffffff; }
+      .gradient-text-emerald { background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7, #10B981, #059669); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; background-size: 200% 100%; animation: gradient-smooth 3s ease-in-out infinite; }
+      .gradient-text-blue { background: linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD, #3B82F6, #1D4ED8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; background-size: 200% 100%; animation: gradient-smooth 4s ease-in-out infinite; }
+      @keyframes gradient-smooth { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      .loading-spinner { display: flex; align-items: center; justify-content: center; padding: 5rem 0; }
+      .loading-spinner div { width: 2rem; height: 2rem; border: 2px solid rgba(255,255,255,0.2); border-top: 2px solid #ffffff; border-radius: 50%; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
     
     <!-- DNS Prefetch for better performance -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -21,15 +33,40 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
     
     <!-- Preload critical assets -->
-    <link rel="preload" href="/assets/contwre-logo-white.png" as="image">
-    <link rel="preload" href="/assets/engine-gif.gif" as="image">
-    <link rel="preload" href="/assets/founder-together.jpg" as="image">
+    <link rel="preload" href="/assets/contwre-logo-white.png" as="image" type="image/png" />
+    <link rel="preload" href="/assets/engine-gif.gif" as="image" type="image/gif" />
+    <link rel="preload" href="/assets/founder-together.jpg" as="image" type="image/jpeg" />
+    
+    <!-- Critical testimonial images -->
+    <link rel="preload" href="/assets/profile-pictures/Haider_Ali1.jpg" as="image" type="image/jpeg" />
+    <link rel="preload" href="/assets/profile-pictures/Zaryab_Tanveer1.jpg" as="image" type="image/jpeg" />
+    <link rel="preload" href="/assets/profile-pictures/Vladymir1.avif" as="image" type="image/avif" />
+    
+    <!-- Critical client logos -->
+    <link rel="preload" href="/assets/client-logos/TheHexaTown.png" as="image" type="image/png" />
+    <link rel="preload" href="/assets/client-logos/Celestella.png" as="image" type="image/png" />
+    <link rel="preload" href="/assets/client-logos/Mandujour.png" as="image" type="image/png" />
+    
+    <!-- Component prefetching for faster navigation -->
+    <link rel="prefetch" href="/src/components/Services.jsx" />
+    <link rel="prefetch" href="/src/components/Results.jsx" />
+    <link rel="prefetch" href="/src/components/Comparison.jsx" />
     
     <!-- Preload critical CSS -->
-    <link rel="preload" href="/src/styles/index.css" as="style">
+    <link rel="preload" href="/src/styles/index.css" as="style" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Register service worker for instant loading
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => console.log('SW registered'))
+            .catch((error) => console.log('SW registration failed'))
+        })
+      }
+    </script>
   </body>
 </html>

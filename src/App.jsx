@@ -6,6 +6,7 @@ import About from './components/About'
 import Footer from './components/Footer'
 import StaticStars from './components/StaticStars'
 import BackgroundClouds from './components/BackgroundClouds'
+import ErrorBoundary from './components/ErrorBoundary'
 import { Suspense } from 'react'
 
 const IntegrationFlow = React.lazy(() => import('./components/IntegrationFlow'))
@@ -17,9 +18,17 @@ const Comparison = React.lazy(() => import('./components/Comparison'))
 const FAQ = React.lazy(() => import('./components/FAQ'))
 const FounderSection = React.lazy(() => import('./components/FounderSection'))
 
+// Loading component for better UX
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center py-20">
+    <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+  </div>
+)
+
 function App() {
   return (
-    <div className="App min-h-screen bg-bg text-white">
+    <ErrorBoundary>
+      <div className="App min-h-screen bg-bg text-white">
       {/* Cosmic Stars with movement and scroll parallax */}
       <StaticStars />
       
@@ -40,49 +49,49 @@ function App() {
           </div>
           <div className="section-divider-thick" />
           <div className="section-bg-2 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <IntegrationFlow />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <GTMEngine />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-3 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <Services />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <Process />
             </Suspense>
           </div>
           <div className="section-divider-thick" />
           <div className="section-bg-2 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <Results />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-3 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <Comparison />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <FAQ />
             </Suspense>
           </div>
           <div className="section-divider" />
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <FounderSection />
             </Suspense>
           </div>
@@ -91,6 +100,7 @@ function App() {
         <Footer />
       </div>
     </div>
+    </ErrorBoundary>
   )
 }
 

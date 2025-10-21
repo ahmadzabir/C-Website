@@ -1,15 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useGradientTextParallax } from '../hooks/useScrollParallax'
 import { useStaggeredAnimation } from '../hooks/useCursorEffects'
 
 function About() {
   const { ref: leftRef, isVisible: leftVisible } = useStaggeredAnimation(0)
   const { ref: rightRef, isVisible: rightVisible } = useStaggeredAnimation(200)
-  
-  // Add scroll parallax for gradient text
-  const { ref: gradientTextRef1, style: gradientTextStyle1 } = useGradientTextParallax(0.3)
-  const { ref: gradientTextRef2, style: gradientTextStyle2 } = useGradientTextParallax(0.3)
 
   return (
     <section className="section-spacing relative overflow-hidden">
@@ -32,13 +27,9 @@ function About() {
                 transition={{ delay: 0.2, duration: 0.7 }}
               >
                 <span className="gradient-text-white">Most growth systems </span>
-                <motion.span 
-                  ref={gradientTextRef1}
-                  style={gradientTextStyle1}
-                  className="gradient-text-emerald"
-                >
+                <span className="gradient-text-emerald">
                   fall apart in four months.
-                </motion.span>
+                </span>
               </motion.h2>
             </div>
 
@@ -57,13 +48,9 @@ function About() {
               <p>
                 You need one system that aligns your offer, channels, and sales motion to compound.
               </p>
-              <motion.p 
-                ref={gradientTextRef2}
-                style={gradientTextStyle2}
-                className="gradient-text-white font-semibold"
-              >
+              <p className="gradient-text-white font-semibold">
                 Contwre connects everything that drives revenue under one engine. Your engine.
-              </motion.p>
+              </p>
             </motion.div>
 
           </motion.div>

@@ -1,67 +1,68 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
-function StaticStars() {
-  const [timeOffset, setTimeOffset] = useState(0)
+function HeroStars() {
   const [scrollY, setScrollY] = useState(0)
+  const [timeOffset, setTimeOffset] = useState(0)
   const animationRef = useRef()
   const lastTimeRef = useRef(0)
+  const rafRef = useRef()
 
-  // Generate cosmic star positions - gentle and mystical
-  const generateStars = useCallback(() => {
+  // Generate hero stars - more stars for hero section
+  const generateHeroStars = useCallback(() => {
     const stars = []
-    
-    // Ultra-performance: Minimal stars
-    for (let i = 0; i < 8; i++) { // Reduced from 15 to 8
+    for (let i = 0; i < 30; i++) { // More stars for hero section
       stars.push({
-        id: `star-${i}`,
+        id: `hero-star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 0.5 + 0.3, // Even smaller stars
-        speed: Math.random() * 0.05 + 0.02, // Ultra-slow movement
-        opacity: Math.random() * 0.3 + 0.2,
-        // Cosmic movement patterns
+        size: Math.random() * 1.2 + 0.6, // Slightly larger for hero
+        speed: Math.random() * 0.1 + 0.05,
+        opacity: Math.random() * 0.6 + 0.3,
         baseX: Math.random() * 100,
         baseY: Math.random() * 100,
-        // Mystical movement patterns
         pattern: Math.random() > 0.5 ? 'nebula' : 'aurora',
-        // Gentle scroll sensitivity
-        scrollSensitivity: Math.random() * 0.02 + 0.01, // Ultra-low sensitivity
-        // Cosmic colors - mostly white with some blue/purple
-        color: Math.random() > 0.8 ? 'cosmic' : 'white',
-        // Timeline energy
-        energyLevel: Math.random() * 0.05 + 0.05 // Ultra-low energy levels
+        scrollSensitivity: Math.random() * 0.1 + 0.05,
+        color: Math.random() > 0.7 ? 'cosmic' : 'white',
+        energyLevel: Math.random() * 0.2 + 0.1,
+        // Hero-specific properties
+        initialY: Math.random() * 100,
+        scrollUpSpeed: Math.random() * 0.3 + 0.1, // Speed of upward movement
+        fadeOutPoint: Math.random() * 200 + 100 // When to start fading out
       })
     }
-    
     return stars
   }, [])
 
-  const [stars] = useState(() => generateStars())
+  const [stars] = useState(() => generateHeroStars())
 
-  // Enhanced scroll tracking with throttling
   const handleScroll = useCallback(() => {
-    setScrollY(window.scrollY)
+    if (rafRef.current) return
+    rafRef.current = requestAnimationFrame(() => {
+      setScrollY(window.scrollY)
+      rafRef.current = null
+    })
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     setScrollY(window.scrollY)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
   }, [handleScroll])
 
-  // Optimized animation loop - 60fps with throttling
   useEffect(() => {
     const animate = (currentTime) => {
-      // Ultra-performance: 20fps throttling
-      if (currentTime - lastTimeRef.current >= 50) {
-        setTimeOffset(currentTime / 3000) // Much slower time progression
+      if (currentTime - lastTimeRef.current >= 32) { // 30fps
+        setTimeOffset(currentTime / 2000)
         lastTimeRef.current = currentTime
       }
       animationRef.current = requestAnimationFrame(animate)
     }
-    
     animationRef.current = requestAnimationFrame(animate)
-    
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
@@ -70,10 +71,10 @@ function StaticStars() {
   }, [])
 
   return (
-    <div 
+    <div
       className="fixed inset-0 pointer-events-none"
-      style={{ 
-        zIndex: 1,
+      style={{
+        zIndex: 2, // Above background but below content
         position: 'fixed',
         top: 0,
         left: 0,
@@ -81,42 +82,33 @@ function StaticStars() {
         height: '100vh'
       }}
     >
-      {/* Render cosmic stars - mystical nebula and aurora effects */}
       {stars.map((star) => {
-        // Gentle cosmic movement patterns
         const time = timeOffset * star.speed
         let moveX, moveY
-        
+
         if (star.pattern === 'nebula') {
-          // Simplified nebula motion for performance
           moveX = Math.sin(time + star.baseX * 0.01) * 0.8 + Math.cos(time * 0.1 + star.baseY * 0.01) * 0.5
           moveY = Math.cos(time * 0.3 + star.baseY * 0.01) * 0.6 + Math.sin(time * 0.2 + star.baseX * 0.01) * 0.4
         } else {
-          // Simplified aurora motion for performance
           moveX = Math.sin(time * 0.5 + star.baseX * 0.02) * 0.6 + Math.cos(time * 0.2 + star.baseY * 0.02) * 0.5
           moveY = Math.cos(time * 0.4 + star.baseY * 0.02) * 0.8 + Math.sin(time * 0.3 + star.baseX * 0.02) * 0.4
         }
+
+        // Hero-specific scroll animation - stars move up as you scroll
+        const scrollUpOffset = scrollY * star.scrollUpSpeed
+        const scrollFadeOut = Math.max(0, 1 - (scrollY - star.fadeOutPoint) / 200)
         
-        // Reduced scroll parallax for performance
-        const parallaxY = scrollY * star.scrollSensitivity * 0.1
-        const parallaxX = scrollY * star.scrollSensitivity * 0.05
-        
-        // Reduced timeline energy for performance
-        const timelinePhase = scrollY * 0.0005
-        const energyFlowX = Math.sin(timelinePhase + star.baseX * 0.005) * 2 * star.energyLevel
-        const energyFlowY = Math.cos(timelinePhase + star.baseY * 0.005) * 1.5 * star.energyLevel
-        
-        // Calculate final position
-        const finalX = (star.x + moveX + parallaxX + energyFlowX) % 100
-        const finalY = (star.y + moveY + parallaxY + energyFlowY) % 100
-        
-        // Cosmic colors - proper nebula colors
+        // Calculate final position with upward scroll movement
+        const finalX = (star.x + moveX) % 100
+        const finalY = (star.initialY + moveY - scrollUpOffset) % 100
+
+        // Cosmic colors
         const cosmicColors = {
           white: '#FFFFFF',
           cosmic: star.color === 'cosmic' ? 
             `hsl(${200 + Math.sin(timeOffset * 0.3 + star.baseX * 0.005) * 20}, 50%, 80%)` : '#FFFFFF'
         }
-        
+
         return (
           <div
             key={star.id}
@@ -127,11 +119,13 @@ function StaticStars() {
               width: `${star.size}px`,
               height: `${star.size}px`,
               background: cosmicColors.cosmic,
-              opacity: Math.max(0.1, star.opacity + Math.sin(timeOffset * 0.8 + star.x) * 0.1),
+              opacity: Math.max(0, star.opacity * scrollFadeOut + Math.sin(timeOffset * 0.8 + star.x) * 0.1),
               transform: `scale(${1 + Math.sin(timeOffset * 1 + star.y) * 0.08}) rotate(${timeOffset * 4 + star.baseX * 0.2}deg)`,
               willChange: 'transform, opacity, background',
               transition: 'none',
-              // Removed boxShadow and filter for better performance
+              boxShadow: star.color === 'cosmic' ? 
+                `0 0 ${star.size * 2}px ${cosmicColors.cosmic}40` : 
+                `0 0 ${star.size}px rgba(255,255,255,0.3)`
             }}
           />
         )
@@ -140,4 +134,4 @@ function StaticStars() {
   )
 }
 
-export default StaticStars
+export default HeroStars

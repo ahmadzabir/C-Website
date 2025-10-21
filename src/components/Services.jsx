@@ -1,12 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useGradientTextParallax } from '../hooks/useScrollParallax'
 
 function Services() {
-  // Add scroll parallax for gradient text
-  const { ref: gradientTextRef1, style: gradientTextStyle1 } = useGradientTextParallax(0.3)
-  const { ref: gradientTextRef2, style: gradientTextStyle2 } = useGradientTextParallax(0.3)
-  const { ref: gradientTextRef3, style: gradientTextStyle3 } = useGradientTextParallax(0.3)
   const services = [
     {
       title: "Cold Outbound Engine",
@@ -73,29 +68,11 @@ function Services() {
             What We Do
           </p>
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-[-0.02em]">
-                  <motion.span 
-                    ref={gradientTextRef1}
-                    style={gradientTextStyle1}
-                    className="gradient-text-purple"
-                  >
-                    One-stop GTM… 
-                  </motion.span>
-                  <motion.span 
-                    ref={gradientTextRef2}
-                    style={gradientTextStyle2}
-                    className="gradient-text-emerald"
-                  >
-                    anything that brings revenue through the door.
-                  </motion.span>
+                  <span className="gradient-text-purple">One-stop GTM… </span>
+                  <span className="gradient-text-emerald">anything that brings revenue through the door.</span>
                 </h2>
           <p className="text-xl text-body-secondary max-w-3xl mx-auto mb-8">
-            Every Growth Channel, <motion.span 
-              ref={gradientTextRef3}
-              style={gradientTextStyle3}
-              className="gradient-text-gold"
-            >
-              One Agency
-            </motion.span>
+            Every Growth Channel, <span className="gradient-text-gold">One Agency</span>
           </p>
         </motion.div>
 

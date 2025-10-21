@@ -1,16 +1,41 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
+
+// Throttle function for performance
+const throttle = (func, limit) => {
+  let inThrottle
+  return function() {
+    const args = arguments
+    const context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
 
 export function useScrollParallax(intensity = 0.5) {
   const [scrollY, setScrollY] = useState(0)
   const [elementRef, setElementRef] = useState(null)
+  const rafRef = useRef()
 
   const handleScroll = useCallback(() => {
-    setScrollY(window.scrollY)
+    if (rafRef.current) return
+    rafRef.current = requestAnimationFrame(() => {
+      setScrollY(window.scrollY)
+      rafRef.current = null
+    })
   }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const throttledScroll = throttle(handleScroll, 16) // 60fps
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', throttledScroll)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
   }, [handleScroll])
 
   const getParallaxStyle = useCallback((element) => {
@@ -23,12 +48,12 @@ export function useScrollParallax(intensity = 0.5) {
     // Calculate distance from viewport center
     const distanceFromCenter = elementCenter - viewportCenter
     
-    // Create parallax effect based on scroll position and element position
-    const parallaxX = Math.sin(scrollY * 0.001 + distanceFromCenter * 0.001) * intensity * 10
-    const parallaxY = Math.cos(scrollY * 0.001 + distanceFromCenter * 0.001) * intensity * 5
+    // Simplified parallax calculation for better performance
+    const parallaxX = Math.sin(scrollY * 0.0005 + distanceFromCenter * 0.0005) * intensity * 5
+    const parallaxY = Math.cos(scrollY * 0.0003 + distanceFromCenter * 0.0003) * intensity * 3
     
     return {
-      transform: `translate(${parallaxX}px, ${parallaxY}px) translateZ(0)`,
+      transform: `translate3d(${parallaxX}px, ${parallaxY}px, 0)`,
       willChange: 'transform'
     }
   }, [scrollY, intensity])
@@ -40,17 +65,28 @@ export function useScrollParallax(intensity = 0.5) {
   }
 }
 
-export function useGradientTextParallax(intensity = 0.3) {
+export function useGradientTextParallax(intensity = 0.1) {
   const [scrollY, setScrollY] = useState(0)
   const [elementRef, setElementRef] = useState(null)
+  const rafRef = useRef()
 
   const handleScroll = useCallback(() => {
-    setScrollY(window.scrollY)
+    if (rafRef.current) return
+    rafRef.current = requestAnimationFrame(() => {
+      setScrollY(window.scrollY)
+      rafRef.current = null
+    })
   }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const throttledScroll = throttle(handleScroll, 16) // 60fps
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', throttledScroll)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
   }, [handleScroll])
 
   const getGradientParallaxStyle = useCallback((element) => {
@@ -63,17 +99,16 @@ export function useGradientTextParallax(intensity = 0.3) {
     // Calculate distance from viewport center
     const distanceFromCenter = elementCenter - viewportCenter
     
-    // Create subtle floating effect for gradient text
-    const floatX = Math.sin(scrollY * 0.002 + distanceFromCenter * 0.001) * intensity * 8
-    const floatY = Math.cos(scrollY * 0.0015 + distanceFromCenter * 0.0008) * intensity * 4
+    // Ultra-reduced calculations for maximum performance
+    const floatX = Math.sin(scrollY * 0.0005 + distanceFromCenter * 0.0002) * intensity * 2
+    const floatY = Math.cos(scrollY * 0.0004 + distanceFromCenter * 0.0002) * intensity * 1
     
-    // Add slight rotation for dynamic effect
-    const rotation = Math.sin(scrollY * 0.0008 + distanceFromCenter * 0.0005) * intensity * 2
+    // Minimal rotation for performance
+    const rotation = Math.sin(scrollY * 0.0002 + distanceFromCenter * 0.0001) * intensity * 0.5
     
     return {
-      transform: `translate(${floatX}px, ${floatY}px) rotate(${rotation}deg) translateZ(0)`,
-      willChange: 'transform',
-      transition: 'transform 0.1s ease-out'
+      transform: `translate3d(${floatX}px, ${floatY}px, 0) rotate(${rotation}deg)`,
+      willChange: 'transform'
     }
   }, [scrollY, intensity])
 

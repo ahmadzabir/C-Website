@@ -80,8 +80,8 @@ a:hover { color: #BFDBFE; }
     border-radius: 24px;
     box-shadow: 0 8px 32px rgba(0,0,0,.3);
     backdrop-filter: blur(20px);
-    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, box-shadow, background;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
     transform: translateZ(0);
   }
   
@@ -208,98 +208,94 @@ a:hover { color: #BFDBFE; }
     border-radius: 3px;
   }
   
-/* Enhanced section backgrounds with cosmic colors */
+/* Clean modern section backgrounds */
 .section-bg-1 {
   background: linear-gradient(135deg, 
-    rgba(75,0,130,0.08) 0%, 
-    rgba(25,25,112,0.05) 30%, 
-    rgba(72,61,139,0.06) 70%, 
+    rgba(59,130,246,0.08) 0%, 
+    rgba(16,185,129,0.05) 30%, 
+    rgba(139,92,246,0.06) 70%, 
     transparent 100%);
   position: relative;
-  border-top: 1px solid rgba(75,0,130,0.15);
-  border-bottom: 1px solid rgba(25,25,112,0.15);
+  border-top: 1px solid rgba(59,130,246,0.15);
+  border-bottom: 1px solid rgba(16,185,129,0.15);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .section-bg-2 {
   background: linear-gradient(135deg, 
-    rgba(25,25,112,0.08) 0%, 
-    rgba(72,61,139,0.05) 50%, 
-    rgba(106,90,205,0.06) 100%);
+    rgba(139,92,246,0.08) 0%, 
+    rgba(59,130,246,0.05) 50%, 
+    rgba(16,185,129,0.06) 100%);
   position: relative;
-  border-top: 1px solid rgba(25,25,112,0.15);
-  border-bottom: 1px solid rgba(72,61,139,0.15);
+  border-top: 1px solid rgba(139,92,246,0.15);
+  border-bottom: 1px solid rgba(59,130,246,0.15);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .section-bg-3 {
   background: linear-gradient(135deg, 
-    rgba(72,61,139,0.08) 0%, 
-    rgba(106,90,205,0.05) 50%, 
-    rgba(75,0,130,0.06) 100%);
+    rgba(16,185,129,0.08) 0%, 
+    rgba(139,92,246,0.05) 50%, 
+    rgba(59,130,246,0.06) 100%);
   position: relative;
-  border-top: 1px solid rgba(72,61,139,0.15);
-  border-bottom: 1px solid rgba(106,90,205,0.15);
+  border-top: 1px solid rgba(16,185,129,0.15);
+  border-bottom: 1px solid rgba(139,92,246,0.15);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-/* Enhanced gradient text for emerald green highlights */
+/* Smooth gradient text for emerald green highlights */
 .gradient-text-emerald {
   background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7, #10B981, #059669);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 300% 100%;
-  animation: gradient-shift 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
-  will-change: transform, filter;
+  background-size: 200% 100%;
+  animation: gradient-smooth 3s ease-in-out infinite;
+  will-change: transform;
   transform: translateZ(0);
 }
 
-/* Enhanced gradient text for blue highlights */
+/* Smooth gradient text for blue highlights */
 .gradient-text-blue {
   background: linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD, #3B82F6, #1D4ED8);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 300% 100%;
-  animation: gradient-shift 5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
-  will-change: transform, filter;
+  background-size: 200% 100%;
+  animation: gradient-smooth 4s ease-in-out infinite;
+  will-change: transform;
   transform: translateZ(0);
 }
 
-/* Enhanced gradient text for purple highlights */
+/* Smooth gradient text for purple highlights */
 .gradient-text-purple {
   background: linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD, #8B5CF6, #7C3AED);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 300% 100%;
-  animation: gradient-shift 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
-  will-change: transform, filter;
+  background-size: 200% 100%;
+  animation: gradient-smooth 5s ease-in-out infinite;
+  will-change: transform;
   transform: translateZ(0);
 }
 
-/* Enhanced gradient text for gold highlights */
+/* Smooth gradient text for gold highlights */
 .gradient-text-gold {
   background: linear-gradient(135deg, #F59E0B, #FBBF24, #FDE047, #F59E0B, #D97706);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-size: 300% 100%;
-  animation: gradient-shift 5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.3));
-  will-change: transform, filter;
+  background-size: 200% 100%;
+  animation: gradient-smooth 4s ease-in-out infinite;
+  will-change: transform;
   transform: translateZ(0);
 }
 
-/* Enhanced gradient text for white highlights */
+/* Smooth gradient text for white highlights */
 .gradient-text-white {
   background: linear-gradient(135deg, #FFFFFF, #F3F4F6, #E5E7EB, #FFFFFF, #D1D5DB);
   -webkit-background-clip: text;
@@ -307,9 +303,8 @@ a:hover { color: #BFDBFE; }
   -webkit-text-fill-color: transparent;
   color: transparent;
   background-size: 200% 100%;
-  animation: gradient-shift 8s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
-  will-change: transform, filter;
+  animation: gradient-smooth 6s ease-in-out infinite;
+  will-change: transform;
   transform: translateZ(0);
 }
 
@@ -334,26 +329,15 @@ a:hover { color: #BFDBFE; }
   animation: timeline-shift 10s ease-in-out infinite;
 }
 
-@keyframes gradient-shift {
+@keyframes gradient-smooth {
   0% {
     background-position: 0% 50%;
-    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
-  }
-  25% {
-    background-position: 25% 50%;
-    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
   }
   50% {
-    background-position: 50% 50%;
-    filter: drop-shadow(0 0 16px rgba(16, 185, 129, 0.5));
-  }
-  75% {
-    background-position: 75% 50%;
-    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 100% 50%;
-    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
+    background-position: 0% 50%;
   }
 }
 

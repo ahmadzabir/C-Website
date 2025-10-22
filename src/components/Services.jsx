@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 function Services() {
+  const [time, setTime] = useState(0)
+  const animationRef = useRef()
+
+  useEffect(() => {
+    const animate = (currentTime) => {
+      setTime(currentTime / 1000)
+      animationRef.current = requestAnimationFrame(animate)
+    }
+    animationRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [])
+
   const services = [
     {
       title: "Cold Outbound Engine",
@@ -54,8 +70,74 @@ function Services() {
   ]
 
   return (
-    <section id="services" className="section-spacing">
-      <div className="w-full max-w-7xl mx-auto container-padding">
+    <section id="services" className="section-spacing relative overflow-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Orbs */}
+        {Array.from({ length: 6 }).map((_, i) => (
+          <motion.div
+            key={`orb-${i}`}
+            className="absolute rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-400/10"
+            style={{
+              width: `${Math.random() * 200 + 100}px`,
+              height: `${Math.random() * 200 + 100}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              x: [0, Math.sin(time + i) * 50, 0],
+              y: [0, Math.cos(time + i) * 30, 0],
+              scale: [1, 1.1, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+        
+        {/* Flowing Lines */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(${45 + Math.sin(time * 0.5) * 10}deg, transparent 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%)`
+          }}
+          animate={{
+            opacity: [0.3, 0.7, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        {/* Pulsing Dots */}
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.div
+            key={`dot-${i}`}
+            className="absolute w-2 h-2 bg-emerald-400 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0.5, 1.5, 0.5],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: 3 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.2
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

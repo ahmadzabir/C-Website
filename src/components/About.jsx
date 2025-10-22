@@ -1,13 +1,95 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useStaggeredAnimation } from '../hooks/useCursorEffects'
 
 function About() {
   const { ref: leftRef, isVisible: leftVisible } = useStaggeredAnimation(0)
   const { ref: rightRef, isVisible: rightVisible } = useStaggeredAnimation(200)
+  
+  const [time, setTime] = useState(0)
+  const animationRef = useRef()
+
+  useEffect(() => {
+    const animate = (currentTime) => {
+      setTime(currentTime / 1000)
+      animationRef.current = requestAnimationFrame(animate)
+    }
+    animationRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [])
 
   return (
     <section className="section-spacing relative overflow-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Rotating Geometric Shapes */}
+        {Array.from({ length: 4 }).map((_, i) => (
+          <motion.div
+            key={`shape-${i}`}
+            className="absolute border-2 border-emerald-400/20"
+            style={{
+              width: `${100 + i * 50}px`,
+              height: `${100 + i * 50}px`,
+              left: `${20 + i * 20}%`,
+              top: `${10 + i * 15}%`,
+              borderRadius: i % 2 === 0 ? '50%' : '20%',
+            }}
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 10 + i * 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        ))}
+        
+        {/* Flowing Particles */}
+        {Array.from({ length: 8 }).map((_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute w-1 h-1 bg-teal-400 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              x: [0, Math.sin(time + i) * 100, 0],
+              y: [0, Math.cos(time + i) * 80, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 5 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3
+            }}
+          />
+        ))}
+        
+        {/* Gradient Waves */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at ${50 + Math.sin(time * 0.3) * 20}% ${50 + Math.cos(time * 0.3) * 15}%, rgba(16, 185, 129, 0.08) 0%, transparent 70%)`
+          }}
+          animate={{
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
       
       <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 lg:gap-16 items-center">

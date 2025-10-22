@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(0) // Default open first FAQ
+  const [time, setTime] = useState(0)
+  const animationRef = useRef()
+
+  useEffect(() => {
+    const animate = (currentTime) => {
+      setTime(currentTime / 1000)
+      animationRef.current = requestAnimationFrame(animate)
+    }
+    animationRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [])
 
   const faqs = [
     {
@@ -28,8 +43,81 @@ function FAQ() {
   ]
 
   return (
-    <section id="faq" className="section-spacing">
-      <div className="w-full max-w-5xl mx-auto container-padding">
+    <section id="faq" className="section-spacing relative overflow-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Question Mark Particles */}
+        {Array.from({ length: 6 }).map((_, i) => (
+          <motion.div
+            key={`question-${i}`}
+            className="absolute text-emerald-400/20 text-6xl font-bold"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.3, 0.1],
+              rotate: [0, 10, -10, 0],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.8
+            }}
+          >
+            ?
+          </motion.div>
+        ))}
+        
+        {/* Floating Circles */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <motion.div
+            key={`circle-${i}`}
+            className="absolute border border-emerald-400/30 rounded-full"
+            style={{
+              width: `${80 + i * 40}px`,
+              height: `${80 + i * 40}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.5, 0.2],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 6 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5
+            }}
+          />
+        ))}
+        
+        {/* Subtle Grid Pattern */}
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(16, 185, 129, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+          animate={{
+            opacity: [0.05, 0.15, 0.05],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+      
+      <div className="w-full max-w-5xl mx-auto container-padding relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -134,7 +134,7 @@ function Results() {
         </motion.div>
 
         {/* Animated Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg items-start">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 content-spacing-lg">
           {stats.map((stat, index) => {
             const count = useCounterAnimation(stat.value, headerVisible, 2000)
             
@@ -147,13 +147,13 @@ function Results() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="card-glass p-8 text-center group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden h-48 flex flex-col justify-center">
+                <div className="card-glass p-6 text-center group-hover:scale-105 transition-all duration-150 group-hover:shadow-glass-lg relative overflow-hidden h-40 flex flex-col justify-center items-center">
                   {/* Gradient Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-150`} />
                   
                   {/* Animated Counter */}
                   <motion.div 
-                    className="text-5xl md:text-6xl font-bold text-white mb-3 font-mono group-hover:text-emerald-400 transition-colors duration-150 flex items-center justify-center"
+                    className="text-4xl md:text-5xl font-bold text-white mb-2 font-mono group-hover:text-emerald-400 transition-colors duration-150 flex items-center justify-center"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={headerVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
@@ -161,7 +161,7 @@ function Results() {
                     {stat.label === 'Time to first qualified lead' ? (
                       <>
                         {Math.round(count)}
-                        <span className="text-3xl md:text-4xl ml-1">{stat.suffix.trim()}</span>
+                        <span className="text-2xl md:text-3xl ml-1">{stat.suffix.trim()}</span>
                       </>
                     ) : (
                       <>
@@ -170,7 +170,7 @@ function Results() {
                     )}
                   </motion.div>
                   
-                  <div className="text-body-secondary text-sm font-medium leading-tight">
+                  <div className="text-body-secondary text-xs font-medium leading-tight text-center px-2">
                     {stat.label}
                   </div>
                   
@@ -179,7 +179,7 @@ function Results() {
                     className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${stat.color} rounded-full`}
                     initial={{ width: 0 }}
                     animate={headerVisible ? { width: "100%" } : { width: 0 }}
-                    transition={{ delay: 0.8 + index * 0.1, duration: 1 }}
+                    transition={{ delay: 0.5 + index * 0.1, duration: 1 }}
                   />
                 </div>
               </motion.div>

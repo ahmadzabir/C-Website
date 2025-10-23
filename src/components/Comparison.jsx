@@ -1,22 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 
 function Comparison() {
-  const [time, setTime] = useState(0)
-  const animationRef = useRef()
-
-  useEffect(() => {
-    const animate = (currentTime) => {
-      setTime(currentTime / 1000)
-      animationRef.current = requestAnimationFrame(animate)
-    }
-    animationRef.current = requestAnimationFrame(animate)
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [])
   const features = [
     {
       feature: "Full GTM System Design (Offer → Retention)",
@@ -88,96 +73,7 @@ function Comparison() {
 
   return (
     <section className="section-spacing relative overflow-hidden">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Comparison Arrows */}
-        {Array.from({ length: 4 }).map((_, i) => (
-          <motion.div
-            key={`arrow-${i}`}
-            className="absolute text-emerald-400/30 text-4xl"
-            style={{
-              left: `${20 + i * 20}%`,
-              top: `${30 + i * 10}%`,
-            }}
-            animate={{
-              x: [0, 10, 0],
-              opacity: [0.1, 0.25, 0.1],
-            }}
-            transition={{
-              duration: 6 + i * 1,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1.5
-            }}
-          >
-            →
-          </motion.div>
-        ))}
-        
-        {/* Floating Checkmarks */}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <motion.div
-            key={`check-${i}`}
-            className="absolute text-emerald-400/20 text-3xl"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -8, 0],
-              rotate: [0, 3, -3, 0],
-              opacity: [0.05, 0.2, 0.05],
-            }}
-            transition={{
-              duration: 8 + i * 0.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1
-            }}
-          >
-            ✓
-          </motion.div>
-        ))}
-        
-        {/* Comparison Bars */}
-        {Array.from({ length: 3 }).map((_, i) => (
-          <motion.div
-            key={`bar-${i}`}
-            className="absolute h-1 bg-gradient-to-r from-emerald-500/20 to-teal-400/20"
-            style={{
-              width: `${200 + i * 100}px`,
-              left: `${10 + i * 30}%`,
-              top: `${20 + i * 25}%`,
-            }}
-            animate={{
-              scaleX: [0.7, 1, 0.7],
-              opacity: [0.15, 0.3, 0.15],
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1.5
-            }}
-          />
-        ))}
-        
-        {/* Subtle Pattern Overlay */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at ${50 + Math.sin(time * 0.1) * 15}% ${50 + Math.cos(time * 0.1) * 10}%, rgba(16, 185, 129, 0.03) 0%, transparent 50%)`
-          }}
-          animate={{
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
+      {/* Clean section without background animations */}
       
       <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
         

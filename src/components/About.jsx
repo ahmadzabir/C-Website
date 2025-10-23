@@ -1,70 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useStaggeredAnimation } from '../hooks/useCursorEffects'
 
 function About() {
   const { ref: leftRef, isVisible: leftVisible } = useStaggeredAnimation(0)
   const { ref: rightRef, isVisible: rightVisible } = useStaggeredAnimation(200)
-  
-  const [time, setTime] = useState(0)
-  const animationRef = useRef()
-
-  useEffect(() => {
-    const animate = (currentTime) => {
-      setTime(currentTime / 1000)
-      animationRef.current = requestAnimationFrame(animate)
-    }
-    animationRef.current = requestAnimationFrame(animate)
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [])
 
   return (
     <section className="section-spacing relative overflow-hidden">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Flowing Particles - Reduced for performance */}
-        {Array.from({ length: 4 }).map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 bg-teal-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.sin(time * 0.2 + i) * 50, 0],
-              y: [0, Math.cos(time * 0.2 + i) * 40, 0],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: 12 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1.5
-            }}
-          />
-        ))}
-        
-        {/* Gradient Waves */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse at ${50 + Math.sin(time * 0.1) * 10}% ${50 + Math.cos(time * 0.1) * 8}%, rgba(16, 185, 129, 0.04) 0%, transparent 70%)`
-          }}
-          animate={{
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
+      {/* Clean section without background animations */}
       
       <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 lg:gap-16 items-center">

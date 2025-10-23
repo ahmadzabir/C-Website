@@ -4,9 +4,6 @@ import Hero from './components/Hero'
 import ProofTrustBar from './components/ProofTrustBar'
 import About from './components/About'
 import Footer from './components/Footer'
-import StaticStars from './components/StaticStars'
-import BackgroundClouds from './components/BackgroundClouds'
-import CosmicBackground from './components/CosmicBackground'
 import ErrorBoundary from './components/ErrorBoundary'
 import { Suspense } from 'react'
 
@@ -30,29 +27,10 @@ function App() {
   return (
     <ErrorBoundary>
         <div className="App min-h-screen bg-bg text-white">
-        {/* TEST CHANGE - Very visible red banner */}
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          background: 'linear-gradient(90deg, #ff0000, #ff6600, #ff0000)',
-          zIndex: 9999,
-          animation: 'pulse 2s infinite'
-        }} />
+        {/* Clean modern website without background animations */}
         
-        {/* Cosmic Stars with movement and scroll parallax */}
-        <StaticStars />
-        
-        {/* Cosmic Background with nebula effects */}
-        <BackgroundClouds />
-        
-        {/* Dynamic Cosmic Elements - Nebula, Galaxy, Blackholes */}
-        <CosmicBackground />
-      
-      {/* Website Content */}
-      <div className="relative z-20">
+        {/* Website Content */}
+        <div className="relative z-20">
         <Header />
         <main>
           <Hero />

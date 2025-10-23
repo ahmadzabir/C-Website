@@ -1,22 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 
 function Services() {
-  const [time, setTime] = useState(0)
-  const animationRef = useRef()
-
-  useEffect(() => {
-    const animate = (currentTime) => {
-      setTime(currentTime / 1000)
-      animationRef.current = requestAnimationFrame(animate)
-    }
-    animationRef.current = requestAnimationFrame(animate)
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [])
 
   const services = [
     {
@@ -71,46 +56,7 @@ function Services() {
 
   return (
     <section id="services" className="section-spacing relative overflow-hidden">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Flowing Lines */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(${45 + Math.sin(time * 0.2) * 5}deg, transparent 0%, rgba(16, 185, 129, 0.03) 50%, transparent 100%)`
-          }}
-          animate={{
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        {/* Pulsing Dots - Reduced for performance */}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <motion.div
-            key={`dot-${i}`}
-            className="absolute w-1 h-1 bg-emerald-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1
-            }}
-          />
-        ))}
-      </div>
+      {/* Clean section without background animations */}
       
       <div className="w-full max-w-7xl mx-auto container-padding relative z-10">
         {/* Section Header */}

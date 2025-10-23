@@ -1,5 +1,5 @@
 // Ultra-fast service worker for instant loading
-const CACHE_NAME = 'contwre-v1'
+const CACHE_NAME = 'contwre-v2'
 const CRITICAL_ASSETS = [
   '/',
   '/assets/contwre-logo-white.png',

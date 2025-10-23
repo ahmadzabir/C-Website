@@ -30,6 +30,18 @@ function App() {
   return (
     <ErrorBoundary>
         <div className="App min-h-screen bg-bg text-white">
+        {/* TEST CHANGE - Very visible red banner */}
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #ff0000, #ff6600, #ff0000)',
+          zIndex: 9999,
+          animation: 'pulse 2s infinite'
+        }} />
+        
         {/* Cosmic Stars with movement and scroll parallax */}
         <StaticStars />
         

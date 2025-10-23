@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 /* Smooth scrolling and performance optimizations */
 html {
   scroll-behavior: smooth;
@@ -56,6 +61,8 @@ body {
   /* Force GPU acceleration */
   transform: translateZ(0);
   will-change: scroll-position;
+  /* TEST CHANGE - Very visible background */
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%) !important;
 }
 
 /* Optimize animations for performance */

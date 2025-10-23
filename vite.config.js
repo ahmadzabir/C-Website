@@ -13,7 +13,7 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
     target: 'es2020',
-    cssCodeSplit: true,
+    cssCodeSplit: false, // Disable CSS splitting to prevent caching issues
     rollupOptions: {
       output: {
         manualChunks: (id) => {

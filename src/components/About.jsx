@@ -26,8 +26,8 @@ function About() {
     <section className="section-spacing relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Flowing Particles */}
-        {Array.from({ length: 8 }).map((_, i) => (
+        {/* Flowing Particles - Reduced for performance */}
+        {Array.from({ length: 4 }).map((_, i) => (
           <motion.div
             key={`particle-${i}`}
             className="absolute w-1 h-1 bg-teal-400 rounded-full"
@@ -41,10 +41,10 @@ function About() {
               opacity: [0, 0.5, 0],
             }}
             transition={{
-              duration: 8 + i * 1,
+              duration: 12 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.8
+              delay: i * 1.5
             }}
           />
         ))}

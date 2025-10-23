@@ -89,11 +89,11 @@ function Services() {
           }}
         />
         
-        {/* Pulsing Dots */}
-        {Array.from({ length: 12 }).map((_, i) => (
+        {/* Pulsing Dots - Reduced for performance */}
+        {Array.from({ length: 6 }).map((_, i) => (
           <motion.div
             key={`dot-${i}`}
-            className="absolute w-2 h-2 bg-emerald-400 rounded-full"
+            className="absolute w-1 h-1 bg-emerald-400 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -103,10 +103,10 @@ function Services() {
               opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: 6 + i * 1,
+              duration: 8 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5
+              delay: i * 1
             }}
           />
         ))}

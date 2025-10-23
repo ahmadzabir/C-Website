@@ -34,56 +34,66 @@ function App() {
         <Header />
         <main>
           <Hero />
+          
           <div className="section-bg-1 relative z-10">
             <ProofTrustBar />
           </div>
           <div className="section-divider" />
-          <div className="section-bg-1 relative z-10">
+          
+          <div className="section-bg-2 relative z-10">
             <About />
           </div>
           <div className="section-divider-thick" />
-          <div className="section-bg-2 relative z-10">
+          
+          <div className="section-bg-3 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <IntegrationFlow />
             </Suspense>
           </div>
           <div className="section-divider" />
+          
           <div className="section-bg-1 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <GTMEngine />
             </Suspense>
           </div>
           <div className="section-divider" />
-          <div className="section-bg-3 relative z-10">
+          
+          <div className="section-bg-2 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <Services />
             </Suspense>
           </div>
           <div className="section-divider" />
-          <div className="section-bg-1 relative z-10">
+          
+          <div className="section-bg-3 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <Process />
             </Suspense>
           </div>
           <div className="section-divider-thick" />
-          <div className="section-bg-2 relative z-10">
+          
+          <div className="section-bg-1 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <Results />
             </Suspense>
           </div>
           <div className="section-divider" />
-          <div className="section-bg-3 relative z-10">
+          
+          <div className="section-bg-2 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <Comparison />
             </Suspense>
           </div>
           <div className="section-divider" />
-          <div className="section-bg-1 relative z-10">
+          
+          <div className="section-bg-3 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <FAQ />
             </Suspense>
           </div>
           <div className="section-divider" />
+          
           <div className="section-bg-1 relative z-10">
             <Suspense fallback={<LoadingSpinner />}>
               <FounderSection />

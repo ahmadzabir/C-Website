@@ -306,89 +306,197 @@ a:hover { color: #BFDBFE; }
   
   /* Enhanced section separators with warm colors */
   .section-divider {
-    height: 3px;
+    height: 2px;
     background: linear-gradient(90deg, 
-      transparent, 
-      rgba(139,92,246,0.2), 
-      rgba(236,72,153,0.3), 
-      rgba(251,146,60,0.2), 
-      transparent
-    );
-    margin: 4rem 0;
-    border-radius: 2px;
-    box-shadow: 0 0 20px rgba(139,92,246,0.1);
+      transparent 0%, 
+      rgba(16, 185, 129, 0.2) 20%, 
+      rgba(59, 130, 246, 0.3) 50%, 
+      rgba(139, 92, 246, 0.2) 80%, 
+      transparent 100%);
+    position: relative;
+    margin: 0;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 100%);
   }
   
   .section-divider-thick {
-    height: 5px;
+    height: 4px;
     background: linear-gradient(90deg, 
-      transparent, 
-      rgba(139,92,246,0.3), 
-      rgba(236,72,153,0.4), 
-      rgba(251,146,60,0.3), 
-      rgba(139,92,246,0.3), 
-      transparent
-    );
-    margin: 5rem 0;
-    border-radius: 3px;
-    box-shadow: 
-      0 0 30px rgba(139,92,246,0.15),
-      0 0 60px rgba(236,72,153,0.1);
+      transparent 0%, 
+      rgba(16, 185, 129, 0.3) 15%, 
+      rgba(59, 130, 246, 0.4) 35%, 
+      rgba(139, 92, 246, 0.3) 65%, 
+      rgba(16, 185, 129, 0.2) 85%, 
+      transparent 100%);
+    position: relative;
+    margin: 0;
+  }
+
+  .section-divider-thick::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      transparent 100%);
+  }
+
+  .section-divider-thick::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 100%);
   }
   
   /* Enhanced footer separation with dramatic effect */
   .footer-separator {
-    height: 8px;
+    height: 6px;
     background: linear-gradient(90deg, 
-      transparent, 
-      rgba(79,154,255,0.3), 
-      rgba(79,154,255,0.8), 
-      rgba(45,212,191,0.8), 
-      rgba(79,154,255,0.8), 
-      rgba(79,154,255,0.3), 
-      transparent
-    );
-    margin: 5rem 0 0 0;
-    box-shadow: 
-      0 0 40px rgba(79,154,255,0.3),
-      0 0 80px rgba(45,212,191,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.1);
-    border-radius: 3px;
+      transparent 0%, 
+      rgba(16, 185, 129, 0.4) 10%, 
+      rgba(59, 130, 246, 0.5) 30%, 
+      rgba(139, 92, 246, 0.4) 50%, 
+      rgba(59, 130, 246, 0.3) 70%, 
+      rgba(16, 185, 129, 0.2) 90%, 
+      transparent 100%);
+    position: relative;
+    margin: 0;
+  }
+
+  .footer-separator::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.2) 50%, 
+      transparent 100%);
+  }
+
+  .footer-separator::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      transparent 100%);
   }
   
 /* Clean modern section backgrounds */
+/* Modern flowing section backgrounds */
 .section-bg-1 {
-  background: linear-gradient(135deg, 
-    rgba(59,130,246,0.08) 0%, 
-    rgba(16,185,129,0.05) 30%, 
-    rgba(139,92,246,0.06) 70%, 
-    transparent 100%);
+  background: 
+    linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(22, 33, 62, 0.85) 100%),
+    radial-gradient(ellipse at top left, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
   position: relative;
-  border-top: 1px solid rgba(59,130,246,0.15);
-  border-bottom: 1px solid rgba(16,185,129,0.15);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.section-bg-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+}
+
+.section-bg-1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
 }
 
 .section-bg-2 {
-  background: linear-gradient(135deg, 
-    rgba(139,92,246,0.08) 0%, 
-    rgba(59,130,246,0.05) 50%, 
-    rgba(16,185,129,0.06) 100%);
+  background: 
+    linear-gradient(135deg, rgba(22, 33, 62, 0.9) 0%, rgba(26, 26, 46, 0.95) 50%, rgba(10, 10, 10, 0.9) 100%),
+    radial-gradient(ellipse at top right, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
   position: relative;
-  border-top: 1px solid rgba(139,92,246,0.15);
-  border-bottom: 1px solid rgba(59,130,246,0.15);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.section-bg-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.section-bg-2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
 }
 
 .section-bg-3 {
-  background: linear-gradient(135deg, 
-    rgba(16,185,129,0.08) 0%, 
-    rgba(139,92,246,0.05) 50%, 
-    rgba(59,130,246,0.06) 100%);
+  background: 
+    linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.9) 50%, rgba(10, 10, 10, 0.95) 100%),
+    radial-gradient(ellipse at center, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at top center, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
   position: relative;
-  border-top: 1px solid rgba(16,185,129,0.15);
-  border-bottom: 1px solid rgba(139,92,246,0.15);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.section-bg-3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+}
+
+.section-bg-3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
 }
 
 /* Optimized gradient text - static for performance */

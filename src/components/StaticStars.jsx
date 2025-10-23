@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react'
 
 // Throttle function for performance
 const throttle = (func, limit) => {
@@ -120,4 +120,4 @@ function StaticStars() {
   )
 }
 
-export default StaticStars
+export default memo(StaticStars)

@@ -100,14 +100,14 @@ function Comparison() {
               top: `${30 + i * 10}%`,
             }}
             animate={{
-              x: [0, 20, 0],
-              opacity: [0.2, 0.5, 0.2],
+              x: [0, 10, 0],
+              opacity: [0.1, 0.25, 0.1],
             }}
             transition={{
-              duration: 3 + i * 0.5,
+              duration: 6 + i * 1,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.7
+              delay: i * 1.5
             }}
           >
             →
@@ -124,15 +124,15 @@ function Comparison() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -15, 0],
-              rotate: [0, 5, -5, 0],
-              opacity: [0.1, 0.4, 0.1],
+              y: [0, -8, 0],
+              rotate: [0, 3, -3, 0],
+              opacity: [0.05, 0.2, 0.05],
             }}
             transition={{
-              duration: 4 + i * 0.3,
+              duration: 8 + i * 0.8,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5
+              delay: i * 1
             }}
           >
             ✓
@@ -150,14 +150,14 @@ function Comparison() {
               top: `${20 + i * 25}%`,
             }}
             animate={{
-              scaleX: [0.5, 1, 0.5],
-              opacity: [0.3, 0.6, 0.3],
+              scaleX: [0.7, 1, 0.7],
+              opacity: [0.15, 0.3, 0.15],
             }}
             transition={{
-              duration: 5 + i * 1,
+              duration: 10 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.8
+              delay: i * 1.5
             }}
           />
         ))}
@@ -166,13 +166,13 @@ function Comparison() {
         <motion.div
           className="absolute inset-0"
           style={{
-            background: `radial-gradient(circle at ${50 + Math.sin(time * 0.2) * 30}% ${50 + Math.cos(time * 0.2) * 20}%, rgba(16, 185, 129, 0.05) 0%, transparent 50%)`
+            background: `radial-gradient(circle at ${50 + Math.sin(time * 0.1) * 15}% ${50 + Math.cos(time * 0.1) * 10}%, rgba(16, 185, 129, 0.03) 0%, transparent 50%)`
           }}
           animate={{
-            opacity: [0.2, 0.4, 0.2],
+            opacity: [0.1, 0.2, 0.1],
           }}
           transition={{
-            duration: 10,
+            duration: 18,
             repeat: Infinity,
             ease: "easeInOut"
           }}

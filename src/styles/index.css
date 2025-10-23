@@ -6,6 +6,40 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 156, 255, 0.5) rgba(0, 0, 0, 0.1);
+  /* Optimize rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Enable GPU acceleration for all elements */
+  will-change: auto;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+body {
+  overflow-x: hidden;
+  /* Optimize scrolling performance */
+  -webkit-overflow-scrolling: touch;
+  /* Reduce paint operations */
+  contain: layout style paint;
+}
+
+/* Optimize animations for performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Enhanced sticky header support */

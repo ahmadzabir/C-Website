@@ -26,31 +26,6 @@ function About() {
     <section className="section-spacing relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Rotating Geometric Shapes */}
-        {Array.from({ length: 4 }).map((_, i) => (
-          <motion.div
-            key={`shape-${i}`}
-            className="absolute border-2 border-emerald-400/20"
-            style={{
-              width: `${100 + i * 50}px`,
-              height: `${100 + i * 50}px`,
-              left: `${20 + i * 20}%`,
-              top: `${10 + i * 15}%`,
-              borderRadius: i % 2 === 0 ? '50%' : '20%',
-            }}
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 10 + i * 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-        
         {/* Flowing Particles */}
         {Array.from({ length: 8 }).map((_, i) => (
           <motion.div
@@ -61,15 +36,15 @@ function About() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              x: [0, Math.sin(time + i) * 100, 0],
-              y: [0, Math.cos(time + i) * 80, 0],
-              opacity: [0, 1, 0],
+              x: [0, Math.sin(time * 0.2 + i) * 50, 0],
+              y: [0, Math.cos(time * 0.2 + i) * 40, 0],
+              opacity: [0, 0.5, 0],
             }}
             transition={{
-              duration: 5 + i * 0.5,
+              duration: 8 + i * 1,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.3
+              delay: i * 0.8
             }}
           />
         ))}
@@ -78,13 +53,13 @@ function About() {
         <motion.div
           className="absolute inset-0"
           style={{
-            background: `radial-gradient(ellipse at ${50 + Math.sin(time * 0.3) * 20}% ${50 + Math.cos(time * 0.3) * 15}%, rgba(16, 185, 129, 0.08) 0%, transparent 70%)`
+            background: `radial-gradient(ellipse at ${50 + Math.sin(time * 0.1) * 10}% ${50 + Math.cos(time * 0.1) * 8}%, rgba(16, 185, 129, 0.04) 0%, transparent 70%)`
           }}
           animate={{
-            opacity: [0.3, 0.6, 0.3],
+            opacity: [0.2, 0.3, 0.2],
           }}
           transition={{
-            duration: 8,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut"
           }}

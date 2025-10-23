@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, memo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 // Throttle function for performance
@@ -178,4 +178,4 @@ function Header() {
   )
 }
 
-export default Header
+export default memo(Header)

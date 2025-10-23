@@ -56,44 +56,19 @@ function FAQ() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.1, 0.3, 0.1],
-              rotate: [0, 10, -10, 0],
+              y: [0, -10, 0],
+              opacity: [0.05, 0.15, 0.05],
+              rotate: [0, 5, -5, 0],
             }}
             transition={{
-              duration: 4 + i * 0.5,
+              duration: 8 + i * 1,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.8
+              delay: i * 1.5
             }}
           >
             ?
           </motion.div>
-        ))}
-        
-        {/* Floating Circles */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <motion.div
-            key={`circle-${i}`}
-            className="absolute border border-emerald-400/30 rounded-full"
-            style={{
-              width: `${80 + i * 40}px`,
-              height: `${80 + i * 40}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.5, 0.2],
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 6 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5
-            }}
-          />
         ))}
         
         {/* Subtle Grid Pattern */}
@@ -107,10 +82,10 @@ function FAQ() {
             backgroundSize: '50px 50px',
           }}
           animate={{
-            opacity: [0.05, 0.15, 0.05],
+            opacity: [0.03, 0.08, 0.03],
           }}
           transition={{
-            duration: 8,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut"
           }}

@@ -73,42 +73,17 @@ function Services() {
     <section id="services" className="section-spacing relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Orbs */}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <motion.div
-            key={`orb-${i}`}
-            className="absolute rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-400/10"
-            style={{
-              width: `${Math.random() * 200 + 100}px`,
-              height: `${Math.random() * 200 + 100}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.sin(time + i) * 50, 0],
-              y: [0, Math.cos(time + i) * 30, 0],
-              scale: [1, 1.1, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-        
         {/* Flowing Lines */}
         <motion.div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(${45 + Math.sin(time * 0.5) * 10}deg, transparent 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%)`
+            background: `linear-gradient(${45 + Math.sin(time * 0.2) * 5}deg, transparent 0%, rgba(16, 185, 129, 0.03) 50%, transparent 100%)`
           }}
           animate={{
-            opacity: [0.3, 0.7, 0.3],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 6,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -124,14 +99,14 @@ function Services() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              scale: [0.5, 1.5, 0.5],
-              opacity: [0.2, 0.8, 0.2],
+              scale: [0.8, 1.2, 0.8],
+              opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: 3 + i * 0.5,
+              duration: 6 + i * 1,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.2
+              delay: i * 0.5
             }}
           />
         ))}

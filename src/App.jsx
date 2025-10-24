@@ -4,24 +4,15 @@ import Hero from './components/Hero'
 import ProofTrustBar from './components/ProofTrustBar'
 import About from './components/About'
 import Footer from './components/Footer'
+import IntegrationFlow from './components/IntegrationFlow'
+import GTMEngine from './components/GTMEngine'
+import Services from './components/Services'
+import Process from './components/Process'
+import Results from './components/Results'
+import Comparison from './components/Comparison'
+import FAQ from './components/FAQ'
+import FounderSection from './components/FounderSection'
 import ErrorBoundary from './components/ErrorBoundary'
-import { Suspense } from 'react'
-
-const IntegrationFlow = React.lazy(() => import('./components/IntegrationFlow'))
-const GTMEngine = React.lazy(() => import('./components/GTMEngine'))
-const Services = React.lazy(() => import('./components/Services'))
-const Process = React.lazy(() => import('./components/Process'))
-const Results = React.lazy(() => import('./components/Results'))
-const Comparison = React.lazy(() => import('./components/Comparison'))
-const FAQ = React.lazy(() => import('./components/FAQ'))
-const FounderSection = React.lazy(() => import('./components/FounderSection'))
-
-// Loading component for better UX
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center py-20">
-    <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-  </div>
-)
 
 function App() {
   return (
@@ -46,58 +37,42 @@ function App() {
           <div className="section-divider-thick" />
           
           <div className="section-bg-3 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <IntegrationFlow />
-            </Suspense>
+            <IntegrationFlow />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <GTMEngine />
-            </Suspense>
+            <GTMEngine />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-2 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Services />
-            </Suspense>
+            <Services />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-3 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Process />
-            </Suspense>
+            <Process />
           </div>
           <div className="section-divider-thick" />
           
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Results />
-            </Suspense>
+            <Results />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-2 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Comparison />
-            </Suspense>
+            <Comparison />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-3 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <FAQ />
-            </Suspense>
+            <FAQ />
           </div>
           <div className="section-divider" />
           
           <div className="section-bg-1 relative z-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <FounderSection />
-            </Suspense>
+            <FounderSection />
           </div>
           <div className="footer-separator" />
         </main>

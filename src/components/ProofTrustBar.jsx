@@ -101,11 +101,13 @@ function ProofTrustBar() {
         .carousel-track {
           display: flex;
           width: 300%;
-          animation: infiniteScroll 45s linear infinite;
+          animation: infiniteScroll 20s linear infinite;
           gap: 4rem;
           will-change: transform;
           transform: translateZ(0);
           backface-visibility: hidden;
+          animation-delay: 0s;
+          animation-fill-mode: both;
         }
         
         .carousel-item {

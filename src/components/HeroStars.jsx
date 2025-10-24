@@ -21,22 +21,24 @@ function HeroStars() {
   const lastTimeRef = useRef(0)
   const rafRef = useRef()
 
-  // Generate slow-moving hero stars
+  // Generate slow-moving hero stars with more variety
   const generateHeroStars = useCallback(() => {
     const stars = []
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 20; i++) { // Increased number of stars
       stars.push({
         id: `hero-star-${i}`,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 0.8 + 0.4, // Small stars
-        speed: Math.random() * 0.05 + 0.02, // Very slow movement
-        opacity: Math.random() * 0.4 + 0.2, // Subtle opacity
+        size: Math.random() * 1.2 + 0.3, // Slightly larger stars
+        speed: Math.random() * 0.03 + 0.01, // Even slower movement
+        opacity: Math.random() * 0.6 + 0.3, // More visible stars
         baseX: Math.random() * 100,
         baseY: Math.random() * 100,
-        scrollUpSpeed: Math.random() * 0.3 + 0.2, // Slow upward movement
-        fadeOutPoint: Math.random() * 200 + 100, // Later fade out
-        driftSpeed: Math.random() * 0.02 + 0.01, // Very slow drift
+        scrollUpSpeed: Math.random() * 0.2 + 0.1, // Slower upward movement
+        fadeOutPoint: Math.random() * 150 + 50, // Earlier fade out
+        driftSpeed: Math.random() * 0.01 + 0.005, // Very slow drift
+        twinkleSpeed: Math.random() * 0.02 + 0.01, // Twinkling effect
+        color: Math.random() > 0.7 ? '#00FFFF' : '#FFFFFF', // Some cyan stars
       })
     }
     return stars
@@ -53,7 +55,7 @@ function HeroStars() {
   }, [])
 
   useEffect(() => {
-    const throttledScroll = throttle(handleScroll, 32) // 30fps throttling for smoother performance
+    const throttledScroll = throttle(handleScroll, 16) // 60fps throttling for smoother performance
     window.addEventListener('scroll', throttledScroll, { passive: true })
     setScrollY(window.scrollY)
     return () => {
@@ -66,8 +68,8 @@ function HeroStars() {
 
   useEffect(() => {
     const animate = (currentTime) => {
-      if (currentTime - lastTimeRef.current >= 50) { // 20fps for very smooth, slow animation
-        setTimeOffset(currentTime / 3000) // Much slower time progression
+      if (currentTime - lastTimeRef.current >= 33) { // 30fps for smooth animation
+        setTimeOffset(currentTime / 5000) // Much slower time progression
         lastTimeRef.current = currentTime
       }
       animationRef.current = requestAnimationFrame(animate)
@@ -95,34 +97,42 @@ function HeroStars() {
       {stars.map((star) => {
         const time = timeOffset * star.speed
         
-        // Very slow, gentle movement
-        const moveX = Math.sin(time + star.baseX * 0.005) * 0.3
-        const moveY = Math.cos(time + star.baseY * 0.005) * 0.3
+        // Very slow, gentle movement with more organic patterns
+        const moveX = Math.sin(time + star.baseX * 0.003) * 0.5
+        const moveY = Math.cos(time + star.baseY * 0.003) * 0.5
         
-        // Slow drift effect
-        const driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.01) * 0.2
-        const driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.01) * 0.2
+        // Slow drift effect with different patterns
+        const driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.008) * 0.3
+        const driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.008) * 0.3
+
+        // Twinkling effect
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.2 + 0.8
 
         // Scroll-based upward movement and fade out
         const scrollUpOffset = scrollY * star.scrollUpSpeed
-        const scrollFadeOut = Math.max(0, 1 - scrollY / 300) // Fade out over 300px scroll
+        const scrollFadeOut = Math.max(0, 1 - scrollY / 200) // Fade out over 200px scroll
         
         // Calculate final position
         const finalX = (star.x + moveX + driftX) % 100
         const finalY = (star.y + moveY + driftY - scrollUpOffset) % 100
 
+        // Enhanced opacity with twinkling and scroll fade
+        const finalOpacity = star.opacity * scrollFadeOut * twinkle
+
         return (
           <div
             key={star.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full"
             style={{
               left: `${finalX}%`,
               top: `${finalY}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              opacity: star.opacity * scrollFadeOut,
+              backgroundColor: star.color,
+              opacity: finalOpacity,
               willChange: 'transform, opacity',
-              transition: 'opacity 0.3s ease-out', // Smooth fade out
+              transition: 'opacity 0.5s ease-out', // Smoother fade out
+              boxShadow: `0 0 ${star.size * 2}px ${star.color}`, // Glow effect
             }}
           />
         )

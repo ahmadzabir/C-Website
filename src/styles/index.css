@@ -7,6 +7,41 @@
   50% { opacity: 0.5; }
 }
 
+/* Futuristic Gradient Animation */
+@keyframes futuristic-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Hero Gradient Animation - Different pattern */
+@keyframes hero-gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  33% {
+    background-position: 100% 0%;
+  }
+  66% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
 /* Smooth scrolling and performance optimizations */
 html {
   scroll-behavior: smooth;
@@ -61,9 +96,22 @@ body {
   /* Force GPU acceleration */
   transform: translateZ(0);
   will-change: scroll-position;
-  /* Clean modern background */
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  
+  /* Main Website Background - Applied to body */
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 40% 60%, rgba(0, 191, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 40%, rgba(255, 0, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, 
+      #0f1419 0%, 
+      #1a1a2e 25%, 
+      #16213e 50%, 
+      #0a0a0f 75%, 
+      #0f1419 100%);
   background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: futuristic-gradient 20s ease-in-out infinite;
 }
 
 /* Optimize animations for performance */
@@ -306,134 +354,116 @@ a:hover { color: #BFDBFE; }
   
   /* Removed section dividers for unified design */
   
-/* Unified background for entire homepage */
-.section-bg-1,
-.section-bg-2,
-.section-bg-3 {
-  background: transparent;
+/* Hero Section - Unique Futuristic Background */
+.hero-bg {
+  background: 
+    radial-gradient(ellipse at 25% 25%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 191, 255, 0.1) 0%, transparent 60%),
+    linear-gradient(135deg, 
+      #0a0a0f 0%, 
+      #1a1a2e 30%, 
+      #16213e 60%, 
+      #0f1419 100%);
+  background-attachment: fixed;
+  background-size: 300% 300%;
+  animation: hero-gradient 15s ease-in-out infinite;
   position: relative;
   overflow: hidden;
 }
 
-/* 3D Background Effects */
-.fixed {
-  position: fixed;
-}
-
-.inset-0 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.pointer-events-none {
-  pointer-events: none;
-}
-
-.overflow-hidden {
+/* Main Website Background - Different from Hero */
+.main-bg {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 40% 60%, rgba(0, 191, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 40%, rgba(255, 0, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, 
+      #0f1419 0%, 
+      #1a1a2e 25%, 
+      #16213e 50%, 
+      #0a0a0f 75%, 
+      #0f1419 100%);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: futuristic-gradient 20s ease-in-out infinite;
+  position: relative;
   overflow: hidden;
 }
 
-.z-0 {
-  z-index: 0;
+/* Futuristic section backgrounds with enhanced contrast */
+.section-bg-1 {
+  background: 
+    radial-gradient(ellipse at 30% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(138, 43, 226, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(26, 26, 46, 0.9) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.z-10 {
-  z-index: 10;
+.section-bg-2 {
+  background: 
+    radial-gradient(ellipse at 60% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 40% 80%, rgba(255, 0, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(22, 33, 62, 0.95) 0%, rgba(15, 20, 25, 0.9) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.z-20 {
-  z-index: 20;
+.section-bg-3 {
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(26, 26, 46, 0.9) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-/* 3D Transform Utilities */
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.perspective-2000 {
-  perspective: 2000px;
-}
-
-/* Enhanced 3D animations */
-@keyframes float-3d {
-  0%, 100% { 
-    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
-  }
-  33% { 
-    transform: translateY(-20px) rotateX(10deg) rotateY(10deg); 
-  }
-  66% { 
-    transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg); 
-  }
-}
-
-@keyframes rotate-3d {
-  0% { 
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
-  }
-  100% { 
-    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); 
-  }
-}
-
-@keyframes pulse-3d {
-  0%, 100% { 
-    transform: scale(1) rotateX(0deg); 
-  }
-  50% { 
-    transform: scale(1.1) rotateX(180deg); 
-  }
-}
-
-/* Optimized gradient text - static for performance */
+/* Futuristic gradient text with enhanced contrast */
 .gradient-text-emerald {
-  background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7);
+  background: linear-gradient(135deg, #00FF88, #10B981, #34D399);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.3));
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD);
+  background: linear-gradient(135deg, #00BFFF, #3B82F6, #60A5FA);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.3));
 }
 
 .gradient-text-purple {
-  background: linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD);
+  background: linear-gradient(135deg, #8A2BE2, #8B5CF6, #A78BFA);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.3));
 }
 
 .gradient-text-gold {
-  background: linear-gradient(135deg, #F59E0B, #FBBF24, #FDE047);
+  background: linear-gradient(135deg, #FFD700, #F59E0B, #FBBF24);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
 }
 
 .gradient-text-white {
-  background: linear-gradient(135deg, #FFFFFF, #F3F4F6, #E5E7EB);
+  background: linear-gradient(135deg, #FFFFFF, #F8FAFC, #E2E8F0);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
 }
 
 /* Phase offset classes for wave effect */

@@ -12,15 +12,13 @@ import Results from './components/Results'
 import Comparison from './components/Comparison'
 import FAQ from './components/FAQ'
 import FounderSection from './components/FounderSection'
-import Background3D from './components/Background3D'
 import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
   return (
     <ErrorBoundary>
         <div className="App min-h-screen bg-bg text-white">
-        {/* 3D Background Animations */}
-        <Background3D />
+        {/* Clean modern website */}
         
         {/* Website Content */}
         <div className="relative z-20">

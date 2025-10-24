@@ -16,7 +16,7 @@ function Hero() {
   const { ref: cta2Ref, magnetPosition: cta2Magnet } = useMagnetEffect(0.15)
 
   return (
-    <section id="top" className="relative overflow-hidden min-h-screen flex items-center pt-32">
+    <section id="top" className="hero-bg relative overflow-hidden min-h-screen flex items-center pt-32">
       {/* Hero Stars with scroll animation */}
       <HeroStars />
       

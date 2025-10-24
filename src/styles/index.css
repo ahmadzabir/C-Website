@@ -304,95 +304,15 @@ a:hover { color: #BFDBFE; }
     }
   }
   
-  /* Enhanced section separators with warm colors */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(99, 102, 241, 0.15) 50%, 
-      transparent 100%);
-    position: relative;
-    margin: 0;
-  }
+  /* Removed section dividers for unified design */
   
-  .section-divider-thick {
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(16, 185, 129, 0.2) 25%, 
-      rgba(99, 102, 241, 0.25) 50%, 
-      rgba(139, 92, 246, 0.2) 75%, 
-      transparent 100%);
-    position: relative;
-    margin: 0;
-  }
-
-  .footer-separator {
-    height: 3px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(16, 185, 129, 0.3) 20%, 
-      rgba(99, 102, 241, 0.4) 50%, 
-      rgba(139, 92, 246, 0.3) 80%, 
-      transparent 100%);
-    position: relative;
-    margin: 0;
-  }
-  
-/* Clean modern section backgrounds */
-/* Modern clean section backgrounds */
-.section-bg-1 {
-  background: 
-    linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%),
-    radial-gradient(ellipse at top left, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-bg-1::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
-}
-
-.section-bg-2 {
-  background: 
-    linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%),
-    radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-bg-2::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
-}
-
+/* Unified background for entire homepage */
+.section-bg-1,
+.section-bg-2,
 .section-bg-3 {
-  background: 
-    linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%),
-    radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  background: transparent;
   position: relative;
   overflow: hidden;
-}
-
-.section-bg-3::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
 }
 
 /* Optimized gradient text - static for performance */

@@ -29,52 +29,42 @@ function App() {
           <div className="section-bg-1 relative z-10">
             <ProofTrustBar />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-2 relative z-10">
             <About />
           </div>
-          <div className="section-divider-thick" />
           
           <div className="section-bg-3 relative z-10">
             <IntegrationFlow />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-1 relative z-10">
             <GTMEngine />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-2 relative z-10">
             <Services />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-3 relative z-10">
             <Process />
           </div>
-          <div className="section-divider-thick" />
           
           <div className="section-bg-1 relative z-10">
             <Results />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-2 relative z-10">
             <Comparison />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-3 relative z-10">
             <FAQ />
           </div>
-          <div className="section-divider" />
           
           <div className="section-bg-1 relative z-10">
             <FounderSection />
           </div>
-          <div className="footer-separator" />
         </main>
         <Footer />
       </div>

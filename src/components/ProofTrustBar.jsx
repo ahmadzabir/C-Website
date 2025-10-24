@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 function ProofTrustBar() {
+  const [allLogosLoaded, setAllLogosLoaded] = useState(false)
+  const [loadedLogos, setLoadedLogos] = useState(new Set())
+
   const clients = [
     { name: "6 Pack Macros", logo: "/assets/client-logos/6_Pack_Macros.png" },
     { name: "Classic Programmers", logo: "/assets/client-logos/Classic_Programmers.png" },
@@ -16,6 +19,29 @@ function ProofTrustBar() {
     { name: "Vigor Wolf", logo: "/assets/client-logos/Vigor_Wolf.png" }
   ]
 
+  // Preload all logos
+  useEffect(() => {
+    const preloadImages = () => {
+      const promises = clients.map((client) => {
+        return new Promise((resolve) => {
+          const img = new Image()
+          img.onload = () => {
+            setLoadedLogos(prev => new Set([...prev, client.logo]))
+            resolve()
+          }
+          img.onerror = () => resolve() // Continue even if one fails
+          img.src = client.logo
+        })
+      })
+      
+      Promise.all(promises).then(() => {
+        setAllLogosLoaded(true)
+      })
+    }
+
+    preloadImages()
+  }, [])
+
   return (
     <section className="section-spacing relative overflow-hidden w-full">
       {/* Section Header */}
@@ -27,15 +53,28 @@ function ProofTrustBar() {
         </div>
       </div>
 
+      {/* Loading indicator */}
+      {!allLogosLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white/50 text-sm">Loading logos...</div>
+        </div>
+      )}
+
       {/* Truly Infinite Scrolling Logo Carousel */}
       <div className="relative w-full overflow-hidden py-6 carousel-container pointer-events-none select-none">
-        <div className="carousel-track">
+        <motion.div 
+          className="carousel-track"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: allLogosLoaded ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {/* First set of logos */}
           {clients.map((client, index) => (
             <div
               key={`logo-1-${index}`}
               className="carousel-item flex items-center justify-center"
             >
+              {loadedLogos.has(client.logo) ? (
                 <img
                   src={client.logo}
                   alt={`${client.name} logo`}
@@ -44,6 +83,9 @@ function ProofTrustBar() {
                   decoding="async"
                   fetchpriority="high"
                 />
+              ) : (
+                <div className="w-12 h-5 bg-white/10 rounded animate-pulse"></div>
+              )}
             </div>
           ))}
           {/* Second set of logos for seamless loop */}
@@ -52,6 +94,7 @@ function ProofTrustBar() {
               key={`logo-2-${index}`}
               className="carousel-item flex items-center justify-center"
             >
+              {loadedLogos.has(client.logo) ? (
                 <img
                   src={client.logo}
                   alt={`${client.name} logo`}
@@ -60,6 +103,9 @@ function ProofTrustBar() {
                   decoding="async"
                   fetchpriority="high"
                 />
+              ) : (
+                <div className="w-12 h-5 bg-white/10 rounded animate-pulse"></div>
+              )}
             </div>
           ))}
           {/* Third set of logos for extra smoothness */}
@@ -68,6 +114,7 @@ function ProofTrustBar() {
               key={`logo-3-${index}`}
               className="carousel-item flex items-center justify-center"
             >
+              {loadedLogos.has(client.logo) ? (
                 <img
                   src={client.logo}
                   alt={`${client.name} logo`}
@@ -76,9 +123,12 @@ function ProofTrustBar() {
                   decoding="async"
                   fetchpriority="high"
                 />
+              ) : (
+                <div className="w-12 h-5 bg-white/10 rounded animate-pulse"></div>
+              )}
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Seamless Infinite Scroll CSS */}

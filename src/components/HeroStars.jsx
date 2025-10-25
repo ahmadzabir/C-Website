@@ -21,26 +21,44 @@ function HeroStars() {
   const lastTimeRef = useRef(0)
   const rafRef = useRef()
 
-  // Generate slow-moving hero stars with more variety
+  // Generate galaxy-like starfield with varied sizes and colors
   const generateHeroStars = useCallback(() => {
     const stars = []
-    for (let i = 0; i < 20; i++) { // Increased number of stars
-      stars.push({
-        id: `hero-star-${i}`,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 1.2 + 0.3, // Slightly larger stars
-        speed: Math.random() * 0.03 + 0.01, // Even slower movement
-        opacity: Math.random() * 0.6 + 0.3, // More visible stars
-        baseX: Math.random() * 100,
-        baseY: Math.random() * 100,
-        scrollUpSpeed: Math.random() * 0.2 + 0.1, // Slower upward movement
-        fadeOutPoint: Math.random() * 150 + 50, // Earlier fade out
-        driftSpeed: Math.random() * 0.01 + 0.005, // Very slow drift
-        twinkleSpeed: Math.random() * 0.02 + 0.01, // Twinkling effect
-        color: Math.random() > 0.7 ? '#00FFFF' : '#FFFFFF', // Some cyan stars
-      })
-    }
+    
+    // Create different star types for galaxy effect
+    const starTypes = [
+      { count: 8, sizeRange: [2, 4], opacityRange: [0.8, 1], color: '#FFFFFF', speedRange: [0.005, 0.01] }, // Bright large stars
+      { count: 15, sizeRange: [1, 2], opacityRange: [0.6, 0.8], color: '#00FFFF', speedRange: [0.01, 0.02] }, // Medium cyan stars
+      { count: 25, sizeRange: [0.5, 1], opacityRange: [0.4, 0.6], color: '#FFFFFF', speedRange: [0.02, 0.03] }, // Small white stars
+      { count: 35, sizeRange: [0.3, 0.6], opacityRange: [0.2, 0.4], color: '#87CEEB', speedRange: [0.03, 0.04] }, // Tiny sky blue stars
+      { count: 20, sizeRange: [0.2, 0.4], opacityRange: [0.1, 0.3], color: '#FFFFFF', speedRange: [0.04, 0.05] }, // Micro stars
+    ]
+    
+    starTypes.forEach((type, typeIndex) => {
+      for (let i = 0; i < type.count; i++) {
+        const size = Math.random() * (type.sizeRange[1] - type.sizeRange[0]) + type.sizeRange[0]
+        const opacity = Math.random() * (type.opacityRange[1] - type.opacityRange[0]) + type.opacityRange[0]
+        const speed = Math.random() * (type.speedRange[1] - type.speedRange[0]) + type.speedRange[0]
+        
+        stars.push({
+          id: `galaxy-star-${typeIndex}-${i}`,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: size,
+          speed: speed,
+          opacity: opacity,
+          baseX: Math.random() * 100,
+          baseY: Math.random() * 100,
+          scrollUpSpeed: Math.random() * 0.15 + 0.05, // Slower upward movement
+          fadeOutPoint: Math.random() * 100 + 50, // Earlier fade out
+          driftSpeed: Math.random() * 0.008 + 0.002, // Very slow drift
+          twinkleSpeed: Math.random() * 0.015 + 0.005, // Twinkling effect
+          color: type.color,
+          type: typeIndex, // For different behavior patterns
+        })
+      }
+    })
+    
     return stars
   }, [])
 
@@ -97,16 +115,57 @@ function HeroStars() {
       {stars.map((star) => {
         const time = timeOffset * star.speed
         
-        // Very slow, gentle movement with more organic patterns
-        const moveX = Math.sin(time + star.baseX * 0.003) * 0.5
-        const moveY = Math.cos(time + star.baseY * 0.003) * 0.5
+        // Different movement patterns based on star type
+        let moveX, moveY, driftX, driftY, twinkle
         
-        // Slow drift effect with different patterns
-        const driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.008) * 0.3
-        const driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.008) * 0.3
-
-        // Twinkling effect
-        const twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.2 + 0.8
+        switch (star.type) {
+          case 0: // Large bright stars - slowest, most stable
+            moveX = Math.sin(time + star.baseX * 0.002) * 0.3
+            moveY = Math.cos(time + star.baseY * 0.002) * 0.3
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.005) * 0.2
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.005) * 0.2
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.1 + 0.9
+            break
+            
+          case 1: // Medium cyan stars - moderate movement
+            moveX = Math.sin(time + star.baseX * 0.003) * 0.4
+            moveY = Math.cos(time + star.baseY * 0.003) * 0.4
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.006) * 0.25
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.006) * 0.25
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.15 + 0.85
+            break
+            
+          case 2: // Small white stars - more active
+            moveX = Math.sin(time + star.baseX * 0.004) * 0.5
+            moveY = Math.cos(time + star.baseY * 0.004) * 0.5
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.007) * 0.3
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.007) * 0.3
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.2 + 0.8
+            break
+            
+          case 3: // Tiny sky blue stars - most active
+            moveX = Math.sin(time + star.baseX * 0.005) * 0.6
+            moveY = Math.cos(time + star.baseY * 0.005) * 0.6
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.008) * 0.35
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.008) * 0.35
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.25 + 0.75
+            break
+            
+          case 4: // Micro stars - subtle but visible
+            moveX = Math.sin(time + star.baseX * 0.006) * 0.4
+            moveY = Math.cos(time + star.baseY * 0.006) * 0.4
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.009) * 0.2
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.009) * 0.2
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.3 + 0.7
+            break
+            
+          default:
+            moveX = Math.sin(time + star.baseX * 0.003) * 0.5
+            moveY = Math.cos(time + star.baseY * 0.003) * 0.5
+            driftX = Math.sin(time * star.driftSpeed + star.baseX * 0.008) * 0.3
+            driftY = Math.cos(time * star.driftSpeed + star.baseY * 0.008) * 0.3
+            twinkle = Math.sin(time * star.twinkleSpeed + star.baseX) * 0.2 + 0.8
+        }
 
         // Scroll-based upward movement and fade out
         const scrollUpOffset = scrollY * star.scrollUpSpeed
@@ -118,6 +177,10 @@ function HeroStars() {
 
         // Enhanced opacity with twinkling and scroll fade
         const finalOpacity = star.opacity * scrollFadeOut * twinkle
+
+        // Different glow effects based on star size
+        const glowSize = star.size * (star.type === 0 ? 3 : star.type === 1 ? 2.5 : 2)
+        const glowOpacity = star.type <= 1 ? 0.3 : star.type <= 2 ? 0.2 : 0.1
 
         return (
           <div
@@ -132,7 +195,7 @@ function HeroStars() {
               opacity: finalOpacity,
               willChange: 'transform, opacity',
               transition: 'opacity 0.5s ease-out', // Smoother fade out
-              boxShadow: `0 0 ${star.size * 2}px ${star.color}`, // Glow effect
+              boxShadow: `0 0 ${glowSize}px ${star.color}${Math.floor(glowOpacity * 255).toString(16).padStart(2, '0')}`,
             }}
           />
         )
